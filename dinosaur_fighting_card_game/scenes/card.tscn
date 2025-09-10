@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkii041wwh5sn"]
 
 [ext_resource type="Texture2D" uid="uid://h0gtmhoucvgh" path="res://assets/card_assets/card_ground_standing.png" id="1_grwcn"]
-[ext_resource type="Script" path="res://scripts/card.gd" id="1_tvcam"]
+[ext_resource type="Script" uid="uid://djxysx7sbuwty" path="res://scripts/card.gd" id="1_tvcam"]
 
 [node name="Card" type="Control"]
 custom_minimum_size = Vector2(94, 136)

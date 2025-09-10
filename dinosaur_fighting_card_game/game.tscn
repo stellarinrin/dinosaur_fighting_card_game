@@ -1,9 +1,47 @@
-[gd_scene load_steps=2 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=3 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_hygin"]
+[ext_resource type="Script" uid="uid://bqif6umwquu0q" path="res://combo_box.gd" id="2_e2o6t"]
 
 [node name="Game" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="GameOverOverlay" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.215686)
+
+[node name="GameController" type="Node2D" parent="."]
 
 [node name="Card" parent="." instance=ExtResource("1_hygin")]
+
+[node name="GameScreen" type="Node2D" parent="."]
+
+[node name="PlayerCharacter*" type="Node2D" parent="GameScreen"]
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+visible = false
+offset_left = 268.0
+offset_top = 49.0
+offset_right = 1044.0
+offset_bottom = 309.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 268.0
+offset_top = 49.0
+offset_right = 268.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_e2o6t")
