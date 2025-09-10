@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkii041wwh5sn"]
+
+[ext_resource type="Texture2D" uid="uid://h0gtmhoucvgh" path="res://assets/card_assets/card_ground_standing.png" id="1_grwcn"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_tvcam"]
+
+[node name="Card" type="Control"]
+custom_minimum_size = Vector2(94, 136)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 94.0
+offset_bottom = 136.0
+script = ExtResource("1_tvcam")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(47.25, 67.75)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("1_grwcn")
+
+[node name="Shadow" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0, 0, 0, 0.392157)
+show_behind_parent = true
+texture = ExtResource("1_grwcn")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

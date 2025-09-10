@@ -1,5 +1,9 @@
-[gd_scene format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=2 format=3 uid="uid://bd5j326o1s54n"]
+
+[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_hygin"]
 
 [node name="Game" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Card" parent="." instance=ExtResource("1_hygin")]
