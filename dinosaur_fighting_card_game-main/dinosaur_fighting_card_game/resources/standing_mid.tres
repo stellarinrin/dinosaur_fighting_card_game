@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MoveAttributes" load_steps=2 format=3 uid="uid://cy088d5m4asxl"]
+
+[ext_resource type="Script" uid="uid://b4ckm6doop3nk" path="res://resources/move_attributes.gd" id="1_a2ci8"]
+
+[resource]
+script = ExtResource("1_a2ci8")
+damage = 0.0
+startup_frames = 0
+active_frames = 0
+recovery_frames = 0
+invincible_frame_start = 0
+invincible_frame_end = 0
+is_ground_unblockable = false
+is_air_unblockable = false
+is_grounded = true
+block_level = 0

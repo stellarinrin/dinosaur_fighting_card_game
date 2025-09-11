@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://baucw7duvmvgd"]
+
+[ext_resource type="Texture2D" uid="uid://h0gtmhoucvgh" path="res://assets/card_assets/card_ground_standing.png" id="1_grwcn"]
+[ext_resource type="Script" uid="uid://djxysx7sbuwty" path="res://scripts/card.gd" id="1_tvcam"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6u4wf"]
+size = Vector2(32, 25)
+
+[node name="Card" type="Control"]
+y_sort_enabled = true
+custom_minimum_size = Vector2(94, 136)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 94.0
+offset_bottom = 136.0
+script = ExtResource("1_tvcam")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(47.25, 67.75)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("1_grwcn")
+
+[node name="Shadow" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0, 0, 0, 0.392157)
+show_behind_parent = true
+z_index = -1
+texture = ExtResource("1_grwcn")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(47, 66.5)
+shape = SubResource("RectangleShape2D_6u4wf")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
