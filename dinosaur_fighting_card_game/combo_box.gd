@@ -12,3 +12,10 @@ func _process(delta: float) -> void:
 		get_child(0)._set_rotation(0)
 	queue_sort()
 	
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	var card_node = area.get_parent()
+	card_node.reparent(self)
+	#add_child(card_node)
+	
