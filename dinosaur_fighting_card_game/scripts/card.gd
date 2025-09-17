@@ -1,7 +1,12 @@
 extends Control
 
+@export var card_texture: Texture2D
 var mouse_in: bool = false
 var is_dragging: bool = false
+
+func _ready() -> void:
+	if card_texture:
+		$Sprite2D.texture = card_texture
 
 func _physics_process(delta: float) -> void:
 	drag_logic(delta)

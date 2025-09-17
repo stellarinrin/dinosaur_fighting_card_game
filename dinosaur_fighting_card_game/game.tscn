@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=5 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_hygin"]
 [ext_resource type="Script" uid="uid://bqif6umwquu0q" path="res://combo_box.gd" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://h86n1ptol3jq" path="res://assets/card_assets/card_ground_overhead.png" id="3_feb5d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(804, 281)
@@ -61,6 +62,7 @@ color = Color(0, 0, 0, 0.215686)
 z_index = 1
 
 [node name="Card2" parent="." instance=ExtResource("1_hygin")]
+card_texture = ExtResource("3_feb5d")
 
 [node name="Card3" parent="." instance=ExtResource("1_hygin")]
 

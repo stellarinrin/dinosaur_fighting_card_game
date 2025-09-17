@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MoveAttributes" load_steps=2 format=3 uid="uid://csha2fu8k3ssa"]
+
+[ext_resource type="Script" uid="uid://b4ckm6doop3nk" path="res://resources/move_attributes.gd" id="1_wtkqr"]
+
+[resource]
+script = ExtResource("1_wtkqr")
+damage = 0.0
+startup_frames = 0
+active_frames = 0
+recovery_frames = 0
+invincible_frame_start = 0
+invincible_frame_end = 0
+is_ground_unblockable = false
+is_air_unblockable = false
+is_grounded = true
+block_level = 1
+metadata/_custom_type_script = "uid://b4ckm6doop3nk"
