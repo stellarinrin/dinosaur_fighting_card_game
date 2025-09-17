@@ -1,6 +1,7 @@
 extends Control
 
 @export var card_texture: Texture2D
+@export var move_index: int
 var mouse_in: bool = false
 var is_dragging: bool = false
 
