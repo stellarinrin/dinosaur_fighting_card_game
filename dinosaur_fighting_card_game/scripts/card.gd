@@ -10,6 +10,7 @@ func _ready() -> void:
 		$Sprite2D.texture = card_texture
 
 func _physics_process(delta: float) -> void:
+	$Area2D.monitorable = false
 	drag_logic(delta)
 
 var current_goal_scale: Vector2 = Vector2(0.2, 0.2)
@@ -28,6 +29,7 @@ func _change_scale(desired_scale: Vector2):
 func drag_logic(delta: float) -> void:
 	if (mouse_in or is_dragging) and (MouseBrain.node_being_dragged == null or MouseBrain.node_being_dragged == self):
 		if Input.is_action_pressed("click"):
+			$Area2D.monitorable = true
 			global_position = lerp(global_position, get_global_mouse_position() - (size/2.0), 22.0 * delta)
 			_change_scale(Vector2(2.3, 2.3))
 			_set_rotation(delta)

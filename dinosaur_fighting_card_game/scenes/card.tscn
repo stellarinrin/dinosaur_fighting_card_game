@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkii041wwh5sn"]
 
 [ext_resource type="Texture2D" uid="uid://h0gtmhoucvgh" path="res://assets/card_assets/card_ground_standing.png" id="1_grwcn"]
-[ext_resource type="Script" uid="uid://djxysx7sbuwty" path="res://scripts/card.gd" id="1_tvcam"]
+[ext_resource type="Script" path="res://scripts/card.gd" id="1_tvcam"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6u4wf"]
 size = Vector2(29.5, 22.5)
@@ -35,5 +35,7 @@ monitoring = false
 position = Vector2(47.25, 67.75)
 shape = SubResource("RectangleShape2D_6u4wf")
 
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,5 +1,6 @@
 extends HBoxContainer
 
+@onready var game = $"../../.."
 var combo: Array
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,3 +23,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 func _parse_cards() -> void:
 	combo = get_children()
 	
+
+
+func _on_reset_cards_button_down() -> void:
+	var hand = get_children()
+	for card in hand:
+		#card.get_node("Area2D").monitorable = false
+		card.reparent(game)
+		card.position = Vector2(0,0)
