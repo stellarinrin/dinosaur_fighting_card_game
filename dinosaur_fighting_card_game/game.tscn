@@ -70,7 +70,6 @@ text = "Reset Cards"
 [node name="PlayerCharacter*" type="Node2D" parent="GameScreen"]
 
 [node name="Card" parent="." instance=ExtResource("1_hygin")]
-z_index = 1
 
 [node name="Card2" parent="." instance=ExtResource("1_hygin")]
 card_texture = ExtResource("3_feb5d")
