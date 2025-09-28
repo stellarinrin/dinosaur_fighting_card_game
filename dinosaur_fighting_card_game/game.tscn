@@ -1,33 +1,66 @@
-[gd_scene load_steps=7 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=14 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_hygin"]
 [ext_resource type="Script" path="res://game.gd" id="1_n0eis"]
 [ext_resource type="Script" path="res://scripts/game_state_controller.gd" id="2_lqju6"]
 [ext_resource type="Texture2D" uid="uid://h86n1ptol3jq" path="res://assets/card_assets/card_ground_overhead.png" id="3_feb5d"]
 [ext_resource type="Script" path="res://scripts/combo_box.gd" id="3_u4083"]
+[ext_resource type="Script" path="res://scripts/states/player_input.gd" id="3_wjgea"]
+[ext_resource type="Script" path="res://scripts/states/parse_card.gd" id="4_i14vp"]
+[ext_resource type="Script" path="res://pause.gd" id="4_oic87"]
+[ext_resource type="Script" path="res://scripts/states/simulate_attacks.gd" id="5_ehbcw"]
+[ext_resource type="Script" path="res://failure.gd" id="6_i0vdo"]
+[ext_resource type="Script" path="res://scripts/states/success.gd" id="7_avx0k"]
+[ext_resource type="PackedScene" uid="uid://dtbl6tu7720f6" path="res://scenes/player_character.tscn" id="10_eginm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
-size = Vector2(804, 281)
+size = Vector2(795, 155)
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_n0eis")
 
-[node name="GameStateController" type="Node2D" parent="."]
+[node name="GameStateController" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_lqju6")
+starting_state = NodePath("PlayerInput")
+
+[node name="PlayerInput" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_card_state")]
+script = ExtResource("3_wjgea")
+parse_card_state = NodePath("../ParseCard")
+
+[node name="Pause" type="Node" parent="GameStateController"]
+script = ExtResource("4_oic87")
+
+[node name="ParseCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("simulate_attacks_state")]
+script = ExtResource("4_i14vp")
+simulate_attacks_state = NodePath("../SimulateAttacks")
+
+[node name="SimulateAttacks" type="Node" parent="GameStateController" node_paths=PackedStringArray("player_input_state", "failure_state", "success_state", "parse_card_state")]
+script = ExtResource("5_ehbcw")
+player_input_state = NodePath("../PlayerInput")
+failure_state = NodePath("../Failure")
+success_state = NodePath("../Success")
+parse_card_state = NodePath("../ParseCard")
+
+[node name="Failure" type="Node" parent="GameStateController"]
+script = ExtResource("6_i0vdo")
+
+[node name="Success" type="Node" parent="GameStateController"]
+script = ExtResource("7_avx0k")
 
 [node name="ComboBox" type="CanvasLayer" parent="."]
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="ComboBox"]
 y_sort_enabled = true
-offset_left = 268.0
-offset_top = 49.0
-offset_right = 1044.0
-offset_bottom = 309.0
+offset_left = 186.0
+offset_top = 355.0
+offset_right = 962.0
+offset_bottom = 497.0
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ComboBox/ColorRect"]
+[node name="ComboBoxContainer" type="HBoxContainer" parent="ComboBox/ColorRect"]
+unique_name_in_owner = true
 y_sort_enabled = true
 layout_mode = 1
 anchors_preset = 15
@@ -38,13 +71,13 @@ grow_vertical = 2
 alignment = 1
 script = ExtResource("3_u4083")
 
-[node name="Area2D" type="Area2D" parent="ComboBox/ColorRect"]
+[node name="ComboBoxArea" type="Area2D" parent="ComboBox/ColorRect"]
 y_sort_enabled = true
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ComboBox/ColorRect/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ComboBox/ColorRect/ComboBoxArea"]
 y_sort_enabled = true
-position = Vector2(392, 130.5)
+position = Vector2(387.5, 71.5)
 shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -59,22 +92,34 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.215686)
 
 [node name="ResetCards" type="Button" parent="UI"]
-offset_left = 52.0
-offset_top = 342.0
-offset_right = 224.0
-offset_bottom = 403.0
+offset_left = 485.0
+offset_top = 544.0
+offset_right = 657.0
+offset_bottom = 605.0
 text = "Reset Cards"
 
-[node name="GameScreen" type="Node2D" parent="."]
+[node name="PlayHand" type="Button" parent="UI"]
+offset_left = 309.0
+offset_top = 547.0
+offset_right = 457.0
+offset_bottom = 606.0
+text = "Play Hand"
 
-[node name="PlayerCharacter*" type="Node2D" parent="GameScreen"]
+[node name="Stage" type="Node2D" parent="."]
+
+[node name="PlayerCharacter" parent="Stage" instance=ExtResource("10_eginm")]
+position = Vector2(386, 269)
 
 [node name="Card" parent="." instance=ExtResource("1_hygin")]
+move_index = 1
 
 [node name="Card2" parent="." instance=ExtResource("1_hygin")]
 card_texture = ExtResource("3_feb5d")
+move_index = 1
 
 [node name="Card3" parent="." instance=ExtResource("1_hygin")]
+move_index = 1
 
-[connection signal="area_entered" from="ComboBox/ColorRect/Area2D" to="ComboBox/ColorRect/HBoxContainer" method="_on_area_2d_area_entered"]
-[connection signal="button_down" from="UI/ResetCards" to="ComboBox/ColorRect/HBoxContainer" method="_on_reset_cards_button_down"]
+[connection signal="area_entered" from="ComboBox/ColorRect/ComboBoxArea" to="ComboBox/ColorRect/ComboBoxContainer" method="_on_combo_box_area_entered"]
+[connection signal="button_down" from="UI/ResetCards" to="ComboBox/ColorRect/ComboBoxContainer" method="_on_reset_cards_button_down"]
+[connection signal="button_down" from="UI/PlayHand" to="." method="_on_play_hand_button_down"]

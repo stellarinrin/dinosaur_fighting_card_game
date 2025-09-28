@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkii041wwh5sn"]
+[gd_scene load_steps=5 format=3 uid="uid://bkii041wwh5sn"]
 
 [ext_resource type="Texture2D" uid="uid://h0gtmhoucvgh" path="res://assets/card_assets/card_ground_standing.png" id="1_grwcn"]
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_tvcam"]
+[ext_resource type="Resource" uid="uid://cy088d5m4asxl" path="res://resources/standing_mid.tres" id="3_1ggeu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6u4wf"]
 size = Vector2(29.5, 22.5)
@@ -14,6 +15,8 @@ anchors_preset = 0
 offset_right = 94.0
 offset_bottom = 136.0
 script = ExtResource("1_tvcam")
+card_texture = ExtResource("1_grwcn")
+move_attributes = ExtResource("3_1ggeu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true

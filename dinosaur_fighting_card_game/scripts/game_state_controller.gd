@@ -1,40 +1,30 @@
-class_name GameStateController extends Node2D
+extends Node
 
-enum GameState {
-	PLAYER_TURN,
-	PLAYER_ACTION,
-	#ENEMY_TURN,
-	ENEMY_ACTION,
-	FAILURE,
-	SUCCESS
-}
+@export var starting_state: GameState
+var current_state: GameState
 
-@onready var current_state: GameState = GameState.PLAYER_TURN
-
-func transition(next_state: GameState):
-
-	match current_state:
-		GameState.PLAYER_TURN:
-			pass
-		GameState.PLAYER_ACTION:
-			pass
-		GameState.ENEMY_ACTION:
-			pass
-		GameState.FAILURE:
-			pass
-		GameState.SUCCESS:
-			pass
+## Initialise the state machine by giving each child state a reference to the
+## parent object it belongs to and enter the default starting_state
+func init(parent: Node2D) -> void:
+	for child in get_children():
+		child.parent = parent
 	
-	current_state = next_state
+	## Initialise to the default state
+	change_state(starting_state)
 
-	match current_state:
-		GameState.PLAYER_TURN:
-			pass
-		GameState.PLAYER_ACTION:
-			pass
-		GameState.ENEMY_ACTION:
-			pass
-		GameState.FAILURE:
-			pass
-		GameState.SUCCESS:
-			pass
+## Change to the new state by first calling any exit logic on the current state
+func change_state(new_state: GameState) -> void:
+	if current_state:
+		current_state.exit()
+	
+	current_state = new_state
+	current_state.enter()
+	
+## Pass through functions for the Player to call,
+## handling state changes as needed.
+		
+func process_frame(delta: float) -> void:
+	var new_state = current_state.process_frame(delta)
+	if new_state:
+		change_state(new_state)
+		
