@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_hygin"]
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://game.gd" id="1_n0eis"]
 [ext_resource type="Script" uid="uid://ce5tlqq5nxspm" path="res://scripts/game_state_controller.gd" id="2_lqju6"]
-[ext_resource type="Texture2D" uid="uid://h86n1ptol3jq" path="res://assets/card_assets/card_ground_overhead.png" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://bwoaq8fw2j28y" path="res://scripts/combo_box.gd" id="3_u4083"]
 [ext_resource type="Script" uid="uid://tu52wobmgfj6" path="res://scripts/states/player_input.gd" id="3_wjgea"]
 [ext_resource type="Script" uid="uid://bye6uk8ioj8ts" path="res://scripts/states/parse_card.gd" id="4_i14vp"]
@@ -12,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bmqc37vg5el4c" path="res://failure.gd" id="6_i0vdo"]
 [ext_resource type="Script" uid="uid://btlamgnmd4thu" path="res://scripts/states/success.gd" id="7_avx0k"]
 [ext_resource type="PackedScene" uid="uid://dtbl6tu7720f6" path="res://scenes/player_character.tscn" id="10_eginm"]
+[ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="12_iotsf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(795, 155)
@@ -111,13 +111,16 @@ text = "Play Hand"
 position = Vector2(386, 269)
 
 [node name="Card" parent="." instance=ExtResource("1_hygin")]
+card_text = "standing mid"
 move_index = 1
 
 [node name="Card2" parent="." instance=ExtResource("1_hygin")]
-card_texture = ExtResource("3_feb5d")
-move_index = 1
+card_texture = ExtResource("12_iotsf")
+card_text = "crouching low"
+move_index = 2
 
 [node name="Card3" parent="." instance=ExtResource("1_hygin")]
+card_text = "standing mid"
 move_index = 1
 
 [connection signal="area_entered" from="ComboBox/ColorRect/ComboBoxArea" to="ComboBox/ColorRect/ComboBoxContainer" method="_on_combo_box_area_entered"]

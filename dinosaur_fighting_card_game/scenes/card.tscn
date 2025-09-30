@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkii041wwh5sn"]
+[gd_scene load_steps=6 format=3 uid="uid://bkii041wwh5sn"]
 
 [ext_resource type="Texture2D" uid="uid://h0gtmhoucvgh" path="res://assets/card_assets/card_ground_standing.png" id="1_grwcn"]
 [ext_resource type="Script" uid="uid://djxysx7sbuwty" path="res://scripts/card.gd" id="1_tvcam"]
 [ext_resource type="Resource" uid="uid://cy088d5m4asxl" path="res://resources/standing_mid.tres" id="3_1ggeu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ktuci"]
+font_size = 9
+font_color = Color(4.33177e-07, 0.409677, 0.150381, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6u4wf"]
 size = Vector2(29.5, 22.5)
@@ -30,6 +34,18 @@ show_behind_parent = true
 z_index = -1
 y_sort_enabled = true
 texture = ExtResource("1_grwcn")
+
+[node name="Text" type="Label" parent="Sprite2D"]
+z_index = 1
+y_sort_enabled = true
+offset_left = -21.0
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = 30.0
+label_settings = SubResource("LabelSettings_ktuci")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Area2D" type="Area2D" parent="."]
 monitoring = false
