@@ -1,10 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dtbl6tu7720f6"]
 
 [ext_resource type="Texture2D" uid="uid://lfgrhc4eeh12" path="res://assets/character-dinosaur-test-standing.png" id="1_efknm"]
-[ext_resource type="Script" path="res://scenes/player_character.gd" id="1_oee74"]
-
-[sub_resource type="Animation" id="Animation_6qpy7"]
-resource_name = "idle"
+[ext_resource type="Script" uid="uid://do7hyl6ydle6i" path="res://scenes/player_character.gd" id="1_oee74"]
 
 [sub_resource type="Animation" id="Animation_pa63f"]
 resource_name = "5A"
@@ -133,11 +130,14 @@ tracks/4/keys = {
 "values": [Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_6qpy7"]
+resource_name = "idle"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_os6p6"]
 _data = {
-"5A": SubResource("Animation_pa63f"),
-"RESET": SubResource("Animation_i31wq"),
-"idle": SubResource("Animation_6qpy7")
+&"5A": SubResource("Animation_pa63f"),
+&"RESET": SubResource("Animation_i31wq"),
+&"idle": SubResource("Animation_6qpy7")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8qn0"]
