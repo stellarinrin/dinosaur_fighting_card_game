@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=15 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_hygin"]
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://game.gd" id="1_n0eis"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bmqc37vg5el4c" path="res://failure.gd" id="6_i0vdo"]
 [ext_resource type="Script" uid="uid://btlamgnmd4thu" path="res://scripts/states/success.gd" id="7_avx0k"]
 [ext_resource type="PackedScene" uid="uid://dtbl6tu7720f6" path="res://scenes/player_character.tscn" id="10_eginm"]
+[ext_resource type="Texture2D" uid="uid://bqimbco8ox5o8" path="res://assets/character-dinosaur-test-crouching.png" id="10_lc2xo"]
 [ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="12_iotsf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
@@ -105,6 +106,26 @@ offset_right = 457.0
 offset_bottom = 606.0
 text = "Play Hand"
 
+[node name="AddMidCard" type="Button" parent="UI"]
+offset_left = 681.0
+offset_top = 513.0
+offset_right = 801.0
+offset_bottom = 571.0
+text = "Add Mid Card"
+
+[node name="AddLowCard" type="Button" parent="UI"]
+offset_left = 681.0
+offset_top = 581.0
+offset_right = 801.0
+offset_bottom = 639.0
+text = "Add Low Card"
+
+[node name="CharacterDinosaurTestCrouching" type="Sprite2D" parent="UI"]
+modulate = Color(2.117753e-06, 0.80588436, 0.7920013, 1)
+position = Vector2(497.99997, 284)
+scale = Vector2(-0.24, 0.24)
+texture = ExtResource("10_lc2xo")
+
 [node name="Stage" type="Node2D" parent="."]
 
 [node name="PlayerCharacter" parent="Stage" instance=ExtResource("10_eginm")]
@@ -126,3 +147,5 @@ move_index = 1
 [connection signal="area_entered" from="ComboBox/ColorRect/ComboBoxArea" to="ComboBox/ColorRect/ComboBoxContainer" method="_on_combo_box_area_entered"]
 [connection signal="button_down" from="UI/ResetCards" to="ComboBox/ColorRect/ComboBoxContainer" method="_on_reset_cards_button_down"]
 [connection signal="button_down" from="UI/PlayHand" to="." method="_on_play_hand_button_down"]
+[connection signal="button_down" from="UI/AddMidCard" to="." method="_on_add_mid_card_button_down"]
+[connection signal="button_down" from="UI/AddLowCard" to="." method="_on_add_low_card_button_down"]

@@ -5,6 +5,8 @@ extends Node2D
 @onready var combo : Array
 @onready var isHandPlayed : bool = false
 @onready var isAnimationFinished : bool = true
+@onready var standing_mid_card = preload("res://scenes/card-standing-mid.tscn")
+@onready var crouching_low_card = preload("res://scenes/card-crouching-low.tscn")
 
 func _ready() -> void:
 	# Initialise the state machine, passing a reference of the player to the states,
@@ -21,3 +23,13 @@ func _on_play_hand_button_down() -> void:
 
 func _on_animation_finished() -> void:
 	isAnimationFinished = true
+
+
+func _on_add_mid_card_button_down() -> void:
+	var instance = standing_mid_card.instantiate()
+	add_child(instance)
+
+
+func _on_add_low_card_button_down() -> void:
+	var instance = crouching_low_card.instantiate()
+	add_child(instance)

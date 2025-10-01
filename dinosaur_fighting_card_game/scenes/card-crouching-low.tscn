@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5t3yyx6sirng"]
+
+[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_vik01"]
+[ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="2_rg3ew"]
+[ext_resource type="Resource" uid="uid://csha2fu8k3ssa" path="res://resources/crouching_low.tres" id="3_trbpp"]
+
+[node name="Card" instance=ExtResource("1_vik01")]
+card_texture = ExtResource("2_rg3ew")
+card_text = "crouching low"
+move_index = 2
+move_attributes = ExtResource("3_trbpp")
