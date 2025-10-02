@@ -38,9 +38,13 @@ func drag_logic(delta: float) -> void:
 			_change_scale(Vector2(2.3, 2.3))
 			_set_rotation(delta)
 			$Sprite2D.z_index = 100
+			if not is_dragging:
+				%CardSFX.stream = %CardSFX.card_grab_sound
+				%CardSFX.play()
 			is_dragging = true
 			MouseBrain.node_being_dragged = self
 			$Sprite2D/Shadow.position = Vector2(0, 3).rotated($Sprite2D.rotation)
+			
 		else:
 			_change_scale(Vector2(2.27, 2.27))
 			$Sprite2D.rotation_degrees = lerp($Sprite2D.rotation_degrees, 0.0, 22.0*delta)
@@ -48,6 +52,8 @@ func drag_logic(delta: float) -> void:
 			if MouseBrain.node_being_dragged == self:
 				MouseBrain.node_being_dragged = null
 				$Sprite2D/Shadow.position = Vector2(0, 0).rotated($Sprite2D.rotation)
+				%CardSFX.stream = %CardSFX.card_drop_sound
+				%CardSFX.play()
 		return
 		
 	$Sprite2D.z_index = 0

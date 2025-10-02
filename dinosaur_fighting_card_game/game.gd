@@ -8,6 +8,7 @@ extends Node2D
 @onready var standing_mid_card = preload("res://scenes/card-standing-mid.tscn")
 @onready var crouching_low_card = preload("res://scenes/card-crouching-low.tscn")
 
+
 func _ready() -> void:
 	# Initialise the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
