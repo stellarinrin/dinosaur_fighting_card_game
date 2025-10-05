@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2pif88fkvy0q"]
+
+[ext_resource type="Script" uid="uid://gdsdtd32sye5" path="res://addons/RoundedPolygon2D/RoundedPolygon2D.gd" id="1_xsssc"]
+
+[node name="Button" type="Button"]
+offset_right = 628.0
+offset_bottom = 385.0
+
+[node name="RoundedPolygon2D" type="Polygon2D" parent="."]
+position = Vector2(-62, 7)
+color = Color(0.70980394, 0.69411767, 0.84705883, 1)
+polygon = PackedVector2Array(125, 63, 208, 60, 251, 105, 213, 142, 128, 143, 99, 109)
+script = ExtResource("1_xsssc")
+metadata/_custom_type_script = "uid://gdsdtd32sye5"
+
+[node name="RoundedPolygon2D2" type="Polygon2D" parent="."]
+position = Vector2(-38, 50)
+color = Color(0.6039216, 0.43529412, 0.7176471, 1)
+polygon = PackedVector2Array(125, 63, 208, 60, 251, 105, 213, 142, 128, 143, 99, 109)
+script = ExtResource("1_xsssc")
+metadata/_custom_type_script = "uid://gdsdtd32sye5"
+
+[node name="RoundedPolygon2D3" type="Polygon2D" parent="."]
+position = Vector2(-62, 7)
+color = Color(0.4627451, 0.43529412, 0.7176471, 1)
+antialiased = true
+polygon = PackedVector2Array(209, 7, 625, 32, 677, 156, 537, 353, 135, 372, 68, 196)
+polygons = [null]
+script = ExtResource("1_xsssc")
+corner_radius = 64
+corner_detail = 20
+metadata/_custom_type_script = "uid://gdsdtd32sye5"

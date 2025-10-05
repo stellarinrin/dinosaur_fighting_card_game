@@ -1,4 +1,4 @@
-extends Node2D
+class_name GameController extends Node2D
 
 # @export var player_character: Character
 @onready var game_state_controller := $GameStateController
@@ -12,6 +12,7 @@ extends Node2D
 func _ready() -> void:
 	# Initialise the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
+	Global.game_controller = self
 	game_state_controller.init(self)
 	Events.animation_finished.connect(_on_animation_finished.bind())
 

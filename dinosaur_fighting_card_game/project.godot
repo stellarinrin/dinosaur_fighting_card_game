@@ -17,16 +17,24 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MouseBrain="*res://scripts/mouse_brain.gd"
-Events="*res://scripts/Events.gd"
+MouseBrain="*res://scripts/Globals/mouse_brain.gd"
+Events="*res://scripts/Globals/Events.gd"
+Global="*res://scripts/Globals/Global.gd"
 
 [display]
 
+window/size/viewport_width=2560
+window/size/viewport_height=1440
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 
 project/assembly_name="dinosaur_fighting_card_game"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/RoundedPolygon2D/plugin.cfg")
 
 [input]
 

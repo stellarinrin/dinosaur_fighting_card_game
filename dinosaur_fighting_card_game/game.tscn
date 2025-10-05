@@ -1,28 +1,35 @@
-[gd_scene load_steps=22 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=24 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_hygin"]
-[ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://game.gd" id="1_n0eis"]
+[ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_n0eis"]
 [ext_resource type="AudioStream" uid="uid://ceokasgqio88" path="res://assets/audio/アホの子.mp3" id="2_boyg6"]
 [ext_resource type="Script" uid="uid://ce5tlqq5nxspm" path="res://scripts/game_state_controller.gd" id="2_lqju6"]
-[ext_resource type="Script" uid="uid://c4wkipra21sga" path="res://audio_stream_player_2d.gd" id="3_e36ub"]
-[ext_resource type="Script" uid="uid://c2p04ywy131nf" path="res://bgmp_layer.gd" id="3_hb5m1"]
+[ext_resource type="Script" uid="uid://c4wkipra21sga" path="res://scripts/audio_stream_player_2d.gd" id="3_e36ub"]
+[ext_resource type="Script" uid="uid://c2p04ywy131nf" path="res://scripts/bgmp_layer.gd" id="3_hb5m1"]
 [ext_resource type="Script" uid="uid://bwoaq8fw2j28y" path="res://scripts/combo_box.gd" id="3_u4083"]
 [ext_resource type="Script" uid="uid://tu52wobmgfj6" path="res://scripts/states/player_input.gd" id="3_wjgea"]
 [ext_resource type="AudioStream" uid="uid://cd5iy63fbke4r" path="res://assets/audio/MenuButtonSound.wav" id="4_hb5m1"]
 [ext_resource type="Script" uid="uid://bye6uk8ioj8ts" path="res://scripts/states/parse_card.gd" id="4_i14vp"]
-[ext_resource type="Script" uid="uid://dt817218d0jim" path="res://pause.gd" id="4_oic87"]
+[ext_resource type="Script" uid="uid://dt817218d0jim" path="res://scripts/states/pause.gd" id="4_oic87"]
 [ext_resource type="Script" uid="uid://c8hqy72sf3l02" path="res://scripts/states/simulate_attacks.gd" id="5_ehbcw"]
 [ext_resource type="AudioStream" uid="uid://b8nast02yf2t7" path="res://assets/audio/ButtonHoverSound.wav" id="5_x5p1p"]
-[ext_resource type="Script" uid="uid://bmqc37vg5el4c" path="res://failure.gd" id="6_i0vdo"]
+[ext_resource type="Script" uid="uid://bmqc37vg5el4c" path="res://scripts/states/failure.gd" id="6_i0vdo"]
 [ext_resource type="Script" uid="uid://btlamgnmd4thu" path="res://scripts/states/success.gd" id="7_avx0k"]
 [ext_resource type="AudioStream" uid="uid://bpntw61k61n0u" path="res://assets/audio/WinSound.wav" id="7_f1jbl"]
 [ext_resource type="AudioStream" uid="uid://bwnwlbdlfsojt" path="res://assets/audio/PortalFX.wav" id="8_hb5m1"]
 [ext_resource type="PackedScene" uid="uid://dtbl6tu7720f6" path="res://scenes/player_character.tscn" id="10_eginm"]
 [ext_resource type="Texture2D" uid="uid://bqimbco8ox5o8" path="res://assets/character-dinosaur-test-crouching.png" id="10_lc2xo"]
 [ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="12_iotsf"]
+[ext_resource type="PackedScene" uid="uid://b2pif88fkvy0q" path="res://scenes/menu_button.tscn" id="21_hb5m1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(795, 155)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hb5m1"]
+line_spacing = -32.0
+font_size = 120
+outline_size = 96
+outline_color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -166,6 +173,73 @@ move_index = 2
 [node name="Card3" parent="." instance=ExtResource("1_hygin")]
 card_text = "standing mid"
 move_index = 1
+
+[node name="MainMenu" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.54901963, 0.7176471, 0.43529412, 1)
+
+[node name="LevelButton" parent="MainMenu" instance=ExtResource("21_hb5m1")]
+offset_left = 599.0
+offset_top = 70.0
+offset_right = 1227.0
+offset_bottom = 455.0
+
+[node name="Polygon2D" type="Polygon2D" parent="MainMenu"]
+position = Vector2(491, 1246)
+polygon = PackedVector2Array(404, 130, 607, 127, 685, 181, 969, 406, 277, 404, 319, 156)
+
+[node name="Label" type="Label" parent="MainMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -138.5
+offset_right = 425.0
+offset_bottom = 138.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "dinosaur fighting 
+card game"
+label_settings = SubResource("LabelSettings_hb5m1")
+horizontal_alignment = 1
+
+[node name="CreditButton" parent="MainMenu" instance=ExtResource("21_hb5m1")]
+offset_left = 542.0
+offset_top = 1002.0
+offset_right = 1170.0
+offset_bottom = 1387.0
+
+[node name="StoryButton" parent="MainMenu" instance=ExtResource("21_hb5m1")]
+offset_left = 1388.0
+offset_top = 56.0
+offset_right = 2016.0
+offset_bottom = 441.0
+
+[node name="OptionsButton" parent="MainMenu" instance=ExtResource("21_hb5m1")]
+offset_left = 1906.0
+offset_top = 536.0
+offset_right = 2534.0
+offset_bottom = 921.0
+
+[node name="CollectionButton" parent="MainMenu" instance=ExtResource("21_hb5m1")]
+offset_left = 35.0
+offset_top = 522.0
+offset_right = 663.0
+offset_bottom = 907.0
+
+[node name="Quit" parent="MainMenu" instance=ExtResource("21_hb5m1")]
+offset_left = 1395.0
+offset_top = 999.0
+offset_right = 2023.0
+offset_bottom = 1384.0
 
 [connection signal="area_entered" from="ComboBox/ColorRect/ComboBoxArea" to="ComboBox/ColorRect/ComboBoxContainer" method="_on_combo_box_area_entered"]
 [connection signal="button_down" from="UI/ResetCards" to="SFXPlayer" method="_on_reset_cards_button_down"]
