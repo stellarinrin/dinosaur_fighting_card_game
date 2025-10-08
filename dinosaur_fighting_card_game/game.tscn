@@ -27,7 +27,7 @@ size = Vector2(795, 155)
 
 [sub_resource type="LabelSettings" id="LabelSettings_hb5m1"]
 line_spacing = -32.0
-font_size = 120
+font_size = 100
 outline_size = 96
 outline_color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 
@@ -184,14 +184,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.54901963, 0.7176471, 0.43529412, 1)
 
-[node name="LevelButton" parent="MainMenu" instance=ExtResource("21_hb5m1")]
-offset_left = 599.0
-offset_top = 70.0
-offset_right = 1227.0
-offset_bottom = 455.0
-
 [node name="Polygon2D" type="Polygon2D" parent="MainMenu"]
-position = Vector2(491, 1246)
+position = Vector2(713, 1504)
 polygon = PackedVector2Array(404, 130, 607, 127, 685, 181, 969, 406, 277, 404, 319, 156)
 
 [node name="Label" type="Label" parent="MainMenu"]
@@ -211,35 +205,48 @@ card game"
 label_settings = SubResource("LabelSettings_hb5m1")
 horizontal_alignment = 1
 
+[node name="LevelButton" parent="MainMenu" instance=ExtResource("21_hb5m1")]
+offset_left = 472.0
+offset_top = 67.0
+offset_right = 1100.0
+offset_bottom = 452.0
+
 [node name="CreditButton" parent="MainMenu" instance=ExtResource("21_hb5m1")]
-offset_left = 542.0
-offset_top = 1002.0
-offset_right = 1170.0
-offset_bottom = 1387.0
+offset_left = 388.0
+offset_top = 728.0
+offset_right = 1016.0
+offset_bottom = 1113.0
+animation_start_time = 0.4
 
 [node name="StoryButton" parent="MainMenu" instance=ExtResource("21_hb5m1")]
-offset_left = 1388.0
-offset_top = 56.0
-offset_right = 2016.0
-offset_bottom = 441.0
+offset_left = 1014.0
+offset_top = 57.0
+offset_right = 1642.0
+offset_bottom = 442.0
+animation_start_time = 0.6
 
 [node name="OptionsButton" parent="MainMenu" instance=ExtResource("21_hb5m1")]
-offset_left = 1906.0
-offset_top = 536.0
-offset_right = 2534.0
-offset_bottom = 921.0
+offset_left = 1421.0
+offset_top = 373.0
+offset_right = 2049.0
+offset_bottom = 758.0
+animation_start_time = 0.2
 
 [node name="CollectionButton" parent="MainMenu" instance=ExtResource("21_hb5m1")]
-offset_left = 35.0
-offset_top = 522.0
-offset_right = 663.0
-offset_bottom = 907.0
+offset_left = 18.999998
+offset_top = 361.0
+offset_right = 647.0
+offset_bottom = 746.0
+animation_start_time = 0.8
 
 [node name="Quit" parent="MainMenu" instance=ExtResource("21_hb5m1")]
-offset_left = 1395.0
-offset_top = 999.0
-offset_right = 2023.0
-offset_bottom = 1384.0
+offset_left = 965.0
+offset_top = 708.0
+offset_right = 1593.0
+offset_bottom = 1093.0
+animation_start_time = 1.0
+
+[node name="CreditsMenu" type="CanvasLayer" parent="."]
 
 [connection signal="area_entered" from="ComboBox/ColorRect/ComboBoxArea" to="ComboBox/ColorRect/ComboBoxContainer" method="_on_combo_box_area_entered"]
 [connection signal="button_down" from="UI/ResetCards" to="SFXPlayer" method="_on_reset_cards_button_down"]

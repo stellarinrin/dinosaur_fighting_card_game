@@ -1,26 +1,136 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2pif88fkvy0q"]
+[gd_scene load_steps=7 format=3 uid="uid://b2pif88fkvy0q"]
 
+[ext_resource type="Script" uid="uid://ds4tfitr4x1c6" path="res://scenes/menu_button.gd" id="1_sd4kj"]
 [ext_resource type="Script" uid="uid://gdsdtd32sye5" path="res://addons/RoundedPolygon2D/RoundedPolygon2D.gd" id="1_xsssc"]
+
+[sub_resource type="Animation" id="Animation_xsssc"]
+resource_name = "Idle"
+length = 1.6000034
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackLayer:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004, 0.6, 0.8000001, 1, 1.2, 1.4, 1.6000001),
+"transitions": PackedFloat32Array(1, 1, 2.0000007, 2, 2, 2, 2, 2, 2),
+"update": 0,
+"values": [PackedVector2Array(176, 2, 320, 42, 641, 10, 582, 374, 211, 335, 46, 254), PackedVector2Array(228, 81, 379, 50, 592, -4, 682, 322, 329, 266, 30.999985, 182), PackedVector2Array(84, -16, 351, 32, 685, 4, 485, 250, 271, 411, 208, 191), PackedVector2Array(220, 120, 412, -50, 546, 98, 663, 363, 337, 305, 59, 339), PackedVector2Array(2, 70, 351.00003, 31.999994, 580, -11, 485, 250.00002, 485, 439, 222, 219), PackedVector2Array(227.99992, 80.99997, 482, -30, 466, 105, 631.99994, 389.99997, 329.0001, 266.00006, 17.000038, 139.00003), PackedVector2Array(42, 104, 294, 60, 593, -20, 476, 215, 439, 395, 268, 258), PackedVector2Array(228, 81, 379, 50, 592, -4, 682, 322, 329, 266, 30.999985, 182), PackedVector2Array(176, 2, 320, 42, 641, 10, 582, 374, 211, 335, 46, 254)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopLayer:polygon")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.53333336, 0.8000001, 1.0666667, 1.3333334, 1.6000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [PackedVector2Array(209, 7, 625, 32, 677, 156, 537, 353, 135, 372, 68, 196), PackedVector2Array(172, -2, 614, 56, 699, 158, 518, 344, 128, 378, 87, 189), PackedVector2Array(187, 30, 643, -2, 675, 179, 550, 371, 170, 323, 62, 183), PackedVector2Array(75, 3, 542, 47, 692, 123, 600, 372, 143, 323, 95, 193), PackedVector2Array(187, 30, 643, -2, 675, 179, 550, 371, 170, 323, 62, 183), PackedVector2Array(172, -2, 614, 56, 699, 158, 518, 344, 128, 378, 87, 189), PackedVector2Array(209, 7, 625, 32, 677, 156, 537, 353, 135, 372, 68, 196)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MiddleLayer:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.4, 0.6, 0.8000001, 1, 1.2, 1.4000001, 1.6000001),
+"transitions": PackedFloat32Array(1, 1, 2, 2, 2, 2, 2, 2, 2),
+"update": 0,
+"values": [PackedVector2Array(98, 27, 366, -45, 641, 28, 592, 280, 285, 334, 56, 256), PackedVector2Array(124, 47, 327, -42, 629, 14, 582, 321, 296, 287, 42, 270), PackedVector2Array(159, 63, 257, -70, 547, 39, 674, 327, 288, 276, 53, 310), PackedVector2Array(30, 27, 262, 35, 651, -30, 520, 239, 242, 357, 140, 212), PackedVector2Array(159, 63, 257, -70, 547, 39, 674, 327, 288, 276, 53, 310), PackedVector2Array(46.000015, -14.999989, 348, 20.999985, 669, 11.000004, 550, 226.00002, 216, 333, 125.999985, 207.00002), PackedVector2Array(98, 27, 366, -45, 641, 28, 592, 280, 285, 334, 56, 256), PackedVector2Array(78, -25, 238, 10, 622, 14, 576, 321, 288, 276, 53, 310), PackedVector2Array(98, 27, 366, -45, 641, 28, 592, 280, 285, 334, 56, 256)]
+}
+
+[sub_resource type="Animation" id="Animation_sd4kj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackLayer:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(176, 2, 320, 42, 641, 10, 582, 374, 211, 335, 46, 254)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopLayer:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(209, 7, 625, 32, 677, 156, 537, 353, 135, 372, 68, 196)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MiddleLayer:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(98, 27, 366, -45, 641, 28, 592, 280, 285, 334, 56, 256)]
+}
+
+[sub_resource type="Animation" id="Animation_fpmxc"]
+resource_name = "menu_popup"
+length = 0.26667002
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopLayer:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [PackedVector2Array(209, 7, 625, 32, 677, 156, 537, 353, 135, 372, 68, 196), PackedVector2Array(-195.49997, -2404.4998, 2968.2498, -1591.9999, 3104.4998, 120.499985, 2955.7498, 1781.7499, -3175.4998, 1707.9999, -3187.9998, -2133.2498)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fpmxc"]
+_data = {
+&"Idle": SubResource("Animation_xsssc"),
+&"RESET": SubResource("Animation_sd4kj"),
+&"menu_popup": SubResource("Animation_fpmxc")
+}
 
 [node name="Button" type="Button"]
 offset_right = 628.0
 offset_bottom = 385.0
+scale = Vector2(0.8, 0.8)
+focus_mode = 0
+flat = true
+script = ExtResource("1_sd4kj")
 
-[node name="RoundedPolygon2D" type="Polygon2D" parent="."]
+[node name="BackLayer" type="Polygon2D" parent="."]
 position = Vector2(-62, 7)
 color = Color(0.70980394, 0.69411767, 0.84705883, 1)
-polygon = PackedVector2Array(125, 63, 208, 60, 251, 105, 213, 142, 128, 143, 99, 109)
+polygon = PackedVector2Array(176, 2, 320, 42, 641, 10, 582, 374, 211, 335, 46, 254)
 script = ExtResource("1_xsssc")
 metadata/_custom_type_script = "uid://gdsdtd32sye5"
 
-[node name="RoundedPolygon2D2" type="Polygon2D" parent="."]
+[node name="MiddleLayer" type="Polygon2D" parent="."]
 position = Vector2(-38, 50)
 color = Color(0.6039216, 0.43529412, 0.7176471, 1)
-polygon = PackedVector2Array(125, 63, 208, 60, 251, 105, 213, 142, 128, 143, 99, 109)
+polygon = PackedVector2Array(98, 27, 366, -45, 641, 28, 592, 280, 285, 334, 56, 256)
+polygons = [null]
 script = ExtResource("1_xsssc")
+corner_radius = 12
 metadata/_custom_type_script = "uid://gdsdtd32sye5"
 
-[node name="RoundedPolygon2D3" type="Polygon2D" parent="."]
+[node name="TopLayer" type="Polygon2D" parent="."]
 position = Vector2(-62, 7)
 color = Color(0.4627451, 0.43529412, 0.7176471, 1)
 antialiased = true
@@ -30,3 +140,13 @@ script = ExtResource("1_xsssc")
 corner_radius = 64
 corner_detail = 20
 metadata/_custom_type_script = "uid://gdsdtd32sye5"
+
+[node name="ButtonAnimation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_fpmxc")
+}
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
