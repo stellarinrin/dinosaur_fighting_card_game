@@ -15,6 +15,7 @@ func _ready() -> void:
 	Global.game_controller = self
 	game_state_controller.init(self)
 	Events.animation_finished.connect(_on_animation_finished.bind())
+	Events.quit_application.connect(_on_application_quit.bind())
 
 func _process(delta: float) -> void:
 	game_state_controller.process_frame(delta)
@@ -29,9 +30,13 @@ func _on_animation_finished() -> void:
 
 func _on_add_mid_card_button_down() -> void:
 	var instance = standing_mid_card.instantiate()
-	add_child(instance)
-
+	$Level.add_child(instance)
+	instance.position = Vector2(797,493)
 
 func _on_add_low_card_button_down() -> void:
 	var instance = crouching_low_card.instantiate()
-	add_child(instance)
+	$Level.add_child(instance)
+	instance.position = Vector2(797,493)
+
+func _on_application_quit() -> void:
+	get_tree().quit(0)

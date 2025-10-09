@@ -15,6 +15,7 @@ font_color = Color(4.33177e-07, 0.409677, 0.150381, 1)
 size = Vector2(29.5, 22.5)
 
 [node name="Card" type="Control"]
+z_index = 2
 y_sort_enabled = true
 custom_minimum_size = Vector2(94, 136)
 layout_mode = 3

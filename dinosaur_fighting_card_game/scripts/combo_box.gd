@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (get_child_count(true) > 0):
 		get_child(0)._set_rotation(0)
 	queue_sort()
@@ -22,8 +22,8 @@ func _on_combo_box_area_entered(area: Area2D) -> void:
 func _on_reset_cards_button_down() -> void:
 	var hand = get_children()
 	for card in hand:
-		card.reparent(game)
-		card.position = Vector2(0,0) #Reset Deck Position
+		card.reparent($"../..")
+		card.position = Vector2(797,493) #Reset Deck Position
 
 
 func _on_parsed_card(index: int, attributes: MoveAttributes) -> void:
