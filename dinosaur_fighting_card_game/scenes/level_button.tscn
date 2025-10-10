@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://3t513pnsafhk"]
+
+[node name="LevelButton1" type="Button"]
+custom_minimum_size = Vector2(0, 128)
+offset_right = 518.0
+offset_bottom = 128.0

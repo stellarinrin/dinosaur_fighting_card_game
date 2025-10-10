@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=39 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_hygin"]
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_n0eis"]
@@ -19,14 +19,18 @@
 [ext_resource type="AudioStream" uid="uid://bwnwlbdlfsojt" path="res://assets/audio/PortalFX.wav" id="8_hb5m1"]
 [ext_resource type="PackedScene" uid="uid://dtbl6tu7720f6" path="res://scenes/player_character.tscn" id="10_eginm"]
 [ext_resource type="Texture2D" uid="uid://bqimbco8ox5o8" path="res://assets/character-dinosaur-test-crouching.png" id="10_lc2xo"]
+[ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="11_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="12_iotsf"]
 [ext_resource type="PackedScene" uid="uid://b2pif88fkvy0q" path="res://scenes/menu_button.tscn" id="21_hb5m1"]
 [ext_resource type="Script" uid="uid://ddkykx6rqy16x" path="res://scripts/sub_menu.gd" id="22_x5p1p"]
 
+[sub_resource type="SystemFont" id="SystemFont_x5p1p"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_hb5m1"]
-line_spacing = -32.0
-font_size = 100
-outline_size = 96
+line_spacing = -54.0
+font = SubResource("SystemFont_x5p1p")
+font_size = 120
+outline_size = 100
 outline_color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_x5p1p"]
@@ -34,6 +38,72 @@ line_spacing = 0.0
 font_size = 80
 font_color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 outline_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_i2p71"]
+line_spacing = -32.0
+font_size = 144
+outline_size = 96
+outline_color = Color(0.6039216, 0.43529412, 0.7176471, 1)
+
+[sub_resource type="Animation" id="Animation_i2p71"]
+resource_name = "text_pop_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuTitle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.40000004),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(438, 436), Vector2(-98, 436)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuTitle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.40000004),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xa8c5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuTitle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(438, 436)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuTitle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5b14r"]
+_data = {
+&"RESET": SubResource("Animation_xa8c5"),
+&"text_pop_in": SubResource("Animation_i2p71")
+}
 
 [sub_resource type="Animation" id="Animation_qhcbd"]
 length = 0.001
@@ -64,30 +134,31 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Title:scale")
+tracks/2/path = NodePath("Title/TitleText:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.5, 0.5)]
+"values": [Vector2(0.49928546, 0.49928546)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Title:modulate")
+tracks/3/path = NodePath("Title/TitleText:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0.9985709)]
 }
 
 [sub_resource type="Animation" id="Animation_f1jbl"]
 resource_name = "text_sweep"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -115,11 +186,11 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Title:scale")
+tracks/2/path = NodePath("Title/TitleText:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.40000004),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
 "values": [Vector2(1e-05, 1e-05), Vector2(0.5, 0.5)]
@@ -127,34 +198,32 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Title:modulate")
+tracks/3/path = NodePath("Title/TitleText:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.40000004),
-"transitions": PackedFloat32Array(0.5, 0.5),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.9985709)]
 }
+
+[sub_resource type="Animation" id="Animation_bnpwn"]
+resource_name = "test"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vaj68"]
 _data = {
 &"RESET": SubResource("Animation_qhcbd"),
+&"test": SubResource("Animation_bnpwn"),
 &"text_pop_in": SubResource("Animation_f1jbl")
 }
-
-[sub_resource type="LabelSettings" id="LabelSettings_i2p71"]
-line_spacing = -32.0
-font_size = 144
-outline_size = 96
-outline_color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 
 [sub_resource type="Animation" id="Animation_vaj68"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Title:scale")
+tracks/0/path = NodePath("Title/TitleText:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -166,7 +235,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Title:modulate")
+tracks/1/path = NodePath("Title/TitleText:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -202,6 +271,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_x5p1p"]
 resource_name = "text_sweep"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -229,7 +299,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Title:scale")
+tracks/2/path = NodePath("Title/TitleText:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -241,7 +311,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Title:modulate")
+tracks/3/path = NodePath("Title/TitleText:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -290,38 +360,87 @@ grow_vertical = 2
 color = Color(0.54901963, 0.7176471, 0.43529412, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Title" type="Label" parent="MainMenu"]
+[node name="ColorRectCut" type="ColorRect" parent="MainMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 715.99994
+offset_top = 1260.9999
+offset_right = 716.0
+offset_bottom = 1261.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.44875845
+color = Color(0.38431373, 0.54509807, 0.27450982, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRectCut2" type="ColorRect" parent="MainMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 993.99994
+offset_top = -1177.0
+offset_right = 994.0
+offset_bottom = -1177.0001
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.37169272
+color = Color(0.65882355, 0.78431374, 0.57254905, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRectCut3" type="ColorRect" parent="MainMenu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1060.0
+offset_top = 435.00003
+offset_right = -1060.0
+offset_bottom = 434.99988
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.9477138
+color = Color(0.7529412, 0.84705883, 0.69411767, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Node2D" parent="MainMenu"]
+position = Vector2(960, 510)
+scale = Vector2(1, 1.2)
+skew = 0.48694685
+
+[node name="TitleText" type="Label" parent="MainMenu/Title"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -425.0
-offset_top = -138.5
-offset_right = 425.0
-offset_bottom = 138.5
+offset_left = -304.81177
+offset_top = -105.608665
+offset_right = 341.18823
+offset_bottom = 170.39133
 grow_horizontal = 2
 grow_vertical = 2
-text = "dinosaur fighting 
-card game"
+scale = Vector2(1.2, 1)
+pivot_offset = Vector2(269, 120.99999)
+text = "Deck'd-Out
+ Dino Duel"
 label_settings = SubResource("LabelSettings_hb5m1")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="LevelButton" parent="MainMenu" node_paths=PackedStringArray("menu") instance=ExtResource("21_hb5m1")]
-offset_left = 77.0
-offset_top = 64.0
-offset_right = 705.0
-offset_bottom = 449.0
+offset_left = 440.0
+offset_top = 55.999996
+offset_right = 1068.0
+offset_bottom = 441.0
 text = "Play"
-menu = NodePath("../../Level")
+menu = NodePath("../../LevelMenu")
 metadata/_edit_use_anchors_ = true
 
 [node name="CreditButton" parent="MainMenu" node_paths=PackedStringArray("menu") instance=ExtResource("21_hb5m1")]
-offset_left = 386.0
-offset_top = 704.0
-offset_right = 1014.0
-offset_bottom = 1089.0
+offset_left = 56.0
+offset_top = 637.0
+offset_right = 684.0
+offset_bottom = 1022.0
 text = "Credits"
 animation_start_time = 0.4
 menu = NodePath("../../CreditsMenu")
@@ -337,10 +456,10 @@ text = "Story"
 animation_start_time = 0.6
 
 [node name="OptionsButton" parent="MainMenu" node_paths=PackedStringArray("menu") instance=ExtResource("21_hb5m1")]
-offset_left = 1384.0
-offset_top = 361.0
-offset_right = 2012.0
-offset_bottom = 746.0
+offset_left = 1410.0
+offset_top = 423.0
+offset_right = 2038.0
+offset_bottom = 808.0
 text = "Options"
 animation_start_time = 0.2
 menu = NodePath("../../OptionsMenu")
@@ -356,15 +475,97 @@ text = "Collection"
 animation_start_time = 0.8
 
 [node name="Quit" parent="MainMenu" instance=ExtResource("21_hb5m1")]
-offset_left = 1317.0
-offset_top = 812.0
-offset_right = 1945.0
-offset_bottom = 1197.0
+modulate = Color(0.8, 0.8, 0.8, 1)
+offset_left = 888.0
+offset_top = 795.0
+offset_right = 1516.0
+offset_bottom = 1180.0
 scale = Vector2(0.6, 0.6)
 text = "Quit"
 animation_start_time = 1.0
 is_quit_button = true
 metadata/_edit_use_anchors_ = true
+
+[node name="LevelMenu" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("22_x5p1p")
+
+[node name="Text" type="Label" parent="LevelMenu"]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 941.0
+offset_top = -188.0
+offset_right = 2146.003
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Produced by Rin Estrella
+Music by nagumorizu
+Developed with Godot Engine"
+label_settings = SubResource("LabelSettings_x5p1p")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MenuTitle" type="Label" parent="LevelMenu"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -522.0
+offset_top = -104.0
+offset_right = 509.00146
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Level 
+Selection"
+label_settings = SubResource("LabelSettings_i2p71")
+horizontal_alignment = 2
+
+[node name="Title" type="Node2D" parent="LevelMenu"]
+position = Vector2(169.99998, 968.00006)
+scale = Vector2(1.2, 1.2)
+skew = 0.48694685
+
+[node name="TitleText" type="Label" parent="LevelMenu/Title"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -424.86032
+offset_top = -138.61148
+offset_right = 425.13968
+offset_bottom = 138.38852
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.001358e-05, 1.001358e-05)
+pivot_offset = Vector2(400, 134)
+text = "Deck'd-Out
+ Dino Duel"
+label_settings = SubResource("LabelSettings_hb5m1")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LevelMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_5b14r")
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelMenu"]
+offset_left = 1076.0
+offset_top = 151.0
+offset_right = 1807.0
+offset_bottom = 1003.0
+
+[node name="LevelButton1" parent="LevelMenu/VBoxContainer" instance=ExtResource("11_qhcbd")]
+layout_mode = 2
 
 [node name="CreditsMenu" type="CanvasLayer" parent="."]
 visible = false
@@ -379,7 +580,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 941.0
 offset_top = -188.0
-offset_right = 2146.0022
+offset_right = 2146.002
 offset_bottom = 142.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -411,23 +612,28 @@ text = "Credits"
 label_settings = SubResource("LabelSettings_i2p71")
 horizontal_alignment = 2
 
-[node name="Title" type="Label" parent="CreditsMenu"]
-modulate = Color(1, 1, 1, 0)
+[node name="Title" type="Node2D" parent="CreditsMenu"]
+position = Vector2(217.99988, 104.00009)
+scale = Vector2(1.2, 1.2)
+skew = 0.48694685
+
+[node name="TitleText" type="Label" parent="CreditsMenu/Title"]
+modulate = Color(1, 1, 1, 0.9985709)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1141.0
-offset_top = -600.0
-offset_right = -291.0
-offset_bottom = -323.0
+offset_left = -408.6377
+offset_top = -158.47021
+offset_right = 441.3623
+offset_bottom = 118.529785
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.49928546, 0.49928546)
 pivot_offset = Vector2(400, 134)
-text = "dinosaur fighting 
-card game"
+text = "Deck'd-Out
+ Dino Duel"
 label_settings = SubResource("LabelSettings_hb5m1")
 horizontal_alignment = 1
 
@@ -460,37 +666,42 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -1858.0
 offset_top = -398.0
-offset_right = -1008.0024
+offset_right = -1008.00244
 offset_bottom = -121.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Options"
 label_settings = SubResource("LabelSettings_i2p71")
 
-[node name="Title" type="Label" parent="OptionsMenu"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OptionsMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_i2p71")
+}
+
+[node name="Title" type="Node2D" parent="OptionsMenu"]
+position = Vector2(217.99988, 104.00009)
+scale = Vector2(1.2, 1.2)
+skew = 0.48694685
+
+[node name="TitleText" type="Label" parent="OptionsMenu/Title"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 304.0
-offset_top = -588.0
-offset_right = 1154.0
-offset_bottom = -311.0
+offset_left = 793.5089
+offset_top = -150.8587
+offset_right = 1643.5089
+offset_bottom = 126.1413
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(416, 132)
-text = "dinosaur fighting 
-card game"
+text = "Deck'd-Out
+ Dino Duel"
 label_settings = SubResource("LabelSettings_hb5m1")
 horizontal_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="OptionsMenu"]
-libraries = {
-&"": SubResource("AnimationLibrary_i2p71")
-}
 
 [node name="GameStateController" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_lqju6")
@@ -627,6 +838,7 @@ texture = ExtResource("10_lc2xo")
 [node name="PlayerCharacter" parent="Level/Stage" instance=ExtResource("10_eginm")]
 position = Vector2(1244, 370)
 
+[connection signal="visibility_changed" from="LevelMenu" to="LevelMenu" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="CreditsMenu" to="CreditsMenu" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="OptionsMenu" to="OptionsMenu" method="_on_visibility_changed"]
 [connection signal="button_down" from="Level/ResetCards" to="SFXPlayer" method="_on_reset_cards_button_down"]

@@ -37,7 +37,7 @@ func _on_toggled(toggled_on: bool) -> void:
 		disabled = true
 		animation_progress = %ButtonAnimation.current_animation_position
 		menu.visibility_changed.emit()
-		await get_tree().create_timer(1.2).timeout
+		await get_tree().create_timer(.4).timeout
 		menu.visible = false
 		animation_progress = %ButtonAnimation.current_animation_position
 		%ButtonAnimation.play("menu_collapse")
