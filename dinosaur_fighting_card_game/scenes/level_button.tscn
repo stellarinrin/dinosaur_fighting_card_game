@@ -1,6 +1,613 @@
-[gd_scene format=3 uid="uid://3t513pnsafhk"]
+[gd_scene load_steps=11 format=3 uid="uid://3t513pnsafhk"]
 
-[node name="LevelButton1" type="Button"]
-custom_minimum_size = Vector2(0, 128)
-offset_right = 518.0
-offset_bottom = 128.0
+[ext_resource type="Script" uid="uid://ds4tfitr4x1c6" path="res://scripts/UI/level_button.gd" id="1_o8246"]
+[ext_resource type="Script" uid="uid://gdsdtd32sye5" path="res://addons/RoundedPolygon2D/RoundedPolygon2D.gd" id="2_hrusj"]
+
+[sub_resource type="Animation" id="Animation_sd4kj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackLayer:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(176.99998, -28.249996, 858.24994, 9.249999, 954.49994, 29.249996, 741.99994, 51.749996, 65.74999, 95.49999, 104.49999, 44.249996)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopLayer:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(13.951396, 4.9999995, 205.78308, 15, 199.87625, 67.5, 16.482899, 75)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MiddleLayer:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(116.749985, -42.499996, 712.99994, -67.49999, 847.99994, -16.25, 869.24994, 36.249996, 251.74998, 9.999996, 12.999998, 1.25)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MiddleLayer:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BackLayer:z_index")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopLayer:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ButtonName:z_index")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ButtonName:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MiddleLayer:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BackLayer:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o8246"]
+resource_name = "Idle_Back"
+length = 1.6000034
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackLayer:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004, 0.6, 0.8000001, 1.0000001, 1.2, 1.4000001, 1.6000001),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [PackedVector2Array(176.99998, -28.249996, 858.24994, 9.249999, 954.49994, 29.249996, 741.99994, 51.749996, 65.74999, 95.49999, 104.49999, 44.249996), PackedVector2Array(170.74998, -10.749996, 903.24994, -54.5, 773.24994, 30.499996, 703.24994, 102.99999, 174.49998, 45.499996, 19.5, 29.249996), PackedVector2Array(38.25, -33.249996, 705.74994, 14.249999, 994.49994, 27.999996, 591.99994, 46.749996, 100.74999, 86.74999, 88.24999, 29.249996), PackedVector2Array(216.99998, 9.249999, 833.24994, -63.249996, 725.74994, 14.249999, 513.24994, 104.24999, 396.99997, 27.999996, 78.24999, 102.99999), PackedVector2Array(176.99998, -28.249996, 858.24994, 9.249999, 954.49994, 29.249996, 741.99994, 51.749996, 65.74999, 95.49999, 104.49999, 44.249996), PackedVector2Array(170.74998, -10.749996, 903.24994, -54.5, 773.24994, 30.499996, 703.24994, 102.99999, 174.49998, 45.499996, 19.5, 29.249996), PackedVector2Array(38.25, -33.249996, 705.74994, 14.249999, 994.49994, 27.999996, 591.99994, 46.749996, 100.74999, 86.74999, 88.24999, 29.249996), PackedVector2Array(216.99998, 9.249999, 833.24994, -63.249996, 725.74994, 14.249999, 513.24994, 104.24999, 396.99997, 27.999996, 78.24999, 102.99999), PackedVector2Array(176.99998, -28.249996, 858.24994, 9.249999, 954.49994, 29.249996, 741.99994, 51.749996, 65.74999, 95.49999, 104.49999, 44.249996)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MiddleLayer:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004, 0.6, 0.8000001, 1, 1.2, 1.4000001, 1.6000001),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [PackedVector2Array(116.749985, -42.499996, 712.99994, -67.49999, 847.99994, -16.25, 869.24994, 36.249996, 251.74998, 9.999996, 12.999998, 1.25), PackedVector2Array(94.24999, -71.24999, 691.74994, -29.999998, 901.74994, 41.249996, 612.99994, 1.25, 41.749996, 41.249996, 172.99998, -13.75), PackedVector2Array(95.49999, -43.749996, 837.99994, -72.49999, 686.74994, -12.5, 762.99994, 53.749996, 134.24998, 1.25, -8.25, 18.749996), PackedVector2Array(3, -82.49999, 704.24994, -28.749998, 941.74994, -68.74999, 915.49994, 51.249996, 487.99997, 6.25, 69.24999, -6.25), PackedVector2Array(34.249996, -67.49999, 500.49997, -41.249996, 785.49994, -27.499998, 915.49994, 22.499996, 440.75012, 6.9999967, 16.749998, 51.249996), PackedVector2Array(116.749985, -42.499996, 712.99994, -67.49999, 847.99994, -16.25, 869.24994, 36.249996, 251.74998, 9.999996, 12.999998, 1.25), PackedVector2Array(94.24999, -71.24999, 691.74994, -29.999998, 901.74994, 41.249996, 612.99994, 1.25, 41.749996, 41.249996, 172.99998, -13.75), PackedVector2Array(95.49999, -43.749996, 837.99994, -72.49999, 686.74994, -12.5, 762.99994, 53.749996, 134.24998, 1.25, -8.25, 18.749996), PackedVector2Array(116.749985, -42.499996, 712.99994, -67.49999, 847.99994, -16.25, 869.24994, 36.249996, 251.74998, 9.999996, 12.999998, 1.25)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TopLayer:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004, 0.6, 0.8000001, 1, 1.2, 1.4, 1.6000001),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [PackedVector2Array(13.951396, 4.9999995, 205.78308, 15, 199.87625, 67.5, 16.482899, 75), PackedVector2Array(16.764177, 15, 197.34474, 10, 206.34564, 73.75, 14.232674, 70), PackedVector2Array(13.38884, 6.2499986, 205.50182, 22.5, 203.53287, 62.5, 13.38884, 71.25), PackedVector2Array(16.764177, 16.25, 206.62692, -2.5000005, 206.62692, 78.75, 16.764177, 68.75), PackedVector2Array(13.951396, 4.9999995, 205.78308, 15, 199.87625, 67.5, 16.482899, 75), PackedVector2Array(16.764177, 15, 197.34474, 10, 206.34564, 73.75, 14.232674, 70), PackedVector2Array(13.38884, 6.2499986, 205.50182, 22.5, 203.53287, 62.5, 13.38884, 71.25), PackedVector2Array(16.764177, 16.25, 206.62692, -2.5000005, 206.62692, 78.75, 16.764177, 68.75), PackedVector2Array(13.951396, 4.9999995, 205.78308, 15, 199.87625, 67.5, 16.482899, 75)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MiddleLayer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BackLayer:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_efe2e"]
+resource_name = "Idle_Back"
+length = 1.6000034
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopLayer:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002, 0.40000004, 0.6, 0.8000001, 1, 1.2, 1.4, 1.6000001),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5),
+"update": 0,
+"values": [PackedVector2Array(13.951396, 4.9999995, 205.78308, 15, 199.87625, 67.5, 16.482899, 75), PackedVector2Array(16.764177, 15, 194.81325, 8.75, 205.78308, 68.75, 14.232674, 70), PackedVector2Array(13.38884, 6.2499986, 205.78308, 16.25, 206.06436, 65, 13.38884, 71.25), PackedVector2Array(16.764177, 16.25, 207.47075, -3.7500005, 205.78308, 83.75, 16.764177, 68.75), PackedVector2Array(13.951396, 4.999998, 206.06436, 17.5, 197.34474, 70, 16.482899, 75), PackedVector2Array(16.764177, 15, 194.81325, 8.75, 205.78308, 68.75, 14.232674, 70), PackedVector2Array(13.38884, 6.2499986, 205.78308, 16.25, 206.06436, 65, 13.38884, 71.25), PackedVector2Array(16.764177, 16.25, 207.47075, -3.7500005, 205.78308, 83.75, 16.764177, 68.75), PackedVector2Array(13.951396, 4.9999995, 205.78308, 15, 199.87625, 67.5, 16.482899, 75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MiddleLayer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BackLayer:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hunp8"]
+resource_name = "menu_collapse"
+length = 0.30000335
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopLayer:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [PackedVector2Array(-195.49997, -2404.4998, 2968.2498, -1591.9999, 3104.4998, 120.499985, 2955.7498, 1781.7499, -3175.4998, 1707.9999, -3187.9998, -2133.2498), PackedVector2Array(209, 7, 625, 32, 677, 156, 537, 353, 135, 372, 68, 196)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MiddleLayer:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MiddleLayer:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.60768, 0.4392, 0.72, 1), Color(0.60768, 0.4392, 0.72, 0), Color(0.60768, 0.4392, 0.72, 0), Color(0.60768, 0.4392, 0.72, 0.78431374)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BackLayer:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BackLayer:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.71229994, 0.697, 0.85, 1), Color(0.71229994, 0.697, 0.85, 0), Color(0.71229994, 0.697, 0.85, 0), Color(0.71229994, 0.697, 0.85, 0.78431374)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopLayer:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2331, 0.2664),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 1, 0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ButtonName:z_index")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2331, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 2, 0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ButtonName:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3wbiy"]
+resource_name = "menu_open"
+length = 0.26667002
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopLayer:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2664),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [PackedVector2Array(-195.49997, -2404.4998, 2968.2498, -1591.9999, 3104.4998, 120.499985, 2955.7498, 1781.7499, -3175.4998, 1707.9999, -3187.9998, -2133.2498), PackedVector2Array(209, 7, 625, 32, 677, 156, 537, 353, 135, 372, 68, 196)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MiddleLayer:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.13333334, 0.2664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MiddleLayer:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.2664),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.60768, 0.4392, 0.72, 1), Color(0.60768, 0.4392, 0.72, 0), Color(0.60768, 0.4392, 0.72, 0.78431374)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BackLayer:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.13333334, 0.2664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BackLayer:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.2664),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.71229994, 0.697, 0.85, 1), Color(0.71229994, 0.697, 0.85, 0), Color(0.71229994, 0.697, 0.85, 0.78431374)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopLayer:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.2331, 0.2664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ButtonName:z_index")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.2331, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_fpmxc"]
+resource_name = "menu_popup"
+length = 0.26667002
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopLayer:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [PackedVector2Array(209, 7, 625, 32, 677, 156, 537, 353, 135, 372, 68, 196), PackedVector2Array(-195.49997, -2404.4998, 2968.2498, -1591.9999, 3104.4998, 120.499985, 2955.7498, 1781.7499, -3175.4998, 1707.9999, -3187.9998, -2133.2498)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MiddleLayer:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MiddleLayer:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.60768, 0.4392, 0.72, 0.78431374), Color(0.60768, 0.4392, 0.72, 0), Color(0.60768, 0.4392, 0.72, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BackLayer:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BackLayer:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.71229994, 0.697, 0.85, 0.78431374), Color(0.71229994, 0.697, 0.85, 0), Color(0.71229994, 0.697, 0.85, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TopLayer:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ButtonName:z_index")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.03333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ButtonName:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fpmxc"]
+_data = {
+&"RESET": SubResource("Animation_sd4kj"),
+&"active": SubResource("Animation_o8246"),
+&"idle": SubResource("Animation_efe2e"),
+&"menu_collapse": SubResource("Animation_hunp8"),
+&"menu_open": SubResource("Animation_3wbiy"),
+&"menu_popup": SubResource("Animation_fpmxc")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_6g3el"]
+line_spacing = -32.0
+font_size = 32
+font_color = Color(0.6039216, 0.43529412, 0.7176471, 1)
+outline_size = 12
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(0, 64)
+offset_right = 856.0
+offset_bottom = 64.0
+scale = Vector2(0.8, 0.8)
+focus_mode = 0
+toggle_mode = true
+flat = true
+script = ExtResource("1_o8246")
+
+[node name="OpenLayer" type="Polygon2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(-61.999996, 6.999999)
+scale = Vector2(0.99999994, 0.99999994)
+color = Color(0.4627451, 0.43529412, 0.7176471, 1)
+antialiased = true
+polygon = PackedVector2Array(-195.49997, -2404.4998, 2968.2498, -1591.9999, 3104.4998, 120.499985, 2955.7498, 1781.7499, -3175.4998, 1707.9999, -3187.9998, -2133.2498)
+polygons = [null]
+script = ExtResource("2_hrusj")
+corner_radius = 64
+corner_detail = 20
+metadata/_custom_type_script = "uid://gdsdtd32sye5"
+
+[node name="BackLayer" type="Polygon2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-62, 7)
+color = Color(0.71229994, 0.697, 0.85, 0.78431374)
+polygon = PackedVector2Array(176.99998, -28.249996, 858.24994, 9.249999, 954.49994, 29.249996, 741.99994, 51.749996, 65.74999, 95.49999, 104.49999, 44.249996)
+script = ExtResource("2_hrusj")
+metadata/_custom_type_script = "uid://gdsdtd32sye5"
+
+[node name="MiddleLayer" type="Polygon2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-38, 50)
+color = Color(0.60768, 0.4392, 0.72, 0.78431374)
+polygon = PackedVector2Array(116.749985, -42.499996, 712.99994, -67.49999, 847.99994, -16.25, 869.24994, 36.249996, 251.74998, 9.999996, 12.999998, 1.25)
+polygons = [null]
+script = ExtResource("2_hrusj")
+corner_radius = 12
+metadata/_custom_type_script = "uid://gdsdtd32sye5"
+
+[node name="TopLayer" type="Polygon2D" parent="."]
+position = Vector2(-62, -7.499999)
+scale = Vector2(4.444, 1)
+color = Color(0.6039216, 0.43529412, 0.7176471, 1)
+antialiased = true
+polygon = PackedVector2Array(13.951396, 4.9999995, 205.78308, 15, 199.87625, 67.5, 16.482899, 75)
+polygons = [null]
+script = ExtResource("2_hrusj")
+corner_radius = 12
+corner_detail = 20
+metadata/_custom_type_script = "uid://gdsdtd32sye5"
+
+[node name="ButtonAnimation" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_fpmxc")
+}
+
+[node name="ButtonName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "prêtresse"
+label_settings = SubResource("LabelSettings_6g3el")
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]

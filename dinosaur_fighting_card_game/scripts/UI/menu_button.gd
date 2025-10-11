@@ -18,6 +18,7 @@ func _on_mouse_exited() -> void:
 	%ButtonAnimation.speed_scale = 0.25
 	
 func _on_toggled(toggled_on: bool) -> void:
+	%ButtonAnimation.speed_scale = 0.25
 	if toggled_on:
 		disabled = true
 		%ButtonAnimation.speed_scale = 0.25
