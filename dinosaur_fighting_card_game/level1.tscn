@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=25 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_ycv2e"]
 [ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_c5gc3"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://btlamgnmd4thu" path="res://scripts/states/success.gd" id="15_jy3fw"]
 [ext_resource type="Texture2D" uid="uid://cex1ihcq8i3pv" path="res://38346657b1271fcfe6ce1c60423ff665b794_1920xt1080_S1000-3662738456.jpg" id="16_c5gc3"]
 [ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="16_t8chk"]
+[ext_resource type="PackedScene" uid="uid://s8t15p31bou5" path="res://scenes/health_bar.tscn" id="17_uuy0h"]
 [ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="17_xhed0"]
 [ext_resource type="Script" uid="uid://bwoaq8fw2j28y" path="res://scripts/combo_box.gd" id="18_6tyme"]
 [ext_resource type="Texture2D" uid="uid://bqimbco8ox5o8" path="res://assets/character-dinosaur-test-crouching.png" id="19_ktasi"]
@@ -97,6 +98,18 @@ modulate = Color(1, 1, 1, 0.36078432)
 position = Vector2(960, 540)
 texture = ExtResource("16_c5gc3")
 
+[node name="HUD" type="CanvasLayer" parent="Level"]
+
+[node name="Polygon2D4" type="Polygon2D" parent="Level/HUD"]
+color = Color(0.6039216, 0.43529412, 0.7176471, 1)
+polygon = PackedVector2Array(52, -42, -23, 163, 191, 237, 253, 29)
+
+[node name="Polygon2D5" type="Polygon2D" parent="Level/HUD"]
+polygon = PackedVector2Array(60, -30, 0, 150, 186, 215, 236, 34)
+
+[node name="HealthBar" parent="Level/HUD" instance=ExtResource("17_uuy0h")]
+position = Vector2(194, 88)
+
 [node name="ResetCards" type="Button" parent="Level"]
 offset_left = 126.0
 offset_top = 273.0
@@ -127,27 +140,34 @@ text = "Add Low Card"
 
 [node name="Card" parent="Level" instance=ExtResource("16_t8chk")]
 z_as_relative = false
-offset_left = 939.0
-offset_top = 915.0
-offset_right = 1033.0
-offset_bottom = 1051.0
+offset_left = 913.0
+offset_top = 905.0
+offset_right = 1007.0
+offset_bottom = 1041.0
 card_text = "standing mid"
 move_index = 1
 
 [node name="Card2" parent="Level" instance=ExtResource("16_t8chk")]
-offset_left = 939.0
-offset_top = 915.0
-offset_right = 1033.0
-offset_bottom = 1051.0
+offset_left = 913.0
+offset_top = 905.0
+offset_right = 1007.0
+offset_bottom = 1041.0
 card_texture = ExtResource("17_xhed0")
 card_text = "crouching low"
 move_index = 2
 
 [node name="Card3" parent="Level" instance=ExtResource("16_t8chk")]
-offset_left = 939.0
-offset_top = 915.0
-offset_right = 1033.0
-offset_bottom = 1051.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -175.0
+offset_right = 47.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
 card_text = "standing mid"
 move_index = 1
 

@@ -23,7 +23,7 @@ func _on_reset_cards_button_down() -> void:
 	var hand = get_children()
 	for card in hand:
 		card.reparent($"../..")
-		card.position = Vector2(797,493) #Reset Deck Position
+		card.position = Vector2(913,905) #Reset Deck Position
 
 
 func _on_parsed_card(index: int, attributes: MoveAttributes) -> void:

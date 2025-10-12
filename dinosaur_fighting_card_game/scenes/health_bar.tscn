@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://s8t15p31bou5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwqyq"]
+bg_color = Color(0.8392157, 0.81960785, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvlm"]
+bg_color = Color(1, 1, 1, 1)
+skew = Vector2(-0.1, 0)
+
+[node name="HealthBar" type="Node2D"]
+
+[node name="BarBorder" type="Polygon2D" parent="."]
+position = Vector2(-217, -72)
+color = Color(0.6039216, 0.43529412, 0.7176471, 1)
+polygon = PackedVector2Array(217, 72, 826, 7, 856, 180, 203, 141)
+
+[node name="Bar" type="Polygon2D" parent="."]
+clip_children = 2
+position = Vector2(-217, -72)
+color = Color(0.8392157, 0.81960785, 1, 1)
+polygon = PackedVector2Array(223, 80, 809, 19, 839, 159, 216, 132)
+
+[node name="ProgressBar" type="ProgressBar" parent="Bar"]
+offset_left = 212.0
+offset_top = 18.0
+offset_right = 840.0
+offset_bottom = 177.0
+theme_override_styles/background = SubResource("StyleBoxFlat_iwqyq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1bvlm")
+value = 80.0
+
+[node name="NameSpace" type="Polygon2D" parent="."]
+position = Vector2(-217, -72)
+color = Color(0.6039216, 0.43529412, 0.7176471, 1)
+polygon = PackedVector2Array(212, 163, 218, 138, 540, 158, 503, 193)

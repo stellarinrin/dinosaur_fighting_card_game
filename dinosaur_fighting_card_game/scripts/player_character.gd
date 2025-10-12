@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Node2D
 func _ready() -> void:
 	Events.parsed_card.connect(_on_parsed_card.bind())
 	
