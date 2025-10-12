@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://shqpf74yulcv"]
+[gd_scene load_steps=25 format=3 uid="uid://shqpf74yulcv"]
 
 [ext_resource type="AudioStream" uid="uid://ceokasgqio88" path="res://assets/audio/アホの子.mp3" id="1_0k4wn"]
 [ext_resource type="Script" uid="uid://c2p04ywy131nf" path="res://scripts/bgm_player.gd" id="2_0k4wn"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://b2pif88fkvy0q" path="res://scenes/menu_button.tscn" id="8_8u0te"]
 [ext_resource type="Script" uid="uid://ddkykx6rqy16x" path="res://scripts/UI/sub_menu.gd" id="9_oiatc"]
 [ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="10_mg3m2"]
-[ext_resource type="PackedScene" uid="uid://bd5j326o1s54n" path="res://level1.tscn" id="11_0k4wn"]
 
 [sub_resource type="SystemFont" id="SystemFont_x5p1p"]
 subpixel_positioning = 0
@@ -614,29 +613,33 @@ theme_override_constants/separation = 12
 [node name="Level1" parent="LevelMenu/VBoxContainer" instance=ExtResource("10_mg3m2")]
 layout_mode = 2
 text = "Level 1: Standing Block"
-level = ExtResource("11_0k4wn")
+level = "res://level1.tscn"
 
 [node name="Level2" parent="LevelMenu/VBoxContainer" instance=ExtResource("10_mg3m2")]
 modulate = Color(0.6, 0.6, 0.6, 1)
 layout_mode = 2
+disabled = true
 text = "Level 2: [Locked]"
 animation_start_time = 0.2
 
 [node name="Level3" parent="LevelMenu/VBoxContainer" instance=ExtResource("10_mg3m2")]
 modulate = Color(0.6, 0.6, 0.6, 1)
 layout_mode = 2
+disabled = true
 text = "Level 3: [Locked]"
 animation_start_time = 0.1
 
 [node name="Level4" parent="LevelMenu/VBoxContainer" instance=ExtResource("10_mg3m2")]
 modulate = Color(0.6, 0.6, 0.6, 1)
 layout_mode = 2
+disabled = true
 text = "Level 4: [Locked]"
 animation_start_time = 0.4
 
 [node name="Level5" parent="LevelMenu/VBoxContainer" instance=ExtResource("10_mg3m2")]
 modulate = Color(0.6, 0.6, 0.6, 1)
 layout_mode = 2
+disabled = true
 text = "Level 5: [Locked]"
 animation_start_time = 0.6
 

@@ -1,7 +1,7 @@
 extends Button
 
 @export var animation_start_time: float
-@export var level: PackedScene
+@export var level: String
 var animation_progress: float
 
 func _ready() -> void:

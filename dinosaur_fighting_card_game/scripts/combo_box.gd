@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends VBoxContainer
 
 @onready var game = get_tree().root
 var combo_hand: Array

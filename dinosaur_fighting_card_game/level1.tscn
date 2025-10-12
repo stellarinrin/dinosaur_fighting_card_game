@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=24 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_ycv2e"]
 [ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_c5gc3"]
@@ -15,14 +15,16 @@
 [ext_resource type="Script" uid="uid://c8hqy72sf3l02" path="res://scripts/states/simulate_attacks.gd" id="13_6wmxb"]
 [ext_resource type="Script" uid="uid://bmqc37vg5el4c" path="res://scripts/states/failure.gd" id="14_8652m"]
 [ext_resource type="Script" uid="uid://btlamgnmd4thu" path="res://scripts/states/success.gd" id="15_jy3fw"]
+[ext_resource type="Texture2D" uid="uid://cex1ihcq8i3pv" path="res://38346657b1271fcfe6ce1c60423ff665b794_1920xt1080_S1000-3662738456.jpg" id="16_c5gc3"]
 [ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="16_t8chk"]
 [ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="17_xhed0"]
 [ext_resource type="Script" uid="uid://bwoaq8fw2j28y" path="res://scripts/combo_box.gd" id="18_6tyme"]
 [ext_resource type="Texture2D" uid="uid://bqimbco8ox5o8" path="res://assets/character-dinosaur-test-crouching.png" id="19_ktasi"]
 [ext_resource type="PackedScene" uid="uid://dtbl6tu7720f6" path="res://scenes/player_character.tscn" id="20_hxcog"]
+[ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="22_uuy0h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
-size = Vector2(795, 155)
+size = Vector2(105.25, 700.5)
 
 [node name="Level1" type="Node2D"]
 y_sort_enabled = true
@@ -73,78 +75,91 @@ script = ExtResource("15_jy3fw")
 
 [node name="Level" type="CanvasLayer" parent="."]
 
-[node name="GameOverOverlay" type="ColorRect" parent="Level"]
-visible = false
+[node name="Background" type="ColorRect" parent="Level"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.215686)
+color = Color(0, 0.79499984, 0.9, 1)
+
+[node name="Stage" type="ColorRect" parent="Level"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 810.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9, 0.9, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Level"]
+modulate = Color(1, 1, 1, 0.36078432)
+position = Vector2(960, 540)
+texture = ExtResource("16_c5gc3")
 
 [node name="ResetCards" type="Button" parent="Level"]
-offset_left = 1213.0
-offset_top = 682.0
-offset_right = 1498.0
-offset_bottom = 802.0
+offset_left = 126.0
+offset_top = 273.0
+offset_right = 237.0
+offset_bottom = 570.0
 text = "Reset Cards"
 
 [node name="PlayHand" type="Button" parent="Level"]
-offset_left = 931.0
-offset_top = 687.0
-offset_right = 1191.0
-offset_bottom = 804.0
+offset_left = 626.0
+offset_top = 917.0
+offset_right = 886.0
+offset_bottom = 1034.0
 text = "Play Hand"
 
 [node name="AddMidCard" type="Button" parent="Level"]
-offset_left = 1616.0
-offset_top = 654.0
-offset_right = 1789.0
-offset_bottom = 759.0
+offset_left = 1177.0
+offset_top = 861.0
+offset_right = 1350.0
+offset_bottom = 966.0
 text = "Add Mid Card"
 
 [node name="AddLowCard" type="Button" parent="Level"]
-offset_left = 1506.0
-offset_top = 739.0
-offset_right = 1681.0
-offset_bottom = 844.0
+offset_left = 1111.0
+offset_top = 943.0
+offset_right = 1286.0
+offset_bottom = 1048.0
 text = "Add Low Card"
 
 [node name="Card" parent="Level" instance=ExtResource("16_t8chk")]
 z_as_relative = false
-offset_left = 797.0
-offset_top = 493.0
-offset_right = 891.0
-offset_bottom = 629.0
+offset_left = 939.0
+offset_top = 915.0
+offset_right = 1033.0
+offset_bottom = 1051.0
 card_text = "standing mid"
 move_index = 1
 
 [node name="Card2" parent="Level" instance=ExtResource("16_t8chk")]
-offset_left = 797.0
-offset_top = 493.0
-offset_right = 891.0
-offset_bottom = 629.0
+offset_left = 939.0
+offset_top = 915.0
+offset_right = 1033.0
+offset_bottom = 1051.0
 card_texture = ExtResource("17_xhed0")
 card_text = "crouching low"
 move_index = 2
 
 [node name="Card3" parent="Level" instance=ExtResource("16_t8chk")]
-offset_left = 797.0
-offset_top = 493.0
-offset_right = 891.0
-offset_bottom = 629.0
+offset_left = 939.0
+offset_top = 915.0
+offset_right = 1033.0
+offset_bottom = 1051.0
 card_text = "standing mid"
 move_index = 1
 
 [node name="ComboBox" type="ColorRect" parent="Level"]
 y_sort_enabled = true
-offset_left = 979.0
-offset_top = 486.0
-offset_right = 1755.0
-offset_bottom = 628.0
+offset_left = 35.0
+offset_top = 252.0
+offset_right = 129.0
+offset_bottom = 939.0
 size_flags_horizontal = 3
 
-[node name="ComboBoxContainer" type="HBoxContainer" parent="Level/ComboBox"]
+[node name="ComboBoxContainer" type="VBoxContainer" parent="Level/ComboBox"]
 unique_name_in_owner = true
 y_sort_enabled = true
 layout_mode = 1
@@ -153,6 +168,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = -8
 alignment = 1
 script = ExtResource("18_6tyme")
 
@@ -162,20 +178,32 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/ComboBox/ComboBoxArea"]
 y_sort_enabled = true
-position = Vector2(388, 72)
+position = Vector2(44.375, 340.75)
 shape = SubResource("RectangleShape2D_e2o6t")
 
-[node name="Stage" type="Node2D" parent="Level"]
+[node name="Stagea" type="Node2D" parent="Level"]
 
-[node name="CharacterDinosaurTestCrouching" type="Sprite2D" parent="Level/Stage"]
+[node name="CharacterDinosaurTestCrouching" type="Sprite2D" parent="Level/Stagea"]
 modulate = Color(2.117753e-06, 0.80588436, 0.7920013, 1)
-position = Vector2(1474, 388)
+position = Vector2(1750, 736.00006)
 rotation = 3.1415927
-scale = Vector2(0.5, -0.5)
+scale = Vector2(0.9647236, -0.96026605)
 texture = ExtResource("19_ktasi")
 
-[node name="PlayerCharacter" parent="Level/Stage" instance=ExtResource("20_hxcog")]
-position = Vector2(1244, 370)
+[node name="PlayerCharacter" parent="Level/Stagea" instance=ExtResource("20_hxcog")]
+position = Vector2(380, 682)
+scale = Vector2(4, 4)
+
+[node name="Node2D" type="Node2D" parent="Level"]
+scale = Vector2(0.25, 1)
+
+[node name="Button" parent="Level/Node2D" instance=ExtResource("22_uuy0h")]
+offset_left = 3524.0
+offset_top = 66.0
+offset_right = 4380.0
+offset_bottom = 130.0
+text = "Home"
+level = "res://main_menu.tscn"
 
 [connection signal="button_down" from="Level/ResetCards" to="SFXPlayer" method="_on_reset_cards_button_down"]
 [connection signal="button_down" from="Level/ResetCards" to="Level/ComboBox/ComboBoxContainer" method="_on_reset_cards_button_down"]
