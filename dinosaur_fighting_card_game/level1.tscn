@@ -1,0 +1,192 @@
+[gd_scene load_steps=22 format=3 uid="uid://bd5j326o1s54n"]
+
+[ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_ycv2e"]
+[ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_c5gc3"]
+[ext_resource type="Script" uid="uid://c2p04ywy131nf" path="res://scripts/bgm_player.gd" id="3_6e4cv"]
+[ext_resource type="AudioStream" uid="uid://bwnwlbdlfsojt" path="res://assets/audio/PortalFX.wav" id="4_uuy0h"]
+[ext_resource type="Script" uid="uid://c4wkipra21sga" path="res://scripts/ui_sfx_player.gd" id="5_52iny"]
+[ext_resource type="AudioStream" uid="uid://cd5iy63fbke4r" path="res://assets/audio/MenuButtonSound.wav" id="6_nxqqj"]
+[ext_resource type="AudioStream" uid="uid://b8nast02yf2t7" path="res://assets/audio/ButtonHoverSound.wav" id="7_7nyxr"]
+[ext_resource type="AudioStream" uid="uid://bpntw61k61n0u" path="res://assets/audio/WinSound.wav" id="8_43lh3"]
+[ext_resource type="Script" uid="uid://ce5tlqq5nxspm" path="res://scripts/game_state_controller.gd" id="9_5le63"]
+[ext_resource type="Script" uid="uid://tu52wobmgfj6" path="res://scripts/states/player_input.gd" id="10_pieet"]
+[ext_resource type="Script" uid="uid://dt817218d0jim" path="res://scripts/states/pause.gd" id="11_qiqrj"]
+[ext_resource type="Script" uid="uid://bye6uk8ioj8ts" path="res://scripts/states/parse_card.gd" id="12_xm42n"]
+[ext_resource type="Script" uid="uid://c8hqy72sf3l02" path="res://scripts/states/simulate_attacks.gd" id="13_6wmxb"]
+[ext_resource type="Script" uid="uid://bmqc37vg5el4c" path="res://scripts/states/failure.gd" id="14_8652m"]
+[ext_resource type="Script" uid="uid://btlamgnmd4thu" path="res://scripts/states/success.gd" id="15_jy3fw"]
+[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="16_t8chk"]
+[ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="17_xhed0"]
+[ext_resource type="Script" uid="uid://bwoaq8fw2j28y" path="res://scripts/combo_box.gd" id="18_6tyme"]
+[ext_resource type="Texture2D" uid="uid://bqimbco8ox5o8" path="res://assets/character-dinosaur-test-crouching.png" id="19_ktasi"]
+[ext_resource type="PackedScene" uid="uid://dtbl6tu7720f6" path="res://scenes/player_character.tscn" id="20_hxcog"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
+size = Vector2(795, 155)
+
+[node name="Level1" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_ycv2e")
+
+[node name="BGMPLayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_c5gc3")
+autoplay = true
+parameters/looping = true
+script = ExtResource("3_6e4cv")
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_uuy0h")
+volume_db = 10.0
+script = ExtResource("5_52iny")
+button_click_sound = ExtResource("6_nxqqj")
+button_hover_sound = ExtResource("7_7nyxr")
+hit_sound = ExtResource("4_uuy0h")
+swing_sound = ExtResource("8_43lh3")
+
+[node name="GameStateController" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("9_5le63")
+starting_state = NodePath("PlayerInput")
+
+[node name="PlayerInput" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_card_state")]
+script = ExtResource("10_pieet")
+parse_card_state = NodePath("../ParseCard")
+
+[node name="Pause" type="Node" parent="GameStateController"]
+script = ExtResource("11_qiqrj")
+
+[node name="ParseCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("simulate_attacks_state")]
+script = ExtResource("12_xm42n")
+simulate_attacks_state = NodePath("../SimulateAttacks")
+
+[node name="SimulateAttacks" type="Node" parent="GameStateController" node_paths=PackedStringArray("player_input_state", "failure_state", "success_state", "parse_card_state")]
+script = ExtResource("13_6wmxb")
+player_input_state = NodePath("../PlayerInput")
+failure_state = NodePath("../Failure")
+success_state = NodePath("../Success")
+parse_card_state = NodePath("../ParseCard")
+
+[node name="Failure" type="Node" parent="GameStateController"]
+script = ExtResource("14_8652m")
+
+[node name="Success" type="Node" parent="GameStateController"]
+script = ExtResource("15_jy3fw")
+
+[node name="Level" type="CanvasLayer" parent="."]
+
+[node name="GameOverOverlay" type="ColorRect" parent="Level"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.215686)
+
+[node name="ResetCards" type="Button" parent="Level"]
+offset_left = 1213.0
+offset_top = 682.0
+offset_right = 1498.0
+offset_bottom = 802.0
+text = "Reset Cards"
+
+[node name="PlayHand" type="Button" parent="Level"]
+offset_left = 931.0
+offset_top = 687.0
+offset_right = 1191.0
+offset_bottom = 804.0
+text = "Play Hand"
+
+[node name="AddMidCard" type="Button" parent="Level"]
+offset_left = 1616.0
+offset_top = 654.0
+offset_right = 1789.0
+offset_bottom = 759.0
+text = "Add Mid Card"
+
+[node name="AddLowCard" type="Button" parent="Level"]
+offset_left = 1506.0
+offset_top = 739.0
+offset_right = 1681.0
+offset_bottom = 844.0
+text = "Add Low Card"
+
+[node name="Card" parent="Level" instance=ExtResource("16_t8chk")]
+z_as_relative = false
+offset_left = 797.0
+offset_top = 493.0
+offset_right = 891.0
+offset_bottom = 629.0
+card_text = "standing mid"
+move_index = 1
+
+[node name="Card2" parent="Level" instance=ExtResource("16_t8chk")]
+offset_left = 797.0
+offset_top = 493.0
+offset_right = 891.0
+offset_bottom = 629.0
+card_texture = ExtResource("17_xhed0")
+card_text = "crouching low"
+move_index = 2
+
+[node name="Card3" parent="Level" instance=ExtResource("16_t8chk")]
+offset_left = 797.0
+offset_top = 493.0
+offset_right = 891.0
+offset_bottom = 629.0
+card_text = "standing mid"
+move_index = 1
+
+[node name="ComboBox" type="ColorRect" parent="Level"]
+y_sort_enabled = true
+offset_left = 979.0
+offset_top = 486.0
+offset_right = 1755.0
+offset_bottom = 628.0
+size_flags_horizontal = 3
+
+[node name="ComboBoxContainer" type="HBoxContainer" parent="Level/ComboBox"]
+unique_name_in_owner = true
+y_sort_enabled = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("18_6tyme")
+
+[node name="ComboBoxArea" type="Area2D" parent="Level/ComboBox"]
+y_sort_enabled = true
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/ComboBox/ComboBoxArea"]
+y_sort_enabled = true
+position = Vector2(388, 72)
+shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="Stage" type="Node2D" parent="Level"]
+
+[node name="CharacterDinosaurTestCrouching" type="Sprite2D" parent="Level/Stage"]
+modulate = Color(2.117753e-06, 0.80588436, 0.7920013, 1)
+position = Vector2(1474, 388)
+rotation = 3.1415927
+scale = Vector2(0.5, -0.5)
+texture = ExtResource("19_ktasi")
+
+[node name="PlayerCharacter" parent="Level/Stage" instance=ExtResource("20_hxcog")]
+position = Vector2(1244, 370)
+
+[connection signal="button_down" from="Level/ResetCards" to="SFXPlayer" method="_on_reset_cards_button_down"]
+[connection signal="button_down" from="Level/ResetCards" to="Level/ComboBox/ComboBoxContainer" method="_on_reset_cards_button_down"]
+[connection signal="mouse_entered" from="Level/ResetCards" to="SFXPlayer" method="_on_reset_cards_mouse_entered"]
+[connection signal="button_down" from="Level/PlayHand" to="." method="_on_play_hand_button_down"]
+[connection signal="button_down" from="Level/PlayHand" to="SFXPlayer" method="_on_play_hand_button_down"]
+[connection signal="mouse_entered" from="Level/PlayHand" to="SFXPlayer" method="_on_play_hand_mouse_entered"]
+[connection signal="button_down" from="Level/AddMidCard" to="." method="_on_add_mid_card_button_down"]
+[connection signal="button_down" from="Level/AddMidCard" to="SFXPlayer" method="_on_add_mid_card_button_down"]
+[connection signal="mouse_entered" from="Level/AddMidCard" to="SFXPlayer" method="_on_add_mid_card_mouse_entered"]
+[connection signal="button_down" from="Level/AddLowCard" to="." method="_on_add_low_card_button_down"]
+[connection signal="button_down" from="Level/AddLowCard" to="SFXPlayer" method="_on_add_low_card_button_down"]
+[connection signal="mouse_entered" from="Level/AddLowCard" to="SFXPlayer" method="_on_add_low_card_mouse_entered"]
+[connection signal="area_entered" from="Level/ComboBox/ComboBoxArea" to="Level/ComboBox/ComboBoxContainer" method="_on_combo_box_area_entered"]

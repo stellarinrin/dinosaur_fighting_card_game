@@ -1,7 +1,7 @@
 extends Button
 
 @export var animation_start_time: float
-@export var level: CanvasLayer
+@export var level: PackedScene
 var animation_progress: float
 
 func _ready() -> void:
@@ -23,8 +23,6 @@ func _on_mouse_exited() -> void:
 	%ButtonAnimation.seek(animation_progress,true)
 	%ButtonAnimation.speed_scale = .25
 	
-func _on_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		pass
-	if not toggled_on:
-		pass
+func _on_pressed() -> void:
+	Global.game_controller._change_scene(level)
+	

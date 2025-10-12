@@ -1,30 +1,19 @@
-[gd_scene load_steps=39 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=26 format=3 uid="uid://shqpf74yulcv"]
 
-[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_hygin"]
-[ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_n0eis"]
-[ext_resource type="Script" uid="uid://ce5tlqq5nxspm" path="res://scripts/game_state_controller.gd" id="2_lqju6"]
-[ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_x5p1p"]
-[ext_resource type="Script" uid="uid://c4wkipra21sga" path="res://scripts/ui_sfx_player.gd" id="3_e36ub"]
-[ext_resource type="Script" uid="uid://c2p04ywy131nf" path="res://scripts/bgm_player.gd" id="3_hb5m1"]
-[ext_resource type="Script" uid="uid://bwoaq8fw2j28y" path="res://scripts/combo_box.gd" id="3_u4083"]
-[ext_resource type="Script" uid="uid://tu52wobmgfj6" path="res://scripts/states/player_input.gd" id="3_wjgea"]
-[ext_resource type="AudioStream" uid="uid://cd5iy63fbke4r" path="res://assets/audio/MenuButtonSound.wav" id="4_hb5m1"]
-[ext_resource type="Script" uid="uid://bye6uk8ioj8ts" path="res://scripts/states/parse_card.gd" id="4_i14vp"]
-[ext_resource type="Script" uid="uid://dt817218d0jim" path="res://scripts/states/pause.gd" id="4_oic87"]
-[ext_resource type="Script" uid="uid://c8hqy72sf3l02" path="res://scripts/states/simulate_attacks.gd" id="5_ehbcw"]
-[ext_resource type="AudioStream" uid="uid://b8nast02yf2t7" path="res://assets/audio/ButtonHoverSound.wav" id="5_x5p1p"]
-[ext_resource type="Script" uid="uid://bmqc37vg5el4c" path="res://scripts/states/failure.gd" id="6_i0vdo"]
-[ext_resource type="Script" uid="uid://btlamgnmd4thu" path="res://scripts/states/success.gd" id="7_avx0k"]
-[ext_resource type="AudioStream" uid="uid://bpntw61k61n0u" path="res://assets/audio/WinSound.wav" id="7_f1jbl"]
-[ext_resource type="AudioStream" uid="uid://bwnwlbdlfsojt" path="res://assets/audio/PortalFX.wav" id="8_hb5m1"]
-[ext_resource type="PackedScene" uid="uid://dtbl6tu7720f6" path="res://scenes/player_character.tscn" id="10_eginm"]
-[ext_resource type="Texture2D" uid="uid://bqimbco8ox5o8" path="res://assets/character-dinosaur-test-crouching.png" id="10_lc2xo"]
-[ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="11_qhcbd"]
-[ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="12_iotsf"]
-[ext_resource type="PackedScene" uid="uid://b2pif88fkvy0q" path="res://scenes/menu_button.tscn" id="21_hb5m1"]
-[ext_resource type="Script" uid="uid://ddkykx6rqy16x" path="res://scripts/UI/sub_menu.gd" id="22_x5p1p"]
+[ext_resource type="AudioStream" uid="uid://ceokasgqio88" path="res://assets/audio/アホの子.mp3" id="1_0k4wn"]
+[ext_resource type="Script" uid="uid://c2p04ywy131nf" path="res://scripts/bgm_player.gd" id="2_0k4wn"]
+[ext_resource type="AudioStream" uid="uid://bwnwlbdlfsojt" path="res://assets/audio/PortalFX.wav" id="3_j5v2v"]
+[ext_resource type="Script" uid="uid://c4wkipra21sga" path="res://scripts/ui_sfx_player.gd" id="4_iotk1"]
+[ext_resource type="AudioStream" uid="uid://cd5iy63fbke4r" path="res://assets/audio/MenuButtonSound.wav" id="5_w44g7"]
+[ext_resource type="AudioStream" uid="uid://b8nast02yf2t7" path="res://assets/audio/ButtonHoverSound.wav" id="6_cm266"]
+[ext_resource type="AudioStream" uid="uid://bpntw61k61n0u" path="res://assets/audio/WinSound.wav" id="7_g8g3n"]
+[ext_resource type="PackedScene" uid="uid://b2pif88fkvy0q" path="res://scenes/menu_button.tscn" id="8_8u0te"]
+[ext_resource type="Script" uid="uid://ddkykx6rqy16x" path="res://scripts/UI/sub_menu.gd" id="9_oiatc"]
+[ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="10_mg3m2"]
+[ext_resource type="PackedScene" uid="uid://bd5j326o1s54n" path="res://level1.tscn" id="11_0k4wn"]
 
 [sub_resource type="SystemFont" id="SystemFont_x5p1p"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_hb5m1"]
 line_spacing = -54.0
@@ -400,27 +389,22 @@ _data = {
 &"text_pop_in": SubResource("Animation_x5p1p")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
-size = Vector2(795, 155)
-
-[node name="Game" type="Node2D"]
-y_sort_enabled = true
-script = ExtResource("1_n0eis")
+[node name="LevelMainMenu" type="Node2D"]
 
 [node name="BGMPLayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_x5p1p")
+stream = ExtResource("1_0k4wn")
 autoplay = true
 parameters/looping = true
-script = ExtResource("3_hb5m1")
+script = ExtResource("2_0k4wn")
 
 [node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_hb5m1")
+stream = ExtResource("3_j5v2v")
 volume_db = 10.0
-script = ExtResource("3_e36ub")
-button_click_sound = ExtResource("4_hb5m1")
-button_hover_sound = ExtResource("5_x5p1p")
-hit_sound = ExtResource("8_hb5m1")
-swing_sound = ExtResource("7_f1jbl")
+script = ExtResource("4_iotk1")
+button_click_sound = ExtResource("5_w44g7")
+button_hover_sound = ExtResource("6_cm266")
+hit_sound = ExtResource("3_j5v2v")
+swing_sound = ExtResource("7_g8g3n")
 
 [node name="MainMenu" type="CanvasLayer" parent="."]
 
@@ -500,7 +484,7 @@ label_settings = SubResource("LabelSettings_hb5m1")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="LevelButton" parent="MainMenu" node_paths=PackedStringArray("menu") instance=ExtResource("21_hb5m1")]
+[node name="LevelButton" parent="MainMenu" node_paths=PackedStringArray("menu") instance=ExtResource("8_8u0te")]
 offset_left = 440.0
 offset_top = 55.999996
 offset_right = 1068.0
@@ -509,7 +493,7 @@ text = "Play"
 menu = NodePath("../../LevelMenu")
 metadata/_edit_use_anchors_ = true
 
-[node name="CreditButton" parent="MainMenu" node_paths=PackedStringArray("menu") instance=ExtResource("21_hb5m1")]
+[node name="CreditButton" parent="MainMenu" node_paths=PackedStringArray("menu") instance=ExtResource("8_8u0te")]
 offset_left = 56.0
 offset_top = 637.0
 offset_right = 684.0
@@ -519,7 +503,7 @@ animation_start_time = 0.4
 menu = NodePath("../../CreditsMenu")
 metadata/_edit_use_anchors_ = true
 
-[node name="StoryButton" parent="MainMenu" instance=ExtResource("21_hb5m1")]
+[node name="StoryButton" parent="MainMenu" instance=ExtResource("8_8u0te")]
 visible = false
 offset_left = 1014.0
 offset_top = 57.0
@@ -528,7 +512,7 @@ offset_bottom = 442.0
 text = "Story"
 animation_start_time = 0.6
 
-[node name="OptionsButton" parent="MainMenu" node_paths=PackedStringArray("menu") instance=ExtResource("21_hb5m1")]
+[node name="OptionsButton" parent="MainMenu" node_paths=PackedStringArray("menu") instance=ExtResource("8_8u0te")]
 offset_left = 1410.0
 offset_top = 423.0
 offset_right = 2038.0
@@ -538,7 +522,7 @@ animation_start_time = 0.2
 menu = NodePath("../../OptionsMenu")
 metadata/_edit_use_anchors_ = true
 
-[node name="CollectionButton" parent="MainMenu" instance=ExtResource("21_hb5m1")]
+[node name="CollectionButton" parent="MainMenu" instance=ExtResource("8_8u0te")]
 visible = false
 offset_left = 18.999998
 offset_top = 361.0
@@ -547,7 +531,7 @@ offset_bottom = 746.0
 text = "Collection"
 animation_start_time = 0.8
 
-[node name="Quit" parent="MainMenu" instance=ExtResource("21_hb5m1")]
+[node name="Quit" parent="MainMenu" instance=ExtResource("8_8u0te")]
 modulate = Color(0.8, 0.8, 0.8, 1)
 offset_left = 888.0
 offset_top = 795.0
@@ -561,7 +545,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="LevelMenu" type="CanvasLayer" parent="."]
 visible = false
-script = ExtResource("22_x5p1p")
+script = ExtResource("9_oiatc")
 
 [node name="ColorRect" type="ColorRect" parent="LevelMenu"]
 offset_left = 1427.0
@@ -627,30 +611,30 @@ offset_right = 1855.0
 offset_bottom = 1569.9873
 theme_override_constants/separation = 12
 
-[node name="Level1" parent="LevelMenu/VBoxContainer" node_paths=PackedStringArray("level") instance=ExtResource("11_qhcbd")]
+[node name="Level1" parent="LevelMenu/VBoxContainer" instance=ExtResource("10_mg3m2")]
 layout_mode = 2
 text = "Level 1: Standing Block"
-level = NodePath("../../../Level1")
+level = ExtResource("11_0k4wn")
 
-[node name="Level2" parent="LevelMenu/VBoxContainer" instance=ExtResource("11_qhcbd")]
+[node name="Level2" parent="LevelMenu/VBoxContainer" instance=ExtResource("10_mg3m2")]
 modulate = Color(0.6, 0.6, 0.6, 1)
 layout_mode = 2
 text = "Level 2: [Locked]"
 animation_start_time = 0.2
 
-[node name="Level3" parent="LevelMenu/VBoxContainer" instance=ExtResource("11_qhcbd")]
+[node name="Level3" parent="LevelMenu/VBoxContainer" instance=ExtResource("10_mg3m2")]
 modulate = Color(0.6, 0.6, 0.6, 1)
 layout_mode = 2
 text = "Level 3: [Locked]"
 animation_start_time = 0.1
 
-[node name="Level4" parent="LevelMenu/VBoxContainer" instance=ExtResource("11_qhcbd")]
+[node name="Level4" parent="LevelMenu/VBoxContainer" instance=ExtResource("10_mg3m2")]
 modulate = Color(0.6, 0.6, 0.6, 1)
 layout_mode = 2
 text = "Level 4: [Locked]"
 animation_start_time = 0.4
 
-[node name="Level5" parent="LevelMenu/VBoxContainer" instance=ExtResource("11_qhcbd")]
+[node name="Level5" parent="LevelMenu/VBoxContainer" instance=ExtResource("10_mg3m2")]
 modulate = Color(0.6, 0.6, 0.6, 1)
 layout_mode = 2
 text = "Level 5: [Locked]"
@@ -658,7 +642,7 @@ animation_start_time = 0.6
 
 [node name="CreditsMenu" type="CanvasLayer" parent="."]
 visible = false
-script = ExtResource("22_x5p1p")
+script = ExtResource("9_oiatc")
 
 [node name="Text" type="Label" parent="CreditsMenu"]
 z_index = 2
@@ -728,7 +712,7 @@ horizontal_alignment = 1
 
 [node name="OptionsMenu" type="CanvasLayer" parent="."]
 visible = false
-script = ExtResource("22_x5p1p")
+script = ExtResource("9_oiatc")
 
 [node name="Text" type="Label" parent="OptionsMenu"]
 z_index = 2
@@ -792,154 +776,6 @@ Duel"
 label_settings = SubResource("LabelSettings_hb5m1")
 horizontal_alignment = 1
 
-[node name="GameStateController" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
-script = ExtResource("2_lqju6")
-starting_state = NodePath("PlayerInput")
-
-[node name="PlayerInput" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_card_state")]
-script = ExtResource("3_wjgea")
-parse_card_state = NodePath("../ParseCard")
-
-[node name="Pause" type="Node" parent="GameStateController"]
-script = ExtResource("4_oic87")
-
-[node name="ParseCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("simulate_attacks_state")]
-script = ExtResource("4_i14vp")
-simulate_attacks_state = NodePath("../SimulateAttacks")
-
-[node name="SimulateAttacks" type="Node" parent="GameStateController" node_paths=PackedStringArray("player_input_state", "failure_state", "success_state", "parse_card_state")]
-script = ExtResource("5_ehbcw")
-player_input_state = NodePath("../PlayerInput")
-failure_state = NodePath("../Failure")
-success_state = NodePath("../Success")
-parse_card_state = NodePath("../ParseCard")
-
-[node name="Failure" type="Node" parent="GameStateController"]
-script = ExtResource("6_i0vdo")
-
-[node name="Success" type="Node" parent="GameStateController"]
-script = ExtResource("7_avx0k")
-
-[node name="Level1" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="GameOverOverlay" type="ColorRect" parent="Level1"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.215686)
-
-[node name="ResetCards" type="Button" parent="Level1"]
-offset_left = 1213.0
-offset_top = 682.0
-offset_right = 1498.0
-offset_bottom = 802.0
-text = "Reset Cards"
-
-[node name="PlayHand" type="Button" parent="Level1"]
-offset_left = 931.0
-offset_top = 687.0
-offset_right = 1191.0
-offset_bottom = 804.0
-text = "Play Hand"
-
-[node name="AddMidCard" type="Button" parent="Level1"]
-offset_left = 1616.0
-offset_top = 654.0
-offset_right = 1789.0
-offset_bottom = 759.0
-text = "Add Mid Card"
-
-[node name="AddLowCard" type="Button" parent="Level1"]
-offset_left = 1506.0
-offset_top = 739.0
-offset_right = 1681.0
-offset_bottom = 844.0
-text = "Add Low Card"
-
-[node name="Card" parent="Level1" instance=ExtResource("1_hygin")]
-z_as_relative = false
-offset_left = 797.0
-offset_top = 493.0
-offset_right = 891.0
-offset_bottom = 629.0
-card_text = "standing mid"
-move_index = 1
-
-[node name="Card2" parent="Level1" instance=ExtResource("1_hygin")]
-offset_left = 797.0
-offset_top = 493.0
-offset_right = 891.0
-offset_bottom = 629.0
-card_texture = ExtResource("12_iotsf")
-card_text = "crouching low"
-move_index = 2
-
-[node name="Card3" parent="Level1" instance=ExtResource("1_hygin")]
-offset_left = 797.0
-offset_top = 493.0
-offset_right = 891.0
-offset_bottom = 629.0
-card_text = "standing mid"
-move_index = 1
-
-[node name="ComboBox" type="ColorRect" parent="Level1"]
-y_sort_enabled = true
-offset_left = 979.0
-offset_top = 486.0
-offset_right = 1755.0
-offset_bottom = 628.0
-size_flags_horizontal = 3
-
-[node name="ComboBoxContainer" type="HBoxContainer" parent="Level1/ComboBox"]
-unique_name_in_owner = true
-y_sort_enabled = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-script = ExtResource("3_u4083")
-
-[node name="ComboBoxArea" type="Area2D" parent="Level1/ComboBox"]
-y_sort_enabled = true
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level1/ComboBox/ComboBoxArea"]
-y_sort_enabled = true
-position = Vector2(388, 72)
-shape = SubResource("RectangleShape2D_e2o6t")
-
-[node name="Stage" type="Node2D" parent="Level1"]
-
-[node name="CharacterDinosaurTestCrouching" type="Sprite2D" parent="Level1/Stage"]
-modulate = Color(2.117753e-06, 0.80588436, 0.7920013, 1)
-position = Vector2(1474, 388)
-rotation = 3.1415927
-scale = Vector2(0.5, -0.5)
-texture = ExtResource("10_lc2xo")
-
-[node name="PlayerCharacter" parent="Level1/Stage" instance=ExtResource("10_eginm")]
-position = Vector2(1244, 370)
-
 [connection signal="visibility_changed" from="LevelMenu" to="LevelMenu" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="CreditsMenu" to="CreditsMenu" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="OptionsMenu" to="OptionsMenu" method="_on_visibility_changed"]
-[connection signal="button_down" from="Level1/ResetCards" to="SFXPlayer" method="_on_reset_cards_button_down"]
-[connection signal="button_down" from="Level1/ResetCards" to="Level1/ComboBox/ComboBoxContainer" method="_on_reset_cards_button_down"]
-[connection signal="mouse_entered" from="Level1/ResetCards" to="SFXPlayer" method="_on_reset_cards_mouse_entered"]
-[connection signal="button_down" from="Level1/PlayHand" to="." method="_on_play_hand_button_down"]
-[connection signal="button_down" from="Level1/PlayHand" to="SFXPlayer" method="_on_play_hand_button_down"]
-[connection signal="mouse_entered" from="Level1/PlayHand" to="SFXPlayer" method="_on_play_hand_mouse_entered"]
-[connection signal="button_down" from="Level1/AddMidCard" to="." method="_on_add_mid_card_button_down"]
-[connection signal="button_down" from="Level1/AddMidCard" to="SFXPlayer" method="_on_add_mid_card_button_down"]
-[connection signal="mouse_entered" from="Level1/AddMidCard" to="SFXPlayer" method="_on_add_mid_card_mouse_entered"]
-[connection signal="button_down" from="Level1/AddLowCard" to="." method="_on_add_low_card_button_down"]
-[connection signal="button_down" from="Level1/AddLowCard" to="SFXPlayer" method="_on_add_low_card_button_down"]
-[connection signal="mouse_entered" from="Level1/AddLowCard" to="SFXPlayer" method="_on_add_low_card_mouse_entered"]
-[connection signal="area_entered" from="Level1/ComboBox/ComboBoxArea" to="Level1/ComboBox/ComboBoxContainer" method="_on_combo_box_area_entered"]
