@@ -7,7 +7,7 @@ extends GameState
 
 func enter() -> void:
 	card_reference = parent.combo.pop_front()
-	Events.parsed_card.emit(card_reference.move_index, card_reference.move_attributes)
+	Events.parsed_card.emit(card_reference.move_index, card_reference.move_attributes, parent.isPlayer)
 	parent.isAnimationFinished = false
 
 func exit() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=29 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_ycv2e"]
 [ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_c5gc3"]
@@ -12,17 +12,21 @@
 [ext_resource type="Script" uid="uid://tu52wobmgfj6" path="res://scripts/game_states/player_input.gd" id="10_pieet"]
 [ext_resource type="Script" uid="uid://dt817218d0jim" path="res://scripts/game_states/pause.gd" id="11_qiqrj"]
 [ext_resource type="Script" uid="uid://bye6uk8ioj8ts" path="res://scripts/game_states/parse_card.gd" id="12_xm42n"]
-[ext_resource type="Script" uid="uid://c8hqy72sf3l02" path="res://scripts/game_states/simulate_attacks.gd" id="13_6wmxb"]
+[ext_resource type="Script" uid="uid://c8hqy72sf3l02" path="res://scripts/game_states/simulate_attack.gd" id="13_6wmxb"]
+[ext_resource type="Script" uid="uid://bqo53x87va24o" path="res://scripts/game_states/enemy_input.gd" id="13_52iny"]
 [ext_resource type="Script" uid="uid://bmqc37vg5el4c" path="res://scripts/game_states/lose.gd" id="14_8652m"]
 [ext_resource type="Script" uid="uid://btlamgnmd4thu" path="res://scripts/game_states/win.gd" id="15_jy3fw"]
 [ext_resource type="Texture2D" uid="uid://cex1ihcq8i3pv" path="res://38346657b1271fcfe6ce1c60423ff665b794_1920xt1080_S1000-3662738456.jpg" id="16_c5gc3"]
 [ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="16_t8chk"]
 [ext_resource type="PackedScene" uid="uid://s8t15p31bou5" path="res://scenes/health_bar.tscn" id="17_uuy0h"]
 [ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="17_xhed0"]
-[ext_resource type="Script" uid="uid://bwoaq8fw2j28y" path="res://scripts/combo_box.gd" id="18_6tyme"]
+[ext_resource type="Script" uid="uid://bwoaq8fw2j28y" path="res://scripts/player_combo_box.gd" id="18_6tyme"]
 [ext_resource type="Texture2D" uid="uid://bqimbco8ox5o8" path="res://assets/character-dinosaur-test-crouching.png" id="19_ktasi"]
 [ext_resource type="PackedScene" uid="uid://dtbl6tu7720f6" path="res://scenes/player_character.tscn" id="20_hxcog"]
 [ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="22_uuy0h"]
+[ext_resource type="Script" uid="uid://b18m6mbay1006" path="res://scripts/enemy_combo_box.gd" id="25_43lh3"]
+[ext_resource type="PackedScene" uid="uid://npd8c1t4ms8o" path="res://scenes/card-standing-mid.tscn" id="26_5le63"]
+[ext_resource type="PackedScene" uid="uid://b5t3yyx6sirng" path="res://scenes/card-crouching-low.tscn" id="27_pieet"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(105.25, 700.5)
@@ -54,19 +58,24 @@ starting_state = NodePath("PlayerInput")
 script = ExtResource("10_pieet")
 parse_card_state = NodePath("../ParseCard")
 
-[node name="Pause" type="Node" parent="GameStateController"]
-script = ExtResource("11_qiqrj")
-
 [node name="ParseCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("simulate_attacks_state")]
 script = ExtResource("12_xm42n")
-simulate_attacks_state = NodePath("../SimulateAttacks")
+simulate_attacks_state = NodePath("../SimulateAttack")
 
-[node name="SimulateAttacks" type="Node" parent="GameStateController" node_paths=PackedStringArray("player_input_state", "failure_state", "success_state", "parse_card_state")]
+[node name="SimulateAttack" type="Node" parent="GameStateController" node_paths=PackedStringArray("player_input_state", "failure_state", "success_state", "parse_card_state", "enemy_input_state")]
 script = ExtResource("13_6wmxb")
 player_input_state = NodePath("../PlayerInput")
 failure_state = NodePath("../Failure")
 success_state = NodePath("../Success")
 parse_card_state = NodePath("../ParseCard")
+enemy_input_state = NodePath("../EnemyInput")
+
+[node name="EnemyInput" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_card_state")]
+script = ExtResource("13_52iny")
+parse_card_state = NodePath("../ParseCard")
+
+[node name="Pause" type="Node" parent="GameStateController"]
+script = ExtResource("11_qiqrj")
 
 [node name="Failure" type="Node" parent="GameStateController"]
 script = ExtResource("14_8652m")
@@ -171,7 +180,7 @@ grow_vertical = 0
 card_text = "standing mid"
 move_index = "5B"
 
-[node name="ComboBox" type="ColorRect" parent="Level"]
+[node name="PlayerComboBox" type="ColorRect" parent="Level"]
 y_sort_enabled = true
 offset_left = 35.0
 offset_top = 252.0
@@ -179,7 +188,7 @@ offset_right = 129.0
 offset_bottom = 939.0
 size_flags_horizontal = 3
 
-[node name="ComboBoxContainer" type="VBoxContainer" parent="Level/ComboBox"]
+[node name="PlayerComboBoxContainer" type="VBoxContainer" parent="Level/PlayerComboBox"]
 unique_name_in_owner = true
 y_sort_enabled = true
 layout_mode = 1
@@ -192,11 +201,11 @@ theme_override_constants/separation = -8
 alignment = 1
 script = ExtResource("18_6tyme")
 
-[node name="ComboBoxArea" type="Area2D" parent="Level/ComboBox"]
+[node name="ComboBoxArea" type="Area2D" parent="Level/PlayerComboBox"]
 y_sort_enabled = true
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/ComboBox/ComboBoxArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayerComboBox/ComboBoxArea"]
 y_sort_enabled = true
 position = Vector2(44.375, 340.75)
 shape = SubResource("RectangleShape2D_e2o6t")
@@ -204,6 +213,7 @@ shape = SubResource("RectangleShape2D_e2o6t")
 [node name="Stagea" type="Node2D" parent="Level"]
 
 [node name="CharacterDinosaurTestCrouching" type="Sprite2D" parent="Level/Stagea"]
+visible = false
 modulate = Color(2.117753e-06, 0.80588436, 0.7920013, 1)
 position = Vector2(1750, 736.00006)
 rotation = 3.1415927
@@ -213,6 +223,12 @@ texture = ExtResource("19_ktasi")
 [node name="PlayerCharacter" parent="Level/Stagea" instance=ExtResource("20_hxcog")]
 position = Vector2(380, 682)
 scale = Vector2(4, 4)
+isPlayer = true
+
+[node name="EnemyCharacter" parent="Level/Stagea" instance=ExtResource("20_hxcog")]
+modulate = Color(2.117753e-06, 0.80588436, 0.7920013, 1)
+position = Vector2(1446, 678)
+scale = Vector2(-4, 4)
 
 [node name="Node2D" type="Node2D" parent="Level"]
 scale = Vector2(0.25, 1)
@@ -225,8 +241,44 @@ offset_bottom = 130.0
 text = "Home"
 level = "res://main_menu.tscn"
 
+[node name="EnemyComboBox" type="ColorRect" parent="Level"]
+y_sort_enabled = true
+offset_left = 1753.0
+offset_top = 252.0
+offset_right = 1847.0
+offset_bottom = 939.0
+size_flags_horizontal = 3
+
+[node name="EnemyComboBoxContainer" type="VBoxContainer" parent="Level/EnemyComboBox"]
+unique_name_in_owner = true
+y_sort_enabled = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -8
+alignment = 1
+script = ExtResource("25_43lh3")
+
+[node name="Card" parent="Level/EnemyComboBox/EnemyComboBoxContainer" instance=ExtResource("26_5le63")]
+layout_mode = 2
+
+[node name="Card2" parent="Level/EnemyComboBox/EnemyComboBoxContainer" instance=ExtResource("27_pieet")]
+layout_mode = 2
+
+[node name="ComboBoxArea" type="Area2D" parent="Level/EnemyComboBox"]
+y_sort_enabled = true
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/EnemyComboBox/ComboBoxArea"]
+y_sort_enabled = true
+position = Vector2(44.375, 340.75)
+shape = SubResource("RectangleShape2D_e2o6t")
+
 [connection signal="button_down" from="Level/ResetCards" to="SFXPlayer" method="_on_reset_cards_button_down"]
-[connection signal="button_down" from="Level/ResetCards" to="Level/ComboBox/ComboBoxContainer" method="_on_reset_cards_button_down"]
+[connection signal="button_down" from="Level/ResetCards" to="Level/PlayerComboBox/PlayerComboBoxContainer" method="_on_reset_cards_button_down"]
 [connection signal="mouse_entered" from="Level/ResetCards" to="SFXPlayer" method="_on_reset_cards_mouse_entered"]
 [connection signal="button_down" from="Level/PlayHand" to="." method="_on_play_hand_button_down"]
 [connection signal="button_down" from="Level/PlayHand" to="SFXPlayer" method="_on_play_hand_button_down"]
@@ -237,4 +289,5 @@ level = "res://main_menu.tscn"
 [connection signal="button_down" from="Level/AddLowCard" to="." method="_on_add_low_card_button_down"]
 [connection signal="button_down" from="Level/AddLowCard" to="SFXPlayer" method="_on_add_low_card_button_down"]
 [connection signal="mouse_entered" from="Level/AddLowCard" to="SFXPlayer" method="_on_add_low_card_mouse_entered"]
-[connection signal="area_entered" from="Level/ComboBox/ComboBoxArea" to="Level/ComboBox/ComboBoxContainer" method="_on_combo_box_area_entered"]
+[connection signal="area_entered" from="Level/PlayerComboBox/ComboBoxArea" to="Level/PlayerComboBox/PlayerComboBoxContainer" method="_on_combo_box_area_entered"]
+[connection signal="area_entered" from="Level/EnemyComboBox/ComboBoxArea" to="Level/EnemyComboBox/EnemyComboBoxContainer" method="_on_combo_box_area_entered"]

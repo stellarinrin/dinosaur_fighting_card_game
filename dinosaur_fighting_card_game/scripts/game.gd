@@ -1,10 +1,10 @@
 extends Node2D
 
-# @export var player_character: Character
 @onready var game_state_controller := $GameStateController
 @onready var combo : Array
 @onready var isHandPlayed : bool = false
 @onready var isAnimationFinished : bool = true
+@onready var isPlayer : bool
 @onready var standing_mid_card = preload("res://scenes/card-standing-mid.tscn")
 @onready var crouching_low_card = preload("res://scenes/card-crouching-low.tscn")
 
@@ -19,12 +19,11 @@ func _process(delta: float) -> void:
 	game_state_controller.process_frame(delta)
 	
 func _on_play_hand_button_down() -> void:
-	combo = %ComboBoxContainer.combo_hand
+	combo = %PlayerComboBoxContainer.combo_hand
 	isHandPlayed = true
 
 func _on_animation_finished() -> void:
 	isAnimationFinished = true
-
 
 func _on_add_mid_card_button_down() -> void:
 	var instance = standing_mid_card.instantiate()
