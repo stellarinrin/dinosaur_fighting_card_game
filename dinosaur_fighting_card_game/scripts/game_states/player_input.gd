@@ -2,7 +2,6 @@ extends GameState
 
 @export var parse_card_state: GameState
 
-
 func enter() -> void:
 	pass #instantiate new cards?
 

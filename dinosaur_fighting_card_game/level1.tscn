@@ -145,7 +145,7 @@ offset_top = 905.0
 offset_right = 1007.0
 offset_bottom = 1041.0
 card_text = "standing mid"
-move_index = 1
+move_index = "5B"
 
 [node name="Card2" parent="Level" instance=ExtResource("16_t8chk")]
 offset_left = 913.0
@@ -154,7 +154,7 @@ offset_right = 1007.0
 offset_bottom = 1041.0
 card_texture = ExtResource("17_xhed0")
 card_text = "crouching low"
-move_index = 2
+move_index = "2B"
 
 [node name="Card3" parent="Level" instance=ExtResource("16_t8chk")]
 anchors_preset = 7
@@ -169,7 +169,7 @@ offset_bottom = -39.0
 grow_horizontal = 2
 grow_vertical = 0
 card_text = "standing mid"
-move_index = 1
+move_index = "5B"
 
 [node name="ComboBox" type="ColorRect" parent="Level"]
 y_sort_enabled = true

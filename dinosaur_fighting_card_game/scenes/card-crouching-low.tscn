@@ -7,5 +7,5 @@
 [node name="Card" instance=ExtResource("1_vik01")]
 card_texture = ExtResource("2_rg3ew")
 card_text = "crouching low"
-move_index = 2
+move_index = "2B"
 move_attributes = ExtResource("3_trbpp")

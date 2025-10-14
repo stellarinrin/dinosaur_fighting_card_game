@@ -4,4 +4,4 @@
 
 [node name="Card" instance=ExtResource("1_smffo")]
 card_text = "standing mid"
-move_index = 1
+move_index = "5B"

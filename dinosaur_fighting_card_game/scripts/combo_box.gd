@@ -26,5 +26,5 @@ func _on_reset_cards_button_down() -> void:
 		card.position = Vector2(913,905) #Reset Deck Position
 
 
-func _on_parsed_card(index: int, attributes: MoveAttributes) -> void:
+func _on_parsed_card(index: String, attributes: MoveAttributes) -> void:
 	remove_child(get_children().front())
