@@ -1,5 +1,5 @@
 extends PlayerState
-class_name GroundAttack
+class_name BlockStanding
 
 func enter():
 	pass #play animation

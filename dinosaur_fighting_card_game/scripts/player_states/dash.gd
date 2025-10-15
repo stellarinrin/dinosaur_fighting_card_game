@@ -1,5 +1,5 @@
 extends PlayerState
-class_name Block
+class_name Dash
 
 func enter():
 	pass #play animation

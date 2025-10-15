@@ -1,16 +1,17 @@
 extends Node
 
-@export
-var starting_state: PlayerState
+@export var starting_state: PlayerState
 
 var current_state: PlayerState
+var parent_player : CharacterBody2D
 
 # Initialize the state machine by giving each child state a reference to the
 # parent object it belongs to and enter the default starting_state.
 func init(parent: CharacterBody2D) -> void:
 	for child in get_children():
 		child.parent = parent
-
+		
+	parent_player = parent
 	# Initialize to the default state
 	change_state(starting_state)
 
@@ -29,8 +30,10 @@ func process_physics(delta: float) -> void:
 	if new_state:
 		change_state(new_state)
 
-func process_input(event: InputEvent) -> void:
-	var new_state = current_state.process_input(event)
+func _on_parsed_card(index: String, attributes: MoveAttributes, player: bool) -> void:
+	if player != parent_player.isPlayer: # Don't play animations if not active character
+		return
+	var new_state = current_state._on_parsed_card(index, attributes, player)
 	if new_state:
 		change_state(new_state)
 

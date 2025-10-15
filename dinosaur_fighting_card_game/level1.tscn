@@ -221,7 +221,7 @@ scale = Vector2(0.9647236, -0.96026605)
 texture = ExtResource("19_ktasi")
 
 [node name="PlayerCharacter" parent="Level/Stagea" instance=ExtResource("20_hxcog")]
-position = Vector2(380, 682)
+position = Vector2(930, 678)
 scale = Vector2(4, 4)
 isPlayer = true
 
