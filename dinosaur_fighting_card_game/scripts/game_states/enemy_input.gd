@@ -4,13 +4,14 @@ extends GameState
 
 func enter() -> void:
 	parent.isPlayer = false
+	parent.combo = %EnemyComboBoxContainer.combo_hand
+	parent.isHandPlayed = true
 	#instantiate new cards?
 
 func exit() -> void:
 	pass
 
 func process_frame(_delta: float) -> GameState:
-	#if parent.isHandPlayed:
-		#return parse_card_state
-	#return null
-	return parse_card_state
+	if parent.isHandPlayed:
+		return parse_card_state
+	return null
