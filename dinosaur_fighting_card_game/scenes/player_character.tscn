@@ -1,17 +1,17 @@
 [gd_scene load_steps=28 format=3 uid="uid://dtbl6tu7720f6"]
 
 [ext_resource type="Texture2D" uid="uid://lfgrhc4eeh12" path="res://assets/character-dinosaur-test-standing.png" id="1_efknm"]
-[ext_resource type="Script" uid="uid://do7hyl6ydle6i" path="res://scripts/player_character.gd" id="1_oee74"]
+[ext_resource type="Script" uid="uid://do7hyl6ydle6i" path="res://scripts/player.gd" id="1_oee74"]
 [ext_resource type="Texture2D" uid="uid://bqimbco8ox5o8" path="res://assets/character-dinosaur-test-crouching.png" id="3_kww55"]
 [ext_resource type="Script" uid="uid://bthqvh0fnyk67" path="res://scripts/hurtbox_2D.gd" id="4_uj7mf"]
 [ext_resource type="Script" uid="uid://c0atc7cbxkj3t" path="res://scripts/hitbox_2D.gd" id="5_2vmgx"]
 [ext_resource type="Script" uid="uid://b1w43d81cfglm" path="res://resources/hurtbox_data.gd" id="5_6unfe"]
 [ext_resource type="Script" uid="uid://0l4qsvm813i6" path="res://resources/hitbox_data.gd" id="7_pxja8"]
 [ext_resource type="Script" uid="uid://cw2d4r1j4a7qr" path="res://scripts/player_states/player_state_machine.gd" id="8_pxja8"]
-[ext_resource type="Script" uid="uid://ksdr516wr4v" path="res://scripts/player_states/idle.gd" id="9_pn3gn"]
-[ext_resource type="Script" uid="uid://b0rp7gct5wrdh" path="res://scripts/player_states/block_standing.gd" id="10_8rgkp"]
-[ext_resource type="Script" uid="uid://7vu1fkvkghbn" path="res://scripts/player_states/attack_2B.gd" id="11_wpg3m"]
-[ext_resource type="Script" uid="uid://bo6elas36ycbf" path="res://scripts/player_states/attack_5B.gd" id="12_s7f3b"]
+[ext_resource type="Script" uid="uid://ksdr516wr4v" path="res://scripts/player_states/ground_movement_states/idle.gd" id="9_pn3gn"]
+[ext_resource type="Script" uid="uid://b0rp7gct5wrdh" path="res://scripts/player_states/defence_states/block_standing.gd" id="10_8rgkp"]
+[ext_resource type="Script" uid="uid://7vu1fkvkghbn" path="res://scripts/player_states/offence_states/attack_2C.gd" id="11_wpg3m"]
+[ext_resource type="Script" uid="uid://bo6elas36ycbf" path="res://scripts/player_states/offence_states/attack_5B.gd" id="12_s7f3b"]
 
 [sub_resource type="Animation" id="Animation_4h0vy"]
 resource_name = "2A"

@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://bplmbaoy27emv"]
+
+[ext_resource type="PackedScene" uid="uid://cfh12t0lljtfh" path="res://player_character.tscn" id="1_gojnm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gojnm"]
+size = Vector2(1925, 137)
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_gojnm")]
+position = Vector2(1205, 732)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -2.0
+offset_top = 947.0
+offset_right = 1914.0
+offset_bottom = 1087.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/StaticBody2D"]
+position = Vector2(952.5, 79.5)
+shape = SubResource("RectangleShape2D_gojnm")
+
+[node name="Enemy" parent="." instance=ExtResource("1_gojnm")]
+position = Vector2(1688, 739)
+scale = Vector2(-1, 1)
+is_current_turn = false
+
+[node name="Hurtbox2D" parent="Enemy" index="4"]
+collision_layer = 2048
+
+[node name="Hitbox2D" parent="Enemy" index="5"]
+collision_mask = 512
+
+[editable path="Player"]
+[editable path="Enemy"]
