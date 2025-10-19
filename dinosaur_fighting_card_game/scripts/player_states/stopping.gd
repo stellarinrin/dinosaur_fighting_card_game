@@ -30,9 +30,14 @@ func process_input(event: InputEvent) -> PlayerState:
 	return null
 func process_physics(delta: float) -> PlayerState:
 	parent.velocity.y += gravity * delta
-	parent.velocity.x -= 250
-	if parent.velocity.x < 0:
-		parent.velocity.x = 0
+	if parent.is_facing_left :
+		parent.velocity.x += 250
+		if parent.velocity.x > 0:
+			parent.velocity.x = 0		
+	else :
+		parent.velocity.x -= 250
+		if parent.velocity.x < 0:
+			parent.velocity.x = 0
 	parent.move_and_slide()
 	return null
 

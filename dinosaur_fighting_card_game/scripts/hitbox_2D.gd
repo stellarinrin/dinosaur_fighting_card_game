@@ -1,7 +1,7 @@
 class_name Hitbox2D
 extends Area2D
 
-signal hit_landed(damage: float)
+signal hit_landed(damage: float, hitbox_data: HitboxData)
 
 @export var hitbox_data : HitboxData
 var hurtbox : Area2D
@@ -19,12 +19,18 @@ func hit(hurt_area: Hurtbox2D) -> void:
 			+ hitbox_data.damage_modifier	
 			
 	## Signals that the hit connected and the damage dealt with a minimum of 0.
-	hit_landed.emit(max(0, total_damage - hurt_area.total_defence))
+	hit_landed.emit(max(0, total_damage))
 
 	## Call hurtbox's hurt function.
 	hurt_area.hurt(self)
 
+func clash() -> void:
+	pass
 ## Call hit() when another area passes into the hitbox
 func _on_area_entered(area2D: Area2D) -> void:
-	hurtbox = area2D
-	hit(area2D)
+	if area2D == Hurtbox2D:
+		hurtbox = area2D
+		hit(area2D)
+	elif area2D == Hitbox2D:
+		clash()
+	

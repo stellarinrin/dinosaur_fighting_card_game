@@ -77,8 +77,11 @@ jump={
 [layer_names]
 
 2d_physics/layer_1="Level"
-2d_physics/layer_2="Player Collision"
+2d_physics/layer_2="Character Collision"
+2d_physics/layer_9="Player Hitbox"
 2d_physics/layer_10="Player Hurtbox"
+2d_physics/layer_11="Enemy Hitbox"
+2d_physics/layer_12="Enemy Hurtbox"
 
 [rendering]
 
