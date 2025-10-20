@@ -42,3 +42,8 @@ func on_animation_finished(anim_name: String) -> void:
 	var new_state = current_state.on_animation_finished(anim_name)
 	if new_state:
 		change_state(new_state)
+
+func on_hurtbox_damaged(damage: float) -> void:
+	var new_state = current_state.on_hurtbox_damaged(damage)
+	if new_state:
+		change_state(new_state)

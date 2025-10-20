@@ -29,11 +29,14 @@ scale = Vector2(-1, 1)
 is_current_turn = false
 is_facing_left = true
 
-[node name="Hurtbox2D" parent="Enemy" index="4"]
+[node name="Hurtbox2D" parent="Enemy" index="5"]
 collision_layer = 2048
 
-[node name="Hitbox2D" parent="Enemy" index="5"]
+[node name="Hitbox2D" parent="Enemy" index="6"]
 collision_mask = 512
+
+[node name="PlayerStateController" parent="Enemy" index="7" node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("../../Player/PlayerStateController/BlockStanding")
 
 [editable path="Player"]
 [editable path="Enemy"]

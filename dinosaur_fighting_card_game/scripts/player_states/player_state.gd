@@ -32,3 +32,6 @@ func process_physics(delta: float) -> PlayerState:
 
 func on_animation_finished(anim_name: StringName) -> PlayerState:
 	return null
+
+func on_hurtbox_damaged(damage: float) -> PlayerState:
+	return null

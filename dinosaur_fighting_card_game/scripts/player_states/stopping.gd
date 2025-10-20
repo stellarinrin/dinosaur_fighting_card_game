@@ -27,6 +27,10 @@ func process_input(event: InputEvent) -> PlayerState:
 		return attack_5B_state
 	if event.is_action_pressed('2C'):
 		return attack_2C_state
+	if event.is_action_pressed('block standing'):
+		return block_standing_state
+	if event.is_action_pressed('block crouching'):
+		return block_crouching_state
 	return null
 func process_physics(delta: float) -> PlayerState:
 	parent.velocity.y += gravity * delta
