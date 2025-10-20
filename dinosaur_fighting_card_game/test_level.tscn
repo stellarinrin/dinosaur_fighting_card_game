@@ -23,20 +23,26 @@ shape = SubResource("RectangleShape2D_gojnm")
 [node name="Player" parent="." instance=ExtResource("1_gojnm")]
 position = Vector2(351, 732)
 
-[node name="Enemy" parent="." instance=ExtResource("1_gojnm")]
-position = Vector2(1688, 739)
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_gojnm")]
+position = Vector2(1605, 711)
 scale = Vector2(-1, 1)
 is_current_turn = false
 is_facing_left = true
 
-[node name="Hurtbox2D" parent="Enemy" index="5"]
+[node name="Hurtbox2D" parent="PlayerCharacter" index="5"]
 collision_layer = 2048
 
-[node name="Hitbox2D" parent="Enemy" index="6"]
-collision_mask = 512
+[node name="Hitbox2D" parent="PlayerCharacter" index="6"]
+collision_mask = 768
 
-[node name="PlayerStateController" parent="Enemy" index="7" node_paths=PackedStringArray("starting_state")]
-starting_state = NodePath("../../Player/PlayerStateController/BlockStanding")
+[node name="Button" type="Button" parent="."]
+offset_left = 751.0
+offset_top = 54.0
+offset_right = 1061.0
+offset_bottom = 161.0
+
+[connection signal="button_down" from="Button" to="Player" method="_on_button_button_down"]
+[connection signal="button_down" from="Button" to="PlayerCharacter" method="_on_button_button_down"]
 
 [editable path="Player"]
-[editable path="Enemy"]
+[editable path="PlayerCharacter"]

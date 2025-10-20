@@ -21,7 +21,15 @@ func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	state_machine.on_animation_finished(anim_name)
+	if is_current_turn:
+		state_machine.on_animation_finished(anim_name)
 
 func _on_hurtbox_damaged(damage: float) -> void:
 	state_machine.on_hurtbox_damaged(damage)
+
+
+func _on_button_button_down() -> void:
+	if is_current_turn:
+		is_current_turn = false
+	else:
+		is_current_turn = true

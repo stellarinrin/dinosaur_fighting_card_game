@@ -28,9 +28,8 @@ func clash() -> void:
 	pass
 ## Call hit() when another area passes into the hitbox
 func _on_area_entered(area2D: Area2D) -> void:
-	if area2D == Hurtbox2D:
-		hurtbox = area2D
-		hit(area2D)
-	elif area2D == Hitbox2D:
-		clash()
-	
+	hurtbox = area2D
+	hit(area2D)
+	#elif area2D == Hitbox2D:
+		#clash()
+	#
