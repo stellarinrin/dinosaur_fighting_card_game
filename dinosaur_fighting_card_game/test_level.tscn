@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bplmbaoy27emv"]
+[gd_scene load_steps=4 format=3 uid="uid://bplmbaoy27emv"]
 
 [ext_resource type="PackedScene" uid="uid://cfh12t0lljtfh" path="res://player_character.tscn" id="1_gojnm"]
+[ext_resource type="Script" uid="uid://dyvk47q0xunpc" path="res://player_health.gd" id="2_1c2mv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gojnm"]
 size = Vector2(1925, 137)
@@ -23,16 +24,16 @@ shape = SubResource("RectangleShape2D_gojnm")
 [node name="Player" parent="." instance=ExtResource("1_gojnm")]
 position = Vector2(351, 732)
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("1_gojnm")]
+[node name="Enemy" parent="." instance=ExtResource("1_gojnm")]
 position = Vector2(1605, 711)
 scale = Vector2(-1, 1)
 is_current_turn = false
 is_facing_left = true
 
-[node name="Hurtbox2D" parent="PlayerCharacter" index="5"]
+[node name="Hurtbox2D" parent="Enemy" index="5"]
 collision_layer = 2048
 
-[node name="Hitbox2D" parent="PlayerCharacter" index="6"]
+[node name="Hitbox2D" parent="Enemy" index="6"]
 collision_mask = 768
 
 [node name="Button" type="Button" parent="."]
@@ -41,8 +42,16 @@ offset_top = 54.0
 offset_right = 1061.0
 offset_bottom = 161.0
 
+[node name="PlayerHealth" type="ProgressBar" parent="." node_paths=PackedStringArray("player")]
+offset_left = 48.0
+offset_top = 194.0
+offset_right = 626.0
+offset_bottom = 276.0
+script = ExtResource("2_1c2mv")
+player = NodePath("../Player")
+
 [connection signal="button_down" from="Button" to="Player" method="_on_button_button_down"]
-[connection signal="button_down" from="Button" to="PlayerCharacter" method="_on_button_button_down"]
+[connection signal="button_down" from="Button" to="Enemy" method="_on_button_button_down"]
 
 [editable path="Player"]
-[editable path="PlayerCharacter"]
+[editable path="Enemy"]
