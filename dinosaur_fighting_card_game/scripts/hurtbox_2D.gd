@@ -14,13 +14,16 @@ func hurt(hit_area: Hitbox2D) -> void:
 			hurtbox_data.BlockLevel.HIGH:
 				if hit_area.hitbox_data.block_high :
 					blocked.emit()
+					return
 			hurtbox_data.BlockLevel.LOW:
 				if hit_area.hitbox_data.block_low :
 					blocked.emit()
+					return
 			hurtbox_data.BlockLevel.AIR:
 				if hit_area.hitbox_data.block_air :
 					blocked.emit()
-				
+					return
 	#total_defence = hurtbox_data.base_defence * hurtbox_data.defence_multiplier \
 			#+ hurtbox_data.defence_modifier
+			
 	damaged.emit(max(0, hit_area.total_damage))

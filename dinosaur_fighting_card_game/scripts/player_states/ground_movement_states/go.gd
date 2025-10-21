@@ -15,7 +15,8 @@ class_name Go
 
 
 func enter() -> void:
-	super()
+	if parent.is_current_turn:
+		super()
 	frame_count = 0
 	if parent.is_facing_left:
 		parent.velocity.x = -3000

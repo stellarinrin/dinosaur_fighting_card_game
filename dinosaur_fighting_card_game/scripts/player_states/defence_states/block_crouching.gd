@@ -33,3 +33,6 @@ func process_input(event: InputEvent) -> PlayerState:
 	if event.is_action_pressed('block standing'):
 		return block_standing_state
 	return null
+
+func on_hurtbox_damaged(damage: float) -> PlayerState:
+	return hit_state

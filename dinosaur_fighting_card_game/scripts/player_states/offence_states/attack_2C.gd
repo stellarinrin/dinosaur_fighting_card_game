@@ -3,10 +3,10 @@ class_name Attack2C
 
 @export var idle_state : PlayerState
 @export var attack_5B_state : PlayerState
-@export var attack_2C_state : PlayerState
 
 func enter() -> void:
-	super()
+	if parent.is_current_turn:
+		super()
 	frame_count = 0
 
 func exit() -> void:
@@ -16,8 +16,6 @@ func process_input(event: InputEvent) -> PlayerState:
 	if frame_count > cancel_frame:
 		if event.is_action_pressed('5B'):
 			return attack_5B_state
-		if event.is_action_pressed('2C'):
-			return attack_2C_state
 	return null
 func process_frame(_delta: float) -> PlayerState:
 	frame_count += 1

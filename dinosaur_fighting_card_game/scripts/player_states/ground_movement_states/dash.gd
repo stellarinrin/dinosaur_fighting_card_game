@@ -13,7 +13,8 @@ class_name Dash
 
 @export var hit_state : PlayerState
 func enter() -> void:
-	super()
+	if parent.is_current_turn:
+		super()
 	frame_count = 0
 
 func process_frame(delta: float) -> PlayerState:

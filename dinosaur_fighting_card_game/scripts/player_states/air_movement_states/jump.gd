@@ -11,7 +11,8 @@ class_name Jump
 @export var jump_force: float = 700.0
 
 func enter() -> void:
-	super()
+	if parent.is_current_turn:
+		super()
 	parent.velocity.x = 0
 	parent.velocity.y = -jump_force
 

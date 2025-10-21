@@ -16,7 +16,8 @@ class_name Stopping
 
 
 func enter() -> void:
-	super()
+	if parent.is_current_turn:
+		super()
 	
 func process_input(event: InputEvent) -> PlayerState:
 	if event.is_action_pressed('jump') and parent.is_on_floor():
