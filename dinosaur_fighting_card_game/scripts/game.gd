@@ -5,6 +5,7 @@ extends Node2D
 @onready var isHandPlayed : bool = false
 @onready var isAnimationFinished : bool = true
 @onready var isPlayer : bool
+@onready var is_enemy_turn : bool = false
 @onready var standing_mid_card = preload("res://scenes/card-standing-mid.tscn")
 @onready var crouching_low_card = preload("res://scenes/card-crouching-low.tscn")
 

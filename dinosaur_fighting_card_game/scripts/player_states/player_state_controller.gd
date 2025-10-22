@@ -33,6 +33,11 @@ func process_input(event: InputEvent) -> void:
 	if new_state:
 		change_state(new_state)
 
+func parse_card(move_id: String) -> void:
+	var new_state = current_state.parse_card(move_id)
+	if new_state:
+		change_state(new_state)
+		
 func process_frame(delta: float) -> void:
 	var new_state = current_state.process_frame(delta)
 	if new_state:

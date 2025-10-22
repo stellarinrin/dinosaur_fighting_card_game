@@ -17,8 +17,17 @@ func process_input(event: InputEvent) -> PlayerState:
 		if event.is_action_pressed('2C'):
 			return attack_2C_state
 	return null
+	
+func parse_card(move_id: String) -> PlayerState:
+	match move_id:
+		"2C":
+			return attack_2C_state
+	return null
+	
 func process_frame(_delta: float) -> PlayerState:
 	frame_count += 1
+	if frame_count > cancel_frame:
+		Events.cancellable.emit()
 	return null
 func process_physics(delta: float) -> PlayerState:
 	return null

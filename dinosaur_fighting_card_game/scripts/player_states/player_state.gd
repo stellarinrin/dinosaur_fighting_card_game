@@ -23,7 +23,10 @@ func exit() -> void:
 
 func process_input(event: InputEvent) -> PlayerState:
 	return null
-		
+
+func parse_card(move_id: String) -> PlayerState:
+	return null
+	
 func process_frame(delta: float) -> PlayerState:
 	return null
 

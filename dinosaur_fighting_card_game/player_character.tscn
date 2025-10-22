@@ -1533,6 +1533,7 @@ script = ExtResource("12_g1g7m")
 idle_state = NodePath("../Idle")
 attack_2C_state = NodePath("../Attack2C")
 animation_name = "5B"
+gravity = null
 cancel_frame = 12
 metadata/_custom_type_script = "uid://bo6elas36ycbf"
 

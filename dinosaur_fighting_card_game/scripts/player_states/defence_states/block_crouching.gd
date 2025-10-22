@@ -34,5 +34,20 @@ func process_input(event: InputEvent) -> PlayerState:
 		return block_standing_state
 	return null
 
+func parse_card(move_id: String) -> PlayerState:
+	match move_id:
+		"jump":
+			if parent.is_on_floor():
+				return jump_state
+		"dash":
+			return go_state
+		"5B":
+			return attack_5B_state
+		"2C":
+			return attack_2C_state
+		"block_standing":
+			return block_standing_state
+	return null
+	
 func on_hurtbox_damaged(damage: float) -> PlayerState:
 	return hit_state

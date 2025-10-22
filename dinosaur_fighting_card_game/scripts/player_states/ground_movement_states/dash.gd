@@ -36,6 +36,16 @@ func process_input(event: InputEvent) -> PlayerState:
 		#return hit_state
 	return null
 
+func parse_card(move_id: String) -> PlayerState:
+	match move_id:
+		"jump":
+			return jump_state
+		"5B":
+			return attack_5B_state
+		"2C":
+			return attack_2C_state
+	return null
+	
 func process_physics(delta: float) -> PlayerState:
 	parent.velocity.y += gravity * delta
 	parent.move_and_slide()

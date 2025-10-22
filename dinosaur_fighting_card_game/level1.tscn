@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=27 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_ycv2e"]
 [ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_c5gc3"]
@@ -21,8 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://s8t15p31bou5" path="res://scenes/health_bar.tscn" id="17_uuy0h"]
 [ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="17_xhed0"]
 [ext_resource type="Script" uid="uid://bwoaq8fw2j28y" path="res://scripts/player_combo_box.gd" id="18_6tyme"]
-[ext_resource type="Texture2D" uid="uid://bqimbco8ox5o8" path="res://assets/character-dinosaur-test-crouching.png" id="19_ktasi"]
-[ext_resource type="PackedScene" uid="uid://dtbl6tu7720f6" path="res://scenes/player_character.tscn" id="20_hxcog"]
 [ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="22_uuy0h"]
 [ext_resource type="Script" uid="uid://b18m6mbay1006" path="res://scripts/enemy_combo_box.gd" id="25_43lh3"]
 [ext_resource type="PackedScene" uid="uid://npd8c1t4ms8o" path="res://scenes/card-standing-mid.tscn" id="26_5le63"]
@@ -211,24 +209,6 @@ position = Vector2(44.375, 340.75)
 shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="Stagea" type="Node2D" parent="Level"]
-
-[node name="CharacterDinosaurTestCrouching" type="Sprite2D" parent="Level/Stagea"]
-visible = false
-modulate = Color(2.117753e-06, 0.80588436, 0.7920013, 1)
-position = Vector2(1750, 736.00006)
-rotation = 3.1415927
-scale = Vector2(0.9647236, -0.96026605)
-texture = ExtResource("19_ktasi")
-
-[node name="PlayerCharacter" parent="Level/Stagea" instance=ExtResource("20_hxcog")]
-position = Vector2(930, 678)
-scale = Vector2(4, 4)
-isPlayer = true
-
-[node name="EnemyCharacter" parent="Level/Stagea" instance=ExtResource("20_hxcog")]
-modulate = Color(2.117753e-06, 0.80588436, 0.7920013, 1)
-position = Vector2(1446, 678)
-scale = Vector2(-4, 4)
 
 [node name="Node2D" type="Node2D" parent="Level"]
 scale = Vector2(0.25, 1)

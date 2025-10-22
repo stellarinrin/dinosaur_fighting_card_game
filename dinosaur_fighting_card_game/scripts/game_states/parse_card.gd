@@ -1,18 +1,30 @@
 extends GameState
 
 @export var simulate_attacks_state: GameState
+@export var parse_card_state : GameState
+@export var player_input_state : GameState
+@export var enemy_input_state : GameState
 #@export var pause_state: GameState
 @onready var card_reference: Control
 
+func _ready() -> void:
+	Events.cancellable.connect(cancellable.bind())
 
 func enter() -> void:
-	card_reference = parent.combo.pop_front()
-	Events.parsed_card.emit(card_reference.move_index, card_reference.move_attributes, parent.isPlayer)
-	parent.isAnimationFinished = false
+	card_reference = parent.combo.front()
+	Events.parsed_card.emit(card_reference.move_index)
+	#parent.isAnimationFinished = false
 
 func exit() -> void:
 	pass
 
 func process_frame(_delta: float) -> GameState:
-	return simulate_attacks_state
-  
+	return null
+ 
+func cancellable() -> GameState:
+	parent.combo.pop_front()
+	if not parent.is_enemy_turn and not parent.combo.front():
+		return enemy_input_state
+	if parent.is_enemy_turn and not parent.combo.front():
+		return player_input_state
+	return parse_card_state

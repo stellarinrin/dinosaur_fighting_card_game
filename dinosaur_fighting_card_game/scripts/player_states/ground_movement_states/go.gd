@@ -36,8 +36,16 @@ func process_input(event: InputEvent) -> PlayerState:
 	if event.is_action_pressed('2C'):
 		return attack_2C_state
 
-	#if Input.is_action_just_pressed('hit'):
-		#return hit_state
+	return null
+
+func parse_card(move_id: String) -> PlayerState:
+	match move_id:
+		"jump":
+			return jump_state
+		"5B":
+			return attack_5B_state
+		"2C":
+			return attack_2C_state
 	return null
 
 func process_physics(delta: float) -> PlayerState:
