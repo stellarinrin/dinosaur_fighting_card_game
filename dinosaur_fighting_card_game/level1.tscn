@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=29 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_ycv2e"]
 [ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_c5gc3"]
@@ -24,7 +24,11 @@
 [ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="22_uuy0h"]
 [ext_resource type="Script" uid="uid://b18m6mbay1006" path="res://scripts/enemy_combo_box.gd" id="25_43lh3"]
 [ext_resource type="PackedScene" uid="uid://npd8c1t4ms8o" path="res://scenes/card-standing-mid.tscn" id="26_5le63"]
+[ext_resource type="PackedScene" uid="uid://cfh12t0lljtfh" path="res://player_character.tscn" id="26_7nyxr"]
 [ext_resource type="PackedScene" uid="uid://b5t3yyx6sirng" path="res://scenes/card-crouching-low.tscn" id="27_pieet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43lh3"]
+size = Vector2(1925, 137)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(105.25, 700.5)
@@ -56,9 +60,12 @@ starting_state = NodePath("PlayerInput")
 script = ExtResource("10_pieet")
 parse_card_state = NodePath("../ParseCard")
 
-[node name="ParseCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("simulate_attacks_state")]
+[node name="ParseCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("simulate_attacks_state", "parse_card_state", "player_input_state", "enemy_input_state")]
 script = ExtResource("12_xm42n")
 simulate_attacks_state = NodePath("../SimulateAttack")
+parse_card_state = NodePath(".")
+player_input_state = NodePath("../PlayerInput")
+enemy_input_state = NodePath("../EnemyInput")
 
 [node name="SimulateAttack" type="Node" parent="GameStateController" node_paths=PackedStringArray("player_input_state", "failure_state", "success_state", "parse_card_state", "enemy_input_state")]
 script = ExtResource("13_6wmxb")
@@ -99,6 +106,14 @@ offset_top = 810.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.9, 0.9, 0, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/Stage"]
+position = Vector2(0, 9)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Stage/StaticBody2D"]
+position = Vector2(952.5, 79.5)
+shape = SubResource("RectangleShape2D_43lh3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Level"]
 modulate = Color(1, 1, 1, 0.36078432)
@@ -161,7 +176,7 @@ offset_right = 1007.0
 offset_bottom = 1041.0
 card_texture = ExtResource("17_xhed0")
 card_text = "crouching low"
-move_index = "2B"
+move_index = "2C"
 
 [node name="Card3" parent="Level" instance=ExtResource("16_t8chk")]
 anchors_preset = 7
@@ -257,6 +272,27 @@ y_sort_enabled = true
 position = Vector2(44.375, 340.75)
 shape = SubResource("RectangleShape2D_e2o6t")
 
+[node name="PlayerCharacter" parent="Level" instance=ExtResource("26_7nyxr")]
+position = Vector2(342, 607)
+
+[node name="Attack5B" parent="Level/PlayerCharacter/PlayerStateController" index="9"]
+gravity = 980
+
+[node name="PlayerCharacter2" parent="Level" instance=ExtResource("26_7nyxr")]
+position = Vector2(1498, 616)
+scale = Vector2(-1, 1)
+is_current_turn = false
+is_facing_left = true
+
+[node name="Hurtbox2D" parent="Level/PlayerCharacter2" index="5"]
+collision_layer = 2048
+
+[node name="Hitbox2D" parent="Level/PlayerCharacter2" index="6"]
+collision_mask = 768
+
+[node name="Attack5B" parent="Level/PlayerCharacter2/PlayerStateController" index="9"]
+gravity = 980
+
 [connection signal="button_down" from="Level/ResetCards" to="SFXPlayer" method="_on_reset_cards_button_down"]
 [connection signal="button_down" from="Level/ResetCards" to="Level/PlayerComboBox/PlayerComboBoxContainer" method="_on_reset_cards_button_down"]
 [connection signal="mouse_entered" from="Level/ResetCards" to="SFXPlayer" method="_on_reset_cards_mouse_entered"]
@@ -271,3 +307,6 @@ shape = SubResource("RectangleShape2D_e2o6t")
 [connection signal="mouse_entered" from="Level/AddLowCard" to="SFXPlayer" method="_on_add_low_card_mouse_entered"]
 [connection signal="area_entered" from="Level/PlayerComboBox/ComboBoxArea" to="Level/PlayerComboBox/PlayerComboBoxContainer" method="_on_combo_box_area_entered"]
 [connection signal="area_entered" from="Level/EnemyComboBox/ComboBoxArea" to="Level/EnemyComboBox/EnemyComboBoxContainer" method="_on_combo_box_area_entered"]
+
+[editable path="Level/PlayerCharacter"]
+[editable path="Level/PlayerCharacter2"]

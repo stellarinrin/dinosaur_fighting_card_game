@@ -13,6 +13,8 @@ func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
 	current_health = max_health
+	Events.parsed_card.connect(_on_card_play.bind())
+	Events.switch_turn.connect(_switch_turn.bind())
 	state_machine.init(self)
 func _unhandled_input(event: InputEvent) -> void:
 	if is_current_turn:
@@ -36,7 +38,7 @@ func _on_hurtbox_damaged(damage: float) -> void:
 	current_health = clampf(current_health, 0, max_health)
 	state_machine.on_hurtbox_damaged(damage)
 
-func _on_button_button_down() -> void:
+func _switch_turn() -> void:
 	if is_current_turn:
 		is_current_turn = false
 	else:

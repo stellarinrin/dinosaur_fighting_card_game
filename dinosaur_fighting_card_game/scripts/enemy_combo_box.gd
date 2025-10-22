@@ -25,7 +25,5 @@ func _process(_delta: float) -> void:
 		#card.reparent($"../..")
 		#card.position = Vector2(913,905) #Reset Deck Position
 
-func _on_parsed_card(_index: String, _attributes: MoveAttributes, player: bool) -> void:
-	if player:
-		return
+func _on_parsed_card(_move_id: String) -> void:
 	remove_child(get_children().front())

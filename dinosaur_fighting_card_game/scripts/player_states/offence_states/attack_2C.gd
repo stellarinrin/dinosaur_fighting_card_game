@@ -19,6 +19,8 @@ func process_input(event: InputEvent) -> PlayerState:
 	return null
 func process_frame(_delta: float) -> PlayerState:
 	frame_count += 1
+	if frame_count > cancel_frame:
+		Events.cancellale.emit()
 	return null
 func process_physics(delta: float) -> PlayerState:
 	return null

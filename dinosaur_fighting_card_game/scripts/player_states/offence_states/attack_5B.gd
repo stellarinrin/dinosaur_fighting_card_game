@@ -26,7 +26,7 @@ func parse_card(move_id: String) -> PlayerState:
 	
 func process_frame(_delta: float) -> PlayerState:
 	frame_count += 1
-	if frame_count > cancel_frame:
+	if frame_count == cancel_frame:
 		Events.cancellable.emit()
 	return null
 func process_physics(delta: float) -> PlayerState:

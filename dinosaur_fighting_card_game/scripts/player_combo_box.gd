@@ -7,7 +7,6 @@ var combo_hand: Array
 func _ready() -> void:
 	Events.parsed_card.connect(_on_parsed_card.bind())
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if (get_child_count(true) > 0):
@@ -25,7 +24,5 @@ func _on_reset_cards_button_down() -> void:
 		card.reparent($"../..")
 		card.position = Vector2(913,905) #Reset Deck Position
 
-func _on_parsed_card(_index: String, _attributes: MoveAttributes, player: bool) -> void:
-	if not player:
-		return
+func _on_parsed_card(_move_id: String) -> void:
 	remove_child(get_children().front())

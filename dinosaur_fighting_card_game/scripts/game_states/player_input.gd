@@ -4,7 +4,7 @@ extends GameState
 
 func enter() -> void:
 	parent.isPlayer = true
-	parent.combo = %PlayerComboBoxContainer.combo_hand
+	#parent.combo = %PlayerComboBoxContainer.combo_hand
 	parent.is_enemy_turn = false
 	#instantiate new cards?
 
