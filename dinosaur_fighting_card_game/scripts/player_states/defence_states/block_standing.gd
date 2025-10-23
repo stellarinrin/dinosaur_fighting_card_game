@@ -13,6 +13,7 @@ class_name BlockStanding
 
 func enter() -> void:
 	super()
+	Events.cancellable.emit()
 
 func exit() -> void:
 	parent.animations.play('RESET')

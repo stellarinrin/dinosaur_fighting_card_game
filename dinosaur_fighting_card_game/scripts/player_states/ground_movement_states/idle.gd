@@ -31,7 +31,6 @@ func process_input(event: InputEvent) -> PlayerState:
 	return null
 
 func parse_card(move_id: String) -> PlayerState:
-	
 	match move_id:
 		"jump":
 			if parent.is_on_floor():

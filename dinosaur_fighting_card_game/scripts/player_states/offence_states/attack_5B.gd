@@ -29,6 +29,7 @@ func process_frame(_delta: float) -> PlayerState:
 	if frame_count == cancel_frame:
 		Events.cancellable.emit()
 	return null
+	
 func process_physics(delta: float) -> PlayerState:
 	return null
 

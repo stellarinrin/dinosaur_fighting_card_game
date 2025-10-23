@@ -1533,8 +1533,7 @@ script = ExtResource("12_g1g7m")
 idle_state = NodePath("../Idle")
 attack_2C_state = NodePath("../Attack2C")
 animation_name = "5B"
-gravity = null
-cancel_frame = 12
+cancel_frame = 22
 metadata/_custom_type_script = "uid://bo6elas36ycbf"
 
 [node name="Attack2C" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("idle_state", "attack_5B_state")]
@@ -1542,7 +1541,7 @@ script = ExtResource("16_bgamr")
 idle_state = NodePath("../Idle")
 attack_5B_state = NodePath("../Attack5B")
 animation_name = "2C"
-cancel_frame = 12
+cancel_frame = 24
 metadata/_custom_type_script = "uid://7vu1fkvkghbn"
 
 [node name="BlockStanding" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("idle_state", "go_state", "jump_state", "attack_5B_state", "attack_2C_state", "block_crouching_state", "hit_state")]

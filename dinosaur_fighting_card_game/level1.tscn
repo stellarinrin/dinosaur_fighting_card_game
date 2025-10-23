@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://tu52wobmgfj6" path="res://scripts/game_states/player_input.gd" id="10_pieet"]
 [ext_resource type="Script" uid="uid://dt817218d0jim" path="res://scripts/game_states/pause.gd" id="11_qiqrj"]
 [ext_resource type="Script" uid="uid://bye6uk8ioj8ts" path="res://scripts/game_states/parse_card.gd" id="12_xm42n"]
-[ext_resource type="Script" uid="uid://c8hqy72sf3l02" path="res://scripts/game_states/simulate_attack.gd" id="13_6wmxb"]
 [ext_resource type="Script" uid="uid://bqo53x87va24o" path="res://scripts/game_states/enemy_input.gd" id="13_52iny"]
 [ext_resource type="Script" uid="uid://bmqc37vg5el4c" path="res://scripts/game_states/lose.gd" id="14_8652m"]
 [ext_resource type="Script" uid="uid://btlamgnmd4thu" path="res://scripts/game_states/win.gd" id="15_jy3fw"]
@@ -21,14 +20,20 @@
 [ext_resource type="PackedScene" uid="uid://s8t15p31bou5" path="res://scenes/health_bar.tscn" id="17_uuy0h"]
 [ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="17_xhed0"]
 [ext_resource type="Script" uid="uid://bwoaq8fw2j28y" path="res://scripts/player_combo_box.gd" id="18_6tyme"]
+[ext_resource type="Script" uid="uid://dyvk47q0xunpc" path="res://player_health.gd" id="18_nxqqj"]
 [ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="22_uuy0h"]
 [ext_resource type="Script" uid="uid://b18m6mbay1006" path="res://scripts/enemy_combo_box.gd" id="25_43lh3"]
 [ext_resource type="PackedScene" uid="uid://npd8c1t4ms8o" path="res://scenes/card-standing-mid.tscn" id="26_5le63"]
 [ext_resource type="PackedScene" uid="uid://cfh12t0lljtfh" path="res://player_character.tscn" id="26_7nyxr"]
-[ext_resource type="PackedScene" uid="uid://b5t3yyx6sirng" path="res://scenes/card-crouching-low.tscn" id="27_pieet"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43lh3"]
 size = Vector2(1925, 137)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nxqqj"]
+line_spacing = -32.0
+font_size = 144
+outline_size = 96
+outline_color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(105.25, 700.5)
@@ -54,30 +59,22 @@ swing_sound = ExtResource("8_43lh3")
 
 [node name="GameStateController" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("9_5le63")
-starting_state = NodePath("PlayerInput")
+starting_state = NodePath("EnemyInput")
 
 [node name="PlayerInput" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_card_state")]
 script = ExtResource("10_pieet")
 parse_card_state = NodePath("../ParseCard")
 
-[node name="ParseCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("simulate_attacks_state", "parse_card_state", "player_input_state", "enemy_input_state")]
+[node name="ParseCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_card_state", "player_input_state", "enemy_input_state")]
 script = ExtResource("12_xm42n")
-simulate_attacks_state = NodePath("../SimulateAttack")
 parse_card_state = NodePath(".")
 player_input_state = NodePath("../PlayerInput")
-enemy_input_state = NodePath("../EnemyInput")
-
-[node name="SimulateAttack" type="Node" parent="GameStateController" node_paths=PackedStringArray("player_input_state", "failure_state", "success_state", "parse_card_state", "enemy_input_state")]
-script = ExtResource("13_6wmxb")
-player_input_state = NodePath("../PlayerInput")
-failure_state = NodePath("../Failure")
-success_state = NodePath("../Success")
-parse_card_state = NodePath("../ParseCard")
 enemy_input_state = NodePath("../EnemyInput")
 
 [node name="EnemyInput" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_card_state")]
 script = ExtResource("13_52iny")
 parse_card_state = NodePath("../ParseCard")
+frames_before_enemy_play = 120
 
 [node name="Pause" type="Node" parent="GameStateController"]
 script = ExtResource("11_qiqrj")
@@ -88,79 +85,118 @@ script = ExtResource("14_8652m")
 [node name="Success" type="Node" parent="GameStateController"]
 script = ExtResource("15_jy3fw")
 
-[node name="Level" type="CanvasLayer" parent="."]
+[node name="LevelCanvas" type="CanvasLayer" parent="."]
 
-[node name="Background" type="ColorRect" parent="Level"]
+[node name="Background" type="ColorRect" parent="LevelCanvas"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.79499984, 0.9, 1)
+color = Color(0.58464885, 0.7653208, 0.58598495, 1)
 
-[node name="Stage" type="ColorRect" parent="Level"]
+[node name="Stage" type="ColorRect" parent="LevelCanvas"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 810.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.9, 0.9, 0, 1)
+color = Color(0.789172, 0.8764159, 0.9603365, 1)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Level/Stage"]
+[node name="StaticBody2D" type="StaticBody2D" parent="LevelCanvas/Stage"]
 position = Vector2(0, 9)
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Stage/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCanvas/Stage/StaticBody2D"]
 position = Vector2(952.5, 79.5)
 shape = SubResource("RectangleShape2D_43lh3")
 
-[node name="Sprite2D" type="Sprite2D" parent="Level"]
+[node name="Sprite2D" type="Sprite2D" parent="LevelCanvas"]
+visible = false
 modulate = Color(1, 1, 1, 0.36078432)
 position = Vector2(960, 540)
 texture = ExtResource("16_c5gc3")
 
-[node name="HUD" type="CanvasLayer" parent="Level"]
+[node name="HUD" type="CanvasLayer" parent="LevelCanvas"]
 
-[node name="Polygon2D4" type="Polygon2D" parent="Level/HUD"]
+[node name="Polygon2D4" type="Polygon2D" parent="LevelCanvas/HUD"]
 color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 polygon = PackedVector2Array(52, -42, -23, 163, 191, 237, 253, 29)
 
-[node name="Polygon2D5" type="Polygon2D" parent="Level/HUD"]
+[node name="Polygon2D5" type="Polygon2D" parent="LevelCanvas/HUD"]
 polygon = PackedVector2Array(60, -30, 0, 150, 186, 215, 236, 34)
 
-[node name="HealthBar" parent="Level/HUD" instance=ExtResource("17_uuy0h")]
+[node name="HealthBar" parent="LevelCanvas/HUD" instance=ExtResource("17_uuy0h")]
 position = Vector2(194, 88)
 
-[node name="ResetCards" type="Button" parent="Level"]
+[node name="EnemyHealthBar" parent="LevelCanvas/HUD" instance=ExtResource("17_uuy0h")]
+position = Vector2(1724, 88)
+scale = Vector2(-1, 1)
+
+[node name="ProgressBar" parent="LevelCanvas/HUD/EnemyHealthBar/Bar" index="0" node_paths=PackedStringArray("player")]
+offset_left = 215.0
+offset_right = 843.0
+script = ExtResource("18_nxqqj")
+player = NodePath("../../../../PlayerCharacter2")
+
+[node name="WinScreen" type="ColorRect" parent="LevelCanvas/HUD"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6865522, 0.5727201, 0.8814347, 1)
+
+[node name="MenuTitle" type="Label" parent="LevelCanvas/HUD/WinScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -437.0
+offset_top = -94.0
+offset_right = 412.9983
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Level Clear!"
+label_settings = SubResource("LabelSettings_nxqqj")
+horizontal_alignment = 2
+
+[node name="ResetCards" type="Button" parent="LevelCanvas"]
 offset_left = 126.0
 offset_top = 273.0
 offset_right = 237.0
 offset_bottom = 570.0
 text = "Reset Cards"
 
-[node name="PlayHand" type="Button" parent="Level"]
+[node name="PlayHand" type="Button" parent="LevelCanvas"]
 offset_left = 626.0
 offset_top = 917.0
 offset_right = 886.0
 offset_bottom = 1034.0
 text = "Play Hand"
 
-[node name="AddMidCard" type="Button" parent="Level"]
+[node name="AddMidCard" type="Button" parent="LevelCanvas"]
+visible = false
 offset_left = 1177.0
 offset_top = 861.0
 offset_right = 1350.0
 offset_bottom = 966.0
 text = "Add Mid Card"
 
-[node name="AddLowCard" type="Button" parent="Level"]
+[node name="AddLowCard" type="Button" parent="LevelCanvas"]
+visible = false
 offset_left = 1111.0
 offset_top = 943.0
 offset_right = 1286.0
 offset_bottom = 1048.0
 text = "Add Low Card"
 
-[node name="Card" parent="Level" instance=ExtResource("16_t8chk")]
+[node name="Card" parent="LevelCanvas" instance=ExtResource("16_t8chk")]
 z_as_relative = false
 offset_left = 913.0
 offset_top = 905.0
@@ -169,7 +205,7 @@ offset_bottom = 1041.0
 card_text = "standing mid"
 move_index = "5B"
 
-[node name="Card2" parent="Level" instance=ExtResource("16_t8chk")]
+[node name="Card2" parent="LevelCanvas" instance=ExtResource("16_t8chk")]
 offset_left = 913.0
 offset_top = 905.0
 offset_right = 1007.0
@@ -178,7 +214,7 @@ card_texture = ExtResource("17_xhed0")
 card_text = "crouching low"
 move_index = "2C"
 
-[node name="Card3" parent="Level" instance=ExtResource("16_t8chk")]
+[node name="Card3" parent="LevelCanvas" instance=ExtResource("16_t8chk")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -193,7 +229,22 @@ grow_vertical = 0
 card_text = "standing mid"
 move_index = "5B"
 
-[node name="PlayerComboBox" type="ColorRect" parent="Level"]
+[node name="Card4" parent="LevelCanvas" instance=ExtResource("16_t8chk")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -175.0
+offset_right = 47.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 0
+card_text = "dash"
+move_index = "dash"
+
+[node name="PlayerComboBox" type="ColorRect" parent="LevelCanvas"]
 y_sort_enabled = true
 offset_left = 35.0
 offset_top = 252.0
@@ -201,7 +252,7 @@ offset_right = 129.0
 offset_bottom = 939.0
 size_flags_horizontal = 3
 
-[node name="PlayerComboBoxContainer" type="VBoxContainer" parent="Level/PlayerComboBox"]
+[node name="PlayerComboBoxContainer" type="VBoxContainer" parent="LevelCanvas/PlayerComboBox"]
 unique_name_in_owner = true
 y_sort_enabled = true
 layout_mode = 1
@@ -214,21 +265,21 @@ theme_override_constants/separation = -8
 alignment = 1
 script = ExtResource("18_6tyme")
 
-[node name="ComboBoxArea" type="Area2D" parent="Level/PlayerComboBox"]
+[node name="ComboBoxArea" type="Area2D" parent="LevelCanvas/PlayerComboBox"]
 y_sort_enabled = true
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/PlayerComboBox/ComboBoxArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCanvas/PlayerComboBox/ComboBoxArea"]
 y_sort_enabled = true
 position = Vector2(44.375, 340.75)
 shape = SubResource("RectangleShape2D_e2o6t")
 
-[node name="Stagea" type="Node2D" parent="Level"]
+[node name="Stagea" type="Node2D" parent="LevelCanvas"]
 
-[node name="Node2D" type="Node2D" parent="Level"]
+[node name="Node2D" type="Node2D" parent="LevelCanvas"]
 scale = Vector2(0.25, 1)
 
-[node name="Button" parent="Level/Node2D" instance=ExtResource("22_uuy0h")]
+[node name="Button" parent="LevelCanvas/Node2D" instance=ExtResource("22_uuy0h")]
 offset_left = 3524.0
 offset_top = 66.0
 offset_right = 4380.0
@@ -236,7 +287,7 @@ offset_bottom = 130.0
 text = "Home"
 level = "res://main_menu.tscn"
 
-[node name="EnemyComboBox" type="ColorRect" parent="Level"]
+[node name="EnemyComboBox" type="ColorRect" parent="LevelCanvas"]
 y_sort_enabled = true
 offset_left = 1753.0
 offset_top = 252.0
@@ -244,7 +295,7 @@ offset_right = 1847.0
 offset_bottom = 939.0
 size_flags_horizontal = 3
 
-[node name="EnemyComboBoxContainer" type="VBoxContainer" parent="Level/EnemyComboBox"]
+[node name="EnemyComboBoxContainer" type="VBoxContainer" parent="LevelCanvas/EnemyComboBox"]
 unique_name_in_owner = true
 y_sort_enabled = true
 layout_mode = 1
@@ -257,56 +308,50 @@ theme_override_constants/separation = -8
 alignment = 1
 script = ExtResource("25_43lh3")
 
-[node name="Card" parent="Level/EnemyComboBox/EnemyComboBoxContainer" instance=ExtResource("26_5le63")]
+[node name="Card" parent="LevelCanvas/EnemyComboBox/EnemyComboBoxContainer" instance=ExtResource("26_5le63")]
 layout_mode = 2
+card_text = "standing block"
+move_index = "block_standing"
 
-[node name="Card2" parent="Level/EnemyComboBox/EnemyComboBoxContainer" instance=ExtResource("27_pieet")]
-layout_mode = 2
-
-[node name="ComboBoxArea" type="Area2D" parent="Level/EnemyComboBox"]
+[node name="ComboBoxArea" type="Area2D" parent="LevelCanvas/EnemyComboBox"]
 y_sort_enabled = true
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/EnemyComboBox/ComboBoxArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCanvas/EnemyComboBox/ComboBoxArea"]
 y_sort_enabled = true
 position = Vector2(44.375, 340.75)
 shape = SubResource("RectangleShape2D_e2o6t")
 
-[node name="PlayerCharacter" parent="Level" instance=ExtResource("26_7nyxr")]
+[node name="PlayerCharacter" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
 position = Vector2(342, 607)
+is_current_turn = false
 
-[node name="Attack5B" parent="Level/PlayerCharacter/PlayerStateController" index="9"]
-gravity = 980
-
-[node name="PlayerCharacter2" parent="Level" instance=ExtResource("26_7nyxr")]
+[node name="PlayerCharacter2" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
 position = Vector2(1498, 616)
 scale = Vector2(-1, 1)
-is_current_turn = false
 is_facing_left = true
 
-[node name="Hurtbox2D" parent="Level/PlayerCharacter2" index="5"]
+[node name="Hurtbox2D" parent="LevelCanvas/PlayerCharacter2" index="5"]
 collision_layer = 2048
 
-[node name="Hitbox2D" parent="Level/PlayerCharacter2" index="6"]
+[node name="Hitbox2D" parent="LevelCanvas/PlayerCharacter2" index="6"]
 collision_mask = 768
 
-[node name="Attack5B" parent="Level/PlayerCharacter2/PlayerStateController" index="9"]
-gravity = 980
+[connection signal="button_down" from="LevelCanvas/ResetCards" to="SFXPlayer" method="_on_reset_cards_button_down"]
+[connection signal="button_down" from="LevelCanvas/ResetCards" to="LevelCanvas/PlayerComboBox/PlayerComboBoxContainer" method="_on_reset_cards_button_down"]
+[connection signal="mouse_entered" from="LevelCanvas/ResetCards" to="SFXPlayer" method="_on_reset_cards_mouse_entered"]
+[connection signal="button_down" from="LevelCanvas/PlayHand" to="." method="_on_play_hand_button_down"]
+[connection signal="button_down" from="LevelCanvas/PlayHand" to="SFXPlayer" method="_on_play_hand_button_down"]
+[connection signal="mouse_entered" from="LevelCanvas/PlayHand" to="SFXPlayer" method="_on_play_hand_mouse_entered"]
+[connection signal="button_down" from="LevelCanvas/AddMidCard" to="." method="_on_add_mid_card_button_down"]
+[connection signal="button_down" from="LevelCanvas/AddMidCard" to="SFXPlayer" method="_on_add_mid_card_button_down"]
+[connection signal="mouse_entered" from="LevelCanvas/AddMidCard" to="SFXPlayer" method="_on_add_mid_card_mouse_entered"]
+[connection signal="button_down" from="LevelCanvas/AddLowCard" to="." method="_on_add_low_card_button_down"]
+[connection signal="button_down" from="LevelCanvas/AddLowCard" to="SFXPlayer" method="_on_add_low_card_button_down"]
+[connection signal="mouse_entered" from="LevelCanvas/AddLowCard" to="SFXPlayer" method="_on_add_low_card_mouse_entered"]
+[connection signal="area_entered" from="LevelCanvas/PlayerComboBox/ComboBoxArea" to="LevelCanvas/PlayerComboBox/PlayerComboBoxContainer" method="_on_combo_box_area_entered"]
+[connection signal="area_entered" from="LevelCanvas/EnemyComboBox/ComboBoxArea" to="LevelCanvas/EnemyComboBox/EnemyComboBoxContainer" method="_on_combo_box_area_entered"]
 
-[connection signal="button_down" from="Level/ResetCards" to="SFXPlayer" method="_on_reset_cards_button_down"]
-[connection signal="button_down" from="Level/ResetCards" to="Level/PlayerComboBox/PlayerComboBoxContainer" method="_on_reset_cards_button_down"]
-[connection signal="mouse_entered" from="Level/ResetCards" to="SFXPlayer" method="_on_reset_cards_mouse_entered"]
-[connection signal="button_down" from="Level/PlayHand" to="." method="_on_play_hand_button_down"]
-[connection signal="button_down" from="Level/PlayHand" to="SFXPlayer" method="_on_play_hand_button_down"]
-[connection signal="mouse_entered" from="Level/PlayHand" to="SFXPlayer" method="_on_play_hand_mouse_entered"]
-[connection signal="button_down" from="Level/AddMidCard" to="." method="_on_add_mid_card_button_down"]
-[connection signal="button_down" from="Level/AddMidCard" to="SFXPlayer" method="_on_add_mid_card_button_down"]
-[connection signal="mouse_entered" from="Level/AddMidCard" to="SFXPlayer" method="_on_add_mid_card_mouse_entered"]
-[connection signal="button_down" from="Level/AddLowCard" to="." method="_on_add_low_card_button_down"]
-[connection signal="button_down" from="Level/AddLowCard" to="SFXPlayer" method="_on_add_low_card_button_down"]
-[connection signal="mouse_entered" from="Level/AddLowCard" to="SFXPlayer" method="_on_add_low_card_mouse_entered"]
-[connection signal="area_entered" from="Level/PlayerComboBox/ComboBoxArea" to="Level/PlayerComboBox/PlayerComboBoxContainer" method="_on_combo_box_area_entered"]
-[connection signal="area_entered" from="Level/EnemyComboBox/ComboBoxArea" to="Level/EnemyComboBox/EnemyComboBoxContainer" method="_on_combo_box_area_entered"]
-
-[editable path="Level/PlayerCharacter"]
-[editable path="Level/PlayerCharacter2"]
+[editable path="LevelCanvas/HUD/EnemyHealthBar"]
+[editable path="LevelCanvas/PlayerCharacter"]
+[editable path="LevelCanvas/PlayerCharacter2"]

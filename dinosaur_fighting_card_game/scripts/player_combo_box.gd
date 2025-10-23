@@ -1,6 +1,7 @@
 extends VBoxContainer
 
-#@onready var game = get_tree().root
+@onready var game = $"../../.."
+@onready var level_canvas = $"../.."
 var combo_hand: Array
 
 # Called when the node enters the scene tree for the first time.
@@ -21,8 +22,9 @@ func _on_combo_box_area_entered(area: Area2D) -> void:
 func _on_reset_cards_button_down() -> void:
 	var hand = get_children()
 	for card in hand:
-		card.reparent($"../..")
+		card.reparent(level_canvas)
 		card.position = Vector2(913,905) #Reset Deck Position
 
 func _on_parsed_card(_move_id: String) -> void:
-	remove_child(get_children().front())
+	if not game.is_enemy_turn:
+		remove_child(get_children().front())

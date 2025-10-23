@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var max_health : float = 11700
+@export var start_health : float = 500
 @export var is_current_turn : bool = true
 @export var is_facing_left : bool = false
 @onready var animations = $AnimationPlayer
@@ -12,7 +13,7 @@ var current_health : float
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
-	current_health = max_health
+	current_health = start_health
 	Events.parsed_card.connect(_on_card_play.bind())
 	Events.switch_turn.connect(_switch_turn.bind())
 	state_machine.init(self)
