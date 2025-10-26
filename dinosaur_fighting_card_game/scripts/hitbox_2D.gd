@@ -15,22 +15,20 @@ func _process(_delta: float) -> void:
 
 ## Send the damage to the hurtbox when called and call the hurt() function.
 func hit(hurt_area: Hurtbox2D) -> void:
-	hit_stop(0.01, .75)
+	hit_stop(8)
 	total_damage = hitbox_data.base_damage * hitbox_data.damage_multiplier \
 			+ hitbox_data.damage_modifier	
 			
 	## Signals that the hit connected and the damage dealt with a minimum of 0.
 	hit_landed.emit(max(0, total_damage))
-
 	## Call hurtbox's hurt function.
 	hurt_area.hurt(self)
 
-func hit_stop(time_scale, duration):
-	Engine.time_scale = time_scale
-	var timer = get_tree().create_timer(time_scale * duration)
-	await timer.timeout
-	Engine.time_scale = 1
-
+func hit_stop(frames: float):
+	get_tree().paused = true
+	await get_tree().create_timer(frames/60).timeout
+	get_tree().paused = false
+	
 func clash() -> void:
 	pass
 ## Call hit() when another area passes into the hitbox
