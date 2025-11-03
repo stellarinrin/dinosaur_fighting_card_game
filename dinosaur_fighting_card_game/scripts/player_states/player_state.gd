@@ -4,6 +4,8 @@ extends Node
 @export var animation_name: String
 @export var gravity: int = 980
 @export var cancel_frame: int = 0
+@export var card_eat_frames: int = 4
+@onready var will_eat_card: bool = false
 var frame_count: int
 
 var move_speed: float = 300
