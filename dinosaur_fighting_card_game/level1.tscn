@@ -181,7 +181,6 @@ offset_bottom = 1034.0
 text = "Play Hand"
 
 [node name="AddMidCard" type="Button" parent="LevelCanvas"]
-visible = false
 offset_left = 1177.0
 offset_top = 861.0
 offset_right = 1350.0
@@ -189,7 +188,6 @@ offset_bottom = 966.0
 text = "Add Mid Card"
 
 [node name="AddLowCard" type="Button" parent="LevelCanvas"]
-visible = false
 offset_left = 1111.0
 offset_top = 943.0
 offset_right = 1286.0
