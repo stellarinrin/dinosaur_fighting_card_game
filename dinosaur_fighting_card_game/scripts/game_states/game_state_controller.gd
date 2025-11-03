@@ -7,7 +7,7 @@ var current_state: GameState
 # Initialize the state machine by giving each child state a reference to the
 # parent object it belongs to and enter the default starting_state.
 func init(parent: Node2D) -> void:
-	Events.cancellable.connect(cancellable.bind())
+	Events.cancellable.connect(on_cancellable.bind())
 	for child in get_children():
 		child.parent = parent
 
@@ -39,7 +39,7 @@ func process_frame(delta: float) -> void:
 	if new_state:
 		change_state(new_state)
 
-func cancellable() -> void:
-	var new_state = current_state.cancellable()
+func on_cancellable() -> void:
+	var new_state = current_state.on_cancellable()
 	if new_state:
 		change_state(new_state)

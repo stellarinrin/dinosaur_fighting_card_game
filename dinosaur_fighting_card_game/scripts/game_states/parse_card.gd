@@ -24,7 +24,7 @@ func process_frame(_delta: float) -> GameState:
 		return player_input_state
 	return null
  
-func cancellable() -> GameState:
+func on_cancellable() -> GameState:
 	parent.combo.pop_front()
 	if not parent.is_enemy_turn and not parent.combo.front():
 		Events.switch_turn.emit()
