@@ -14,14 +14,19 @@ func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
 	current_health = start_health
-	Events.parsed_card.connect(_on_card_play.bind())
+	Events.parsed_player_card.connect(_on_player_card_play.bind())
+	Events.parsed_enemy_card.connect(_on_enemy_card_play.bind())
 	Events.switch_turn.connect(_switch_turn.bind())
 	state_machine.init(self)
 func _unhandled_input(event: InputEvent) -> void:
 	if is_current_turn:
 		state_machine.process_input(event)
 		
-func _on_card_play(move_id: String) -> void:
+func _on_player_card_play(move_id: String) -> void:
+	if is_current_turn:
+		state_machine.parse_card(move_id)
+
+func _on_enemy_card_play(move_id: String) -> void:
 	if is_current_turn:
 		state_machine.parse_card(move_id)
 

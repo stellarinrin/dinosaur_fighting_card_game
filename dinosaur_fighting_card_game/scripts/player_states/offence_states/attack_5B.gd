@@ -5,8 +5,7 @@ class_name Attack5B
 @export var attack_2C_state : PlayerState
 
 func enter() -> void:
-	if parent.is_current_turn:
-		super()
+	super()
 	frame_count = 0
 
 func exit() -> void:

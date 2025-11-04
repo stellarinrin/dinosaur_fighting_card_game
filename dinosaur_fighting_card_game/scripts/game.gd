@@ -4,7 +4,6 @@ extends Node2D
 @onready var level_canvas := $LevelCanvas
 @onready var combo : Array
 @onready var is_hand_played : bool = false
-@onready var is_enemy_turn : bool = true
 @onready var standing_mid_card = preload("res://scenes/card-standing-mid.tscn")
 @onready var crouching_low_card = preload("res://scenes/card-crouching-low.tscn")
 

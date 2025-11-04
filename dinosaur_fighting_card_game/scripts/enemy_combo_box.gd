@@ -6,7 +6,7 @@ var combo_hand: Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Events.parsed_card.connect(_on_parsed_card.bind())
+	Events.parsed_enemy_card.connect(_on_parsed_enemy_card.bind())
 	combo_hand = get_children() # Preset combo
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,6 +26,5 @@ func _process(_delta: float) -> void:
 		#card.reparent($"../..")
 		#card.position = Vector2(913,905) #Reset Deck Position
 
-func _on_parsed_card(_move_id: String) -> void:
-	if game.is_enemy_turn:
-		remove_child(get_children().front())
+func _on_parsed_enemy_card(_move_id: String) -> void:
+	remove_child(get_children().front())

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=30 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_ycv2e"]
 [ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_c5gc3"]
@@ -10,8 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://bpntw61k61n0u" path="res://assets/audio/WinSound.wav" id="8_43lh3"]
 [ext_resource type="Script" uid="uid://ce5tlqq5nxspm" path="res://scripts/game_states/game_state_controller.gd" id="9_5le63"]
 [ext_resource type="Script" uid="uid://tu52wobmgfj6" path="res://scripts/game_states/player_input.gd" id="10_pieet"]
+[ext_resource type="Script" uid="uid://dislyxcokdd23" path="res://scripts/game_states/parse_player_card.gd" id="11_7nyxr"]
 [ext_resource type="Script" uid="uid://dt817218d0jim" path="res://scripts/game_states/pause.gd" id="11_qiqrj"]
-[ext_resource type="Script" uid="uid://bye6uk8ioj8ts" path="res://scripts/game_states/parse_card.gd" id="12_xm42n"]
+[ext_resource type="Script" uid="uid://chohc1nm63vmw" path="res://scripts/game_states/parse_enemy_card.gd" id="13_43lh3"]
 [ext_resource type="Script" uid="uid://bqo53x87va24o" path="res://scripts/game_states/enemy_input.gd" id="13_52iny"]
 [ext_resource type="Script" uid="uid://bmqc37vg5el4c" path="res://scripts/game_states/lose.gd" id="14_8652m"]
 [ext_resource type="Script" uid="uid://btlamgnmd4thu" path="res://scripts/game_states/win.gd" id="15_jy3fw"]
@@ -61,20 +62,24 @@ swing_sound = ExtResource("8_43lh3")
 script = ExtResource("9_5le63")
 starting_state = NodePath("EnemyInput")
 
-[node name="PlayerInput" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_card_state")]
+[node name="PlayerInput" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_player_card_state")]
 script = ExtResource("10_pieet")
-parse_card_state = NodePath("../ParseCard")
+parse_player_card_state = NodePath("../ParsePlayerCard")
 
-[node name="ParseCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_card_state", "player_input_state", "enemy_input_state")]
-script = ExtResource("12_xm42n")
-parse_card_state = NodePath(".")
-player_input_state = NodePath("../PlayerInput")
+[node name="ParsePlayerCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_player_card_state", "enemy_input_state")]
+script = ExtResource("11_7nyxr")
+parse_player_card_state = NodePath(".")
 enemy_input_state = NodePath("../EnemyInput")
 
-[node name="EnemyInput" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_card_state")]
+[node name="EnemyInput" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_enemy_card_state")]
 script = ExtResource("13_52iny")
-parse_card_state = NodePath("../ParseCard")
+parse_enemy_card_state = NodePath("../ParseEnemyCard")
 frames_before_enemy_play = 120
+
+[node name="ParseEnemyCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_enemy_card_state", "player_input_state")]
+script = ExtResource("13_43lh3")
+parse_enemy_card_state = NodePath("../EnemyInput")
+player_input_state = NodePath("../PlayerInput")
 
 [node name="Pause" type="Node" parent="GameStateController"]
 script = ExtResource("11_qiqrj")

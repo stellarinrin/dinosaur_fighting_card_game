@@ -6,7 +6,8 @@ extends AudioStreamPlayer2D
 @export var swing_sound : AudioStream
 
 func _ready() -> void:
-	Events.parsed_card.connect(_on_parsed_card.bind())
+	Events.parsed_player_card.connect(_on_parsed_card.bind())
+	Events.parsed_enemy_card.connect(_on_parsed_card.bind())
 
 func _on_parsed_card(index: int, attributes: MoveAttributes) -> void:
 	stream = hit_sound
