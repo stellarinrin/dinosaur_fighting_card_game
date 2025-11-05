@@ -13,3 +13,9 @@ func exit() -> void:
 
 func process_frame(_delta: float) -> GameState:
 	return null
+
+func on_cancellable() -> GameState:
+	return null
+	
+func on_hud_animation_finished(_anim_name: StringName) -> GameState:
+	return null

@@ -43,3 +43,8 @@ func on_cancellable() -> void:
 	var new_state = current_state.on_cancellable()
 	if new_state:
 		change_state(new_state)
+		
+func on_hud_animation_finished(anim_name: StringName) -> void:
+	var new_state = current_state.on_hud_animation_finished(anim_name)
+	if new_state:
+		change_state(new_state)

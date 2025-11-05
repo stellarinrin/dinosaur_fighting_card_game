@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var game_state_controller := $GameStateController
+@onready var hud_animations = $LevelCanvas/HUD/HUDAnimations
 @onready var level_canvas := $LevelCanvas
 @onready var combo : Array
 @onready var is_hand_played : bool = false

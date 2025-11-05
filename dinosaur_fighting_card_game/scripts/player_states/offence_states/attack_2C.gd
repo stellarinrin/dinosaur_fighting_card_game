@@ -22,6 +22,7 @@ func parse_card(move_id: String) -> PlayerState:
 	match move_id:
 		"5B":
 			return attack_5B_state
+	Events.cancellable.emit()
 	return null
 		
 func process_frame(_delta: float) -> PlayerState:

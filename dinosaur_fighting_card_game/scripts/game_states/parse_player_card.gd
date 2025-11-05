@@ -1,7 +1,7 @@
 extends GameState
 
 @export var parse_player_card_state : GameState
-@export var enemy_input_state : GameState
+@export var transition_to_enemy_state : GameState
 #@export var pause_state: GameState
 @onready var card_reference: Control
 
@@ -15,15 +15,11 @@ func exit() -> void:
 
 func process_frame(_delta: float) -> GameState:
 	if not parent.combo.front():
-		Events.switch_turn.emit()
-		parent.is_hand_played = false
-		return enemy_input_state
+		return transition_to_enemy_state
 	return null
  
 func on_cancellable() -> GameState:
 	parent.combo.pop_front()
 	if not parent.combo.front():
-		Events.switch_turn.emit()
-		parent.is_hand_played = false
-		return enemy_input_state
+		return transition_to_enemy_state
 	return parse_player_card_state

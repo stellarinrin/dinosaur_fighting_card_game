@@ -21,14 +21,12 @@ func parse_card(move_id: String) -> PlayerState:
 	match move_id:
 		"2C":
 			return attack_2C_state
-	will_eat_card = true
+	Events.cancellable.emit()
 	return null
 	
 func process_frame(_delta: float) -> PlayerState:
 	frame_count += 1
 	if frame_count == cancel_frame:
-		Events.cancellable.emit()
-	if frame_count == card_eat_frames and will_eat_card:
 		Events.cancellable.emit()
 	return null
 	

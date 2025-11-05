@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=37 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_ycv2e"]
 [ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_c5gc3"]
@@ -15,9 +15,11 @@
 [ext_resource type="Script" uid="uid://chohc1nm63vmw" path="res://scripts/game_states/parse_enemy_card.gd" id="13_43lh3"]
 [ext_resource type="Script" uid="uid://bqo53x87va24o" path="res://scripts/game_states/enemy_input.gd" id="13_52iny"]
 [ext_resource type="Script" uid="uid://bmqc37vg5el4c" path="res://scripts/game_states/lose.gd" id="14_8652m"]
+[ext_resource type="Script" uid="uid://dfexea1b46e41" path="res://scripts/game_states/transition_to_player.gd" id="15_5le63"]
 [ext_resource type="Script" uid="uid://btlamgnmd4thu" path="res://scripts/game_states/win.gd" id="15_jy3fw"]
 [ext_resource type="Texture2D" uid="uid://cex1ihcq8i3pv" path="res://38346657b1271fcfe6ce1c60423ff665b794_1920xt1080_S1000-3662738456.jpg" id="16_c5gc3"]
 [ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="16_t8chk"]
+[ext_resource type="Script" uid="uid://phjs0piqg21l" path="res://scripts/game_states/transition_to_enemy.gd" id="17_43lh3"]
 [ext_resource type="PackedScene" uid="uid://s8t15p31bou5" path="res://scenes/health_bar.tscn" id="17_uuy0h"]
 [ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="17_xhed0"]
 [ext_resource type="Script" uid="uid://bwoaq8fw2j28y" path="res://scripts/player_combo_box.gd" id="18_6tyme"]
@@ -35,6 +37,173 @@ line_spacing = -32.0
 font_size = 144
 outline_size = 96
 outline_color = Color(0.6039216, 0.43529412, 0.7176471, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_43lh3"]
+font_size = 64
+
+[sub_resource type="Animation" id="Animation_5le63"]
+resource_name = "player_notification"
+length = 0.50000167
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerNotification:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 0.25),
+"update": 0,
+"values": [Vector2(-840, 31), Vector2(-256, 31)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerNotification:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.23333333, 0.36666667),
+"transitions": PackedFloat32Array(1, 0.25, 1, 1),
+"update": 0,
+"values": [Color(0.60768, 0.4392, 0.72, 0), Color(0.60768, 0.4392, 0.72, 1), Color(1, 1, 1, 1), Color(0.60768, 0.4392, 0.72, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerNotification/Label:label_settings:font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333335, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pieet"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerNotification:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-840, 31)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerNotification:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.60768, 0.4392, 0.72, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemyNotification:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2731, 27)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnemyNotification:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.60768, 0.4392, 0.72, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PlayerNotification/Label:label_settings:font_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EnemyNotification/Label:label_settings:font_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qiqrj"]
+resource_name = "enemy_notification"
+length = 0.50000167
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemyNotification:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 0.25),
+"update": 0,
+"values": [Vector2(2731, 27), Vector2(2178, 27)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemyNotification:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.23333335, 0.36666667),
+"transitions": PackedFloat32Array(1, 0.25, 1, 1),
+"update": 0,
+"values": [Color(0.60768, 0.4392, 0.72, 0), Color(0.60768, 0.4392, 0.72, 1), Color(1, 1, 1, 1), Color(0.60768, 0.4392, 0.72, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemyNotification/Label:label_settings:font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333335, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xm42n"]
+_data = {
+&"RESET": SubResource("Animation_pieet"),
+&"enemy_notification": SubResource("Animation_qiqrj"),
+&"player_notification": SubResource("Animation_5le63")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(105.25, 700.5)
@@ -66,20 +235,30 @@ starting_state = NodePath("EnemyInput")
 script = ExtResource("10_pieet")
 parse_player_card_state = NodePath("../ParsePlayerCard")
 
-[node name="ParsePlayerCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_player_card_state", "enemy_input_state")]
+[node name="ParsePlayerCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_player_card_state", "transition_to_enemy_state")]
 script = ExtResource("11_7nyxr")
 parse_player_card_state = NodePath(".")
+transition_to_enemy_state = NodePath("../TransitionToEnemy")
+
+[node name="TransitionToEnemy" type="Node" parent="GameStateController" node_paths=PackedStringArray("enemy_input_state")]
+script = ExtResource("17_43lh3")
 enemy_input_state = NodePath("../EnemyInput")
+metadata/_custom_type_script = "uid://odv0ajcx4mkj"
 
 [node name="EnemyInput" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_enemy_card_state")]
 script = ExtResource("13_52iny")
 parse_enemy_card_state = NodePath("../ParseEnemyCard")
 frames_before_enemy_play = 120
 
-[node name="ParseEnemyCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_enemy_card_state", "player_input_state")]
+[node name="ParseEnemyCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_enemy_card_state", "transition_to_player")]
 script = ExtResource("13_43lh3")
 parse_enemy_card_state = NodePath("../EnemyInput")
+transition_to_player = NodePath("../TransitionToPlayer")
+
+[node name="TransitionToPlayer" type="Node" parent="GameStateController" node_paths=PackedStringArray("player_input_state")]
+script = ExtResource("15_5le63")
 player_input_state = NodePath("../PlayerInput")
+metadata/_custom_type_script = "uid://odv0ajcx4mkj"
 
 [node name="Pause" type="Node" parent="GameStateController"]
 script = ExtResource("11_qiqrj")
@@ -170,6 +349,38 @@ grow_vertical = 2
 text = "Level Clear!"
 label_settings = SubResource("LabelSettings_nxqqj")
 horizontal_alignment = 2
+
+[node name="PlayerNotification" type="Polygon2D" parent="LevelCanvas/HUD"]
+position = Vector2(-840, 31)
+color = Color(0.60768, 0.4392, 0.72, 0)
+polygon = PackedVector2Array(225, 243, 792, 231, 775, 345, 245, 331)
+
+[node name="Label" type="Label" parent="LevelCanvas/HUD/PlayerNotification"]
+offset_left = 304.0
+offset_top = 242.0
+offset_right = 726.0
+offset_bottom = 330.0
+text = "PLAYER TURN"
+label_settings = SubResource("LabelSettings_43lh3")
+
+[node name="EnemyNotification" type="Polygon2D" parent="LevelCanvas/HUD"]
+position = Vector2(2731, 27)
+scale = Vector2(-1, 1)
+color = Color(0.60768, 0.4392, 0.72, 0)
+polygon = PackedVector2Array(225, 243, 792, 231, 775, 345, 245, 331)
+
+[node name="Label" type="Label" parent="LevelCanvas/HUD/EnemyNotification"]
+offset_left = 308.0
+offset_top = 246.0
+offset_right = 730.0
+offset_bottom = 335.0
+text = "ИЯUT YMƎИƎ"
+label_settings = SubResource("LabelSettings_43lh3")
+
+[node name="HUDAnimations" type="AnimationPlayer" parent="LevelCanvas/HUD"]
+libraries = {
+&"": SubResource("AnimationLibrary_xm42n")
+}
 
 [node name="ResetCards" type="Button" parent="LevelCanvas"]
 offset_left = 126.0
@@ -340,6 +551,7 @@ collision_layer = 2048
 [node name="Hitbox2D" parent="LevelCanvas/PlayerCharacter2" index="6"]
 collision_mask = 768
 
+[connection signal="animation_finished" from="LevelCanvas/HUD/HUDAnimations" to="GameStateController" method="on_hud_animation_finished"]
 [connection signal="button_down" from="LevelCanvas/ResetCards" to="SFXPlayer" method="_on_reset_cards_button_down"]
 [connection signal="button_down" from="LevelCanvas/ResetCards" to="LevelCanvas/PlayerComboBox/PlayerComboBoxContainer" method="_on_reset_cards_button_down"]
 [connection signal="mouse_entered" from="LevelCanvas/ResetCards" to="SFXPlayer" method="_on_reset_cards_mouse_entered"]
