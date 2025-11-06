@@ -18,13 +18,13 @@
 [ext_resource type="Script" uid="uid://dfexea1b46e41" path="res://scripts/game_states/transition_to_player.gd" id="15_5le63"]
 [ext_resource type="Script" uid="uid://btlamgnmd4thu" path="res://scripts/game_states/win.gd" id="15_jy3fw"]
 [ext_resource type="Texture2D" uid="uid://cex1ihcq8i3pv" path="res://38346657b1271fcfe6ce1c60423ff665b794_1920xt1080_S1000-3662738456.jpg" id="16_c5gc3"]
-[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="16_t8chk"]
 [ext_resource type="Script" uid="uid://phjs0piqg21l" path="res://scripts/game_states/transition_to_enemy.gd" id="17_43lh3"]
 [ext_resource type="PackedScene" uid="uid://s8t15p31bou5" path="res://scenes/health_bar.tscn" id="17_uuy0h"]
-[ext_resource type="Texture2D" uid="uid://dudl6ru5kwjxn" path="res://assets/card_assets/card_ground_low.png" id="17_xhed0"]
 [ext_resource type="Script" uid="uid://bwoaq8fw2j28y" path="res://scripts/player_combo_box.gd" id="18_6tyme"]
 [ext_resource type="Script" uid="uid://dyvk47q0xunpc" path="res://player_health.gd" id="18_nxqqj"]
 [ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="22_uuy0h"]
+[ext_resource type="PackedScene" uid="uid://drh0m7edewc1" path="res://scenes/card-dash.tscn" id="23_5le63"]
+[ext_resource type="PackedScene" uid="uid://b5t3yyx6sirng" path="res://scenes/card-crouching-low.tscn" id="24_pieet"]
 [ext_resource type="Script" uid="uid://b18m6mbay1006" path="res://scripts/enemy_combo_box.gd" id="25_43lh3"]
 [ext_resource type="PackedScene" uid="uid://npd8c1t4ms8o" path="res://scenes/card-standing-mid.tscn" id="26_5le63"]
 [ext_resource type="PackedScene" uid="uid://cfh12t0lljtfh" path="res://player_character.tscn" id="26_7nyxr"]
@@ -40,47 +40,6 @@ outline_color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_43lh3"]
 font_size = 64
-
-[sub_resource type="Animation" id="Animation_5le63"]
-resource_name = "player_notification"
-length = 0.50000167
-step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerNotification:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.23333333),
-"transitions": PackedFloat32Array(1, 0.25),
-"update": 0,
-"values": [Vector2(-840, 31), Vector2(-256, 31)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerNotification:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.23333333, 0.36666667),
-"transitions": PackedFloat32Array(1, 0.25, 1, 1),
-"update": 0,
-"values": [Color(0.60768, 0.4392, 0.72, 0), Color(0.60768, 0.4392, 0.72, 1), Color(1, 1, 1, 1), Color(0.60768, 0.4392, 0.72, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("PlayerNotification/Label:label_settings:font_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.23333335, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_pieet"]
 length = 0.001
@@ -189,6 +148,47 @@ tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("EnemyNotification/Label:label_settings:font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333335, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5le63"]
+resource_name = "player_notification"
+length = 0.50000167
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerNotification:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333),
+"transitions": PackedFloat32Array(1, 0.25),
+"update": 0,
+"values": [Vector2(-840, 31), Vector2(-256, 31)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerNotification:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.23333333, 0.36666667),
+"transitions": PackedFloat32Array(1, 0.25, 1, 1),
+"update": 0,
+"values": [Color(0.60768, 0.4392, 0.72, 0), Color(0.60768, 0.4392, 0.72, 1), Color(1, 1, 1, 1), Color(0.60768, 0.4392, 0.72, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerNotification/Label:label_settings:font_color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -326,6 +326,7 @@ player = NodePath("../../../../PlayerCharacter2")
 
 [node name="WinScreen" type="ColorRect" parent="LevelCanvas/HUD"]
 visible = false
+z_index = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -397,6 +398,7 @@ offset_bottom = 1034.0
 text = "Play Hand"
 
 [node name="AddMidCard" type="Button" parent="LevelCanvas"]
+visible = false
 offset_left = 1177.0
 offset_top = 861.0
 offset_right = 1350.0
@@ -404,59 +406,66 @@ offset_bottom = 966.0
 text = "Add Mid Card"
 
 [node name="AddLowCard" type="Button" parent="LevelCanvas"]
+visible = false
 offset_left = 1111.0
 offset_top = 943.0
 offset_right = 1286.0
 offset_bottom = 1048.0
 text = "Add Low Card"
 
-[node name="Card" parent="LevelCanvas" instance=ExtResource("16_t8chk")]
-z_as_relative = false
+[node name="StandingMid" parent="LevelCanvas" instance=ExtResource("26_5le63")]
 offset_left = 913.0
 offset_top = 905.0
 offset_right = 1007.0
 offset_bottom = 1041.0
-card_text = "standing mid"
-move_index = "5B"
 
-[node name="Card2" parent="LevelCanvas" instance=ExtResource("16_t8chk")]
+[node name="Dash" parent="LevelCanvas" instance=ExtResource("23_5le63")]
 offset_left = 913.0
 offset_top = 905.0
 offset_right = 1007.0
 offset_bottom = 1041.0
-card_texture = ExtResource("17_xhed0")
-card_text = "crouching low"
-move_index = "2C"
 
-[node name="Card3" parent="LevelCanvas" instance=ExtResource("16_t8chk")]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -47.0
-offset_top = -175.0
-offset_right = 47.0
-offset_bottom = -39.0
-grow_horizontal = 2
-grow_vertical = 0
-card_text = "standing mid"
-move_index = "5B"
+[node name="CrouchingLow" parent="LevelCanvas" instance=ExtResource("24_pieet")]
+offset_left = 913.0
+offset_top = 905.0
+offset_right = 1007.0
+offset_bottom = 1041.0
 
-[node name="Card4" parent="LevelCanvas" instance=ExtResource("16_t8chk")]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -47.0
-offset_top = -175.0
-offset_right = 47.0
-offset_bottom = -39.0
-grow_horizontal = 2
-grow_vertical = 0
-card_text = "dash"
-move_index = "dash"
+[node name="StandingMid2" parent="LevelCanvas" instance=ExtResource("26_5le63")]
+offset_left = 913.0
+offset_top = 905.0
+offset_right = 1007.0
+offset_bottom = 1041.0
+
+[node name="CrouchingLow2" parent="LevelCanvas" instance=ExtResource("24_pieet")]
+offset_left = 913.0
+offset_top = 905.0
+offset_right = 1007.0
+offset_bottom = 1041.0
+
+[node name="Dash2" parent="LevelCanvas" instance=ExtResource("23_5le63")]
+offset_left = 913.0
+offset_top = 905.0
+offset_right = 1007.0
+offset_bottom = 1041.0
+
+[node name="CrouchingLow3" parent="LevelCanvas" instance=ExtResource("24_pieet")]
+offset_left = 913.0
+offset_top = 905.0
+offset_right = 1007.0
+offset_bottom = 1041.0
+
+[node name="StandingMid3" parent="LevelCanvas" instance=ExtResource("26_5le63")]
+offset_left = 913.0
+offset_top = 905.0
+offset_right = 1007.0
+offset_bottom = 1041.0
+
+[node name="Dash3" parent="LevelCanvas" instance=ExtResource("23_5le63")]
+offset_left = 913.0
+offset_top = 905.0
+offset_right = 1007.0
+offset_bottom = 1041.0
 
 [node name="PlayerComboBox" type="ColorRect" parent="LevelCanvas"]
 y_sort_enabled = true
@@ -490,16 +499,18 @@ shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="Stagea" type="Node2D" parent="LevelCanvas"]
 
-[node name="Node2D" type="Node2D" parent="LevelCanvas"]
+[node name="HomeButton" type="Node2D" parent="LevelCanvas"]
+position = Vector2(873, 78)
 scale = Vector2(0.25, 1)
 
-[node name="Button" parent="LevelCanvas/Node2D" instance=ExtResource("22_uuy0h")]
-offset_left = 3524.0
-offset_top = 66.0
-offset_right = 4380.0
-offset_bottom = 130.0
+[node name="Button" parent="LevelCanvas/HomeButton" instance=ExtResource("22_uuy0h")]
 text = "Home"
 level = "res://main_menu.tscn"
+
+[node name="ButtonName" parent="LevelCanvas/HomeButton/Button" index="5"]
+offset_right = -624.7501
+scale = Vector2(4, 1)
+horizontal_alignment = 1
 
 [node name="EnemyComboBox" type="ColorRect" parent="LevelCanvas"]
 y_sort_enabled = true
@@ -543,6 +554,7 @@ is_current_turn = false
 [node name="PlayerCharacter2" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
 position = Vector2(1498, 616)
 scale = Vector2(-1, 1)
+start_health = 1000.0
 is_facing_left = true
 
 [node name="Hurtbox2D" parent="LevelCanvas/PlayerCharacter2" index="5"]
@@ -568,5 +580,6 @@ collision_mask = 768
 [connection signal="area_entered" from="LevelCanvas/EnemyComboBox/ComboBoxArea" to="LevelCanvas/EnemyComboBox/EnemyComboBoxContainer" method="_on_combo_box_area_entered"]
 
 [editable path="LevelCanvas/HUD/EnemyHealthBar"]
+[editable path="LevelCanvas/HomeButton/Button"]
 [editable path="LevelCanvas/PlayerCharacter"]
 [editable path="LevelCanvas/PlayerCharacter2"]

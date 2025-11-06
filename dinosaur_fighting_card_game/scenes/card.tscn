@@ -32,12 +32,15 @@ position = Vector2(47.25, 67.75)
 scale = Vector2(2.25, 2.25)
 texture = ExtResource("1_grwcn")
 
-[node name="Shadow" type="Sprite2D" parent="Sprite2D"]
-modulate = Color(0, 0, 0, 0.392157)
-show_behind_parent = true
-z_index = -1
-y_sort_enabled = true
-texture = ExtResource("1_grwcn")
+[node name="Shadow" type="Polygon2D" parent="Sprite2D"]
+modulate = Color(0, 0, 0, 0.39215687)
+color = Color(0.8392157, 0.81960785, 1, 1)
+polygon = PackedVector2Array(-21.88889, -29.666666, 21.666668, -31.88889, 23, 32.555557, -22.777779, 30.777779)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprite2D"]
+z_index = 1
+color = Color(0.8392157, 0.81960785, 1, 1)
+polygon = PackedVector2Array(-21.88889, -29.666666, 21.666668, -31.88889, 23, 32.555557, -22.777779, 30.777779)
 
 [node name="Text" type="Label" parent="Sprite2D"]
 z_index = 1
