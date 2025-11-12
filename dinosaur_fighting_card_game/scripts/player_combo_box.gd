@@ -3,6 +3,8 @@ extends VBoxContainer
 @onready var game = $"../../.."
 @onready var level_canvas = $"../.."
 var combo_hand: Array
+var combo_length: int
+@export var combo_length_limit: int = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +17,9 @@ func _process(_delta: float) -> void:
 	queue_sort()
 
 func _on_combo_box_area_entered(area: Area2D) -> void:
+	combo_length = get_child_count()
+	if combo_length >= combo_length_limit:
+		return
 	var card_node = area.get_parent()
 	card_node.reparent(self)
 	combo_hand = get_children()

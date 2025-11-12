@@ -37,10 +37,14 @@ modulate = Color(0, 0, 0, 0.39215687)
 color = Color(0.8392157, 0.81960785, 1, 1)
 polygon = PackedVector2Array(-21.88889, -29.666666, 21.666668, -31.88889, 23, 32.555557, -22.777779, 30.777779)
 
-[node name="Polygon2D" type="Polygon2D" parent="Sprite2D"]
+[node name="CardBorder" type="Polygon2D" parent="Sprite2D"]
+z_index = 1
+polygon = PackedVector2Array(-21.88889, -29.666666, 21.666668, -31.88889, 23, 32.555557, -22.777779, 30.777779)
+
+[node name="CardBody" type="Polygon2D" parent="Sprite2D"]
 z_index = 1
 color = Color(0.8392157, 0.81960785, 1, 1)
-polygon = PackedVector2Array(-21.88889, -29.666666, 21.666668, -31.88889, 23, 32.555557, -22.777779, 30.777779)
+polygon = PackedVector2Array(-20.11111, -25.222221, 19, -28.333332, 20.777779, 29.444447, -20.11111, 28.555557)
 
 [node name="Text" type="Label" parent="Sprite2D"]
 z_index = 1
