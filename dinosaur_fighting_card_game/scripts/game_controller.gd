@@ -9,6 +9,8 @@ func _ready() -> void:
 	Events.quit_application.connect(_on_application_quit.bind())
 
 func _change_scene(new_scene: String) -> void:
+	if not new_scene:
+		return
 	current_scene.queue_free()
 	var new = load(new_scene).instantiate()
 	add_child(new)
