@@ -28,6 +28,7 @@ offset_bottom = 177.0
 theme_override_styles/background = SubResource("StyleBoxFlat_iwqyq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1bvlm")
 value = 80.0
+show_percentage = false
 
 [node name="NameSpace" type="Polygon2D" parent="."]
 position = Vector2(-217, -72)
