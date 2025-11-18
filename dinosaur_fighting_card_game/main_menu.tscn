@@ -1,12 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://shqpf74yulcv"]
+[gd_scene load_steps=23 format=3 uid="uid://shqpf74yulcv"]
 
 [ext_resource type="AudioStream" uid="uid://ceokasgqio88" path="res://assets/audio/アホの子.mp3" id="1_0k4wn"]
 [ext_resource type="Script" uid="uid://c2p04ywy131nf" path="res://scripts/bgm_player.gd" id="2_0k4wn"]
 [ext_resource type="AudioStream" uid="uid://bwnwlbdlfsojt" path="res://assets/audio/PortalFX.wav" id="3_j5v2v"]
-[ext_resource type="Script" uid="uid://c4wkipra21sga" path="res://scripts/ui_sfx_player.gd" id="4_iotk1"]
-[ext_resource type="AudioStream" uid="uid://cd5iy63fbke4r" path="res://assets/audio/MenuButtonSound.wav" id="5_w44g7"]
+[ext_resource type="Script" uid="uid://c4wkipra21sga" path="res://scripts/menu_sfx_player.gd" id="4_iotk1"]
 [ext_resource type="AudioStream" uid="uid://b8nast02yf2t7" path="res://assets/audio/ButtonHoverSound.wav" id="6_cm266"]
-[ext_resource type="AudioStream" uid="uid://bpntw61k61n0u" path="res://assets/audio/WinSound.wav" id="7_g8g3n"]
 [ext_resource type="PackedScene" uid="uid://b2pif88fkvy0q" path="res://scenes/menu_button.tscn" id="8_8u0te"]
 [ext_resource type="Script" uid="uid://ddkykx6rqy16x" path="res://scripts/UI/sub_menu.gd" id="9_oiatc"]
 [ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="10_mg3m2"]
@@ -400,10 +398,7 @@ script = ExtResource("2_0k4wn")
 stream = ExtResource("3_j5v2v")
 volume_db = 10.0
 script = ExtResource("4_iotk1")
-button_click_sound = ExtResource("5_w44g7")
 button_hover_sound = ExtResource("6_cm266")
-hit_sound = ExtResource("3_j5v2v")
-swing_sound = ExtResource("7_g8g3n")
 
 [node name="MainMenu" type="CanvasLayer" parent="."]
 
@@ -779,6 +774,8 @@ Duel"
 label_settings = SubResource("LabelSettings_hb5m1")
 horizontal_alignment = 1
 
+[connection signal="mouse_entered" from="MainMenu/LevelButton" to="SFXPlayer" method="_on_level_button_mouse_entered"]
+[connection signal="toggled" from="MainMenu/LevelButton" to="SFXPlayer" method="_on_level_button_toggled"]
 [connection signal="visibility_changed" from="LevelMenu" to="LevelMenu" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="CreditsMenu" to="CreditsMenu" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="OptionsMenu" to="OptionsMenu" method="_on_visibility_changed"]

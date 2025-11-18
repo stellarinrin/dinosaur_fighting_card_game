@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_c5gc3"]
 [ext_resource type="Script" uid="uid://c2p04ywy131nf" path="res://scripts/bgm_player.gd" id="3_6e4cv"]
 [ext_resource type="AudioStream" uid="uid://bwnwlbdlfsojt" path="res://assets/audio/PortalFX.wav" id="4_uuy0h"]
-[ext_resource type="Script" uid="uid://c4wkipra21sga" path="res://scripts/ui_sfx_player.gd" id="5_52iny"]
+[ext_resource type="Script" uid="uid://c4wkipra21sga" path="res://scripts/menu_sfx_player.gd" id="5_52iny"]
 [ext_resource type="AudioStream" uid="uid://cd5iy63fbke4r" path="res://assets/audio/MenuButtonSound.wav" id="6_nxqqj"]
 [ext_resource type="AudioStream" uid="uid://b8nast02yf2t7" path="res://assets/audio/ButtonHoverSound.wav" id="7_7nyxr"]
 [ext_resource type="AudioStream" uid="uid://bpntw61k61n0u" path="res://assets/audio/WinSound.wav" id="8_43lh3"]
