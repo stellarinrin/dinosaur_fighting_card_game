@@ -1406,6 +1406,7 @@ polygon = PackedVector2Array(209, 82, 267, -186, 188, -265, 311, -210)
 libraries = {
 &"": SubResource("AnimationLibrary_ha3ud")
 }
+speed_scale = 0.75
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(77, 68.5)
@@ -1544,7 +1545,7 @@ animation_name = "2C"
 cancel_frame = 24
 metadata/_custom_type_script = "uid://7vu1fkvkghbn"
 
-[node name="BlockStanding" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("idle_state", "go_state", "jump_state", "attack_5B_state", "attack_2C_state", "block_crouching_state", "hit_state")]
+[node name="BlockStanding" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("idle_state", "go_state", "jump_state", "attack_5B_state", "attack_2C_state", "block_crouching_state", "block_standing_state", "hit_state")]
 script = ExtResource("13_pi6eu")
 idle_state = NodePath("../Idle")
 go_state = NodePath("../Go")
@@ -1552,6 +1553,7 @@ jump_state = NodePath("../Jump")
 attack_5B_state = NodePath("../Attack5B")
 attack_2C_state = NodePath("../Attack2C")
 block_crouching_state = NodePath("../BlockCrouching")
+block_standing_state = NodePath(".")
 hit_state = NodePath("../Hit")
 animation_name = "block_standing"
 metadata/_custom_type_script = "uid://b0rp7gct5wrdh"

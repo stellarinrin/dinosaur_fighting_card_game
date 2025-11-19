@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bplmbaoy27emv"]
 
 [ext_resource type="PackedScene" uid="uid://cfh12t0lljtfh" path="res://player_character.tscn" id="1_gojnm"]
-[ext_resource type="Script" uid="uid://dyvk47q0xunpc" path="res://player_health.gd" id="2_1c2mv"]
+[ext_resource type="Script" uid="uid://dyvk47q0xunpc" path="res://enemy_health.gd" id="2_1c2mv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gojnm"]
 size = Vector2(1925, 137)

@@ -18,6 +18,19 @@ extends AudioStreamPlayer2D
 @export var swing_sound : AudioStream
 @export var dash_sound : AudioStream
 
-#func _ready() -> void:
-	#Events.parsed_player_card.connect(_on_parsed_card.bind())
-	#Events.parsed_enemy_card.connect(_on_parsed_card.bind())
+func _on_hurtbox_2d_damaged(_damage: float) -> void:
+	await get_tree().create_timer(.3).timeout
+	stream = hit_sound
+	play()
+
+
+func _on_hurtbox_2d_blocked() -> void:
+	await get_tree().create_timer(.3).timeout
+	stream = block_sound
+	play()
+
+
+func _on_hud_animation_change(animation: String) -> void:
+	if animation == "player_notification" or animation == ("enemy_notification"):
+		stream = turn_notification_sound
+		play()

@@ -12,6 +12,6 @@ func _process(_delta: float) -> void:
 	value = player.current_health
 	if value == 0:
 		await get_tree().create_timer(1).timeout
-		$"../../../LoseScreen".visible = true
+		$"../../../WinScreen".visible = true
 		await get_tree().create_timer(2).timeout
 		Global.game_controller._change_scene("res://main_menu.tscn")

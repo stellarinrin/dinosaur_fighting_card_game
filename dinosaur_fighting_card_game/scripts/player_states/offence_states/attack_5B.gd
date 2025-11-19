@@ -2,6 +2,7 @@ extends PlayerState
 class_name Attack5B
 
 @export var idle_state : PlayerState
+@export var block_standing_state : PlayerState
 @export var attack_2C_state : PlayerState
 
 func enter() -> void:
@@ -21,6 +22,8 @@ func parse_card(move_id: String) -> PlayerState:
 	match move_id:
 		"2C":
 			return attack_2C_state
+		#"block_standing":
+			#return block_standing_state
 	Events.cancellable.emit()
 	return null
 	

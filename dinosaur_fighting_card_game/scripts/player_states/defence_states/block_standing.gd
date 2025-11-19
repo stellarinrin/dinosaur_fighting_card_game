@@ -9,6 +9,7 @@ class_name BlockStanding
 @export var attack_2C_state : PlayerState
 
 @export var block_crouching_state : PlayerState
+@export var block_standing_state : PlayerState
 @export var hit_state : PlayerState
 
 func enter() -> void:
@@ -48,6 +49,8 @@ func parse_card(move_id: String) -> PlayerState:
 			return attack_2C_state
 		"block_crouching":
 			return block_crouching_state
+		"block_standing":
+			return block_standing_state
 	return null
 	
 func on_hurtbox_damaged(damage: float) -> PlayerState:

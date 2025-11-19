@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjkc1p6utgrns"]
+
+[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_4c3c5"]
+
+[node name="Card" instance=ExtResource("1_4c3c5")]
+move_index = "block_standing"
+
+[node name="Shield" type="Polygon2D" parent="Sprite2D" index="3"]
+z_index = 1
+polygon = PackedVector2Array(0.33333397, -14.555555, -11.666667, -23.88889, 7.8888893, -17.222221, 10.111111, -2.5555553, 6.5555553, 11.666668, 4.333334, -3)

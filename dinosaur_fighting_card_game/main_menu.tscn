@@ -1,10 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://shqpf74yulcv"]
+[gd_scene load_steps=25 format=3 uid="uid://shqpf74yulcv"]
 
 [ext_resource type="AudioStream" uid="uid://ceokasgqio88" path="res://assets/audio/アホの子.mp3" id="1_0k4wn"]
 [ext_resource type="Script" uid="uid://c2p04ywy131nf" path="res://scripts/bgm_player.gd" id="2_0k4wn"]
 [ext_resource type="AudioStream" uid="uid://bwnwlbdlfsojt" path="res://assets/audio/PortalFX.wav" id="3_j5v2v"]
 [ext_resource type="Script" uid="uid://c4wkipra21sga" path="res://scripts/menu_sfx_player.gd" id="4_iotk1"]
-[ext_resource type="AudioStream" uid="uid://b8nast02yf2t7" path="res://assets/audio/ButtonHoverSound.wav" id="6_cm266"]
+[ext_resource type="AudioStream" uid="uid://d0jx0we58ejqi" path="res://assets/audio/menu open.wav" id="5_0o4t1"]
+[ext_resource type="AudioStream" uid="uid://ds12bl78gwbvl" path="res://assets/audio/menu close.wav" id="6_0k4wn"]
+[ext_resource type="AudioStream" uid="uid://cvj72dmh30o4s" path="res://assets/audio/button hover.wav" id="7_0o4t1"]
 [ext_resource type="PackedScene" uid="uid://b2pif88fkvy0q" path="res://scenes/menu_button.tscn" id="8_8u0te"]
 [ext_resource type="Script" uid="uid://ddkykx6rqy16x" path="res://scripts/UI/sub_menu.gd" id="9_oiatc"]
 [ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="10_mg3m2"]
@@ -398,7 +400,9 @@ script = ExtResource("2_0k4wn")
 stream = ExtResource("3_j5v2v")
 volume_db = 10.0
 script = ExtResource("4_iotk1")
-button_hover_sound = ExtResource("6_cm266")
+menu_open_sound = ExtResource("5_0o4t1")
+menu_close_sound = ExtResource("6_0k4wn")
+button_hover_sound = ExtResource("7_0o4t1")
 
 [node name="MainMenu" type="CanvasLayer" parent="."]
 
@@ -774,8 +778,14 @@ Duel"
 label_settings = SubResource("LabelSettings_hb5m1")
 horizontal_alignment = 1
 
-[connection signal="mouse_entered" from="MainMenu/LevelButton" to="SFXPlayer" method="_on_level_button_mouse_entered"]
-[connection signal="toggled" from="MainMenu/LevelButton" to="SFXPlayer" method="_on_level_button_toggled"]
+[connection signal="mouse_entered" from="MainMenu/LevelButton" to="SFXPlayer" method="_on_button_mouse_entered"]
+[connection signal="toggled" from="MainMenu/LevelButton" to="SFXPlayer" method="_on_button_toggled"]
+[connection signal="mouse_entered" from="MainMenu/CreditButton" to="SFXPlayer" method="_on_button_mouse_entered"]
+[connection signal="toggled" from="MainMenu/CreditButton" to="SFXPlayer" method="_on_button_toggled"]
+[connection signal="mouse_entered" from="MainMenu/OptionsButton" to="SFXPlayer" method="_on_button_mouse_entered"]
+[connection signal="toggled" from="MainMenu/OptionsButton" to="SFXPlayer" method="_on_button_toggled"]
+[connection signal="mouse_entered" from="MainMenu/Quit" to="SFXPlayer" method="_on_button_mouse_entered"]
+[connection signal="toggled" from="MainMenu/Quit" to="SFXPlayer" method="_on_button_toggled"]
 [connection signal="visibility_changed" from="LevelMenu" to="LevelMenu" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="CreditsMenu" to="CreditsMenu" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="OptionsMenu" to="OptionsMenu" method="_on_visibility_changed"]

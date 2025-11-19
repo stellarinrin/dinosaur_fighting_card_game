@@ -16,6 +16,7 @@ func enter() -> void:
 	parent.animations.play(animation_name)
 	parent.animations.seek(0)
 	frame_count = 0
+	cancel_frame *= 1.1
 
 func exit() -> void:
 	pass
