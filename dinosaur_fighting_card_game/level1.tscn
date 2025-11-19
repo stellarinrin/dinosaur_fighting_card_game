@@ -598,6 +598,9 @@ collision_mask = 768
 [node name="Attack5B" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="9" node_paths=PackedStringArray("block_standing_state")]
 block_standing_state = NodePath("../../../PlayerCharacter/PlayerStateController/BlockStanding")
 
+[node name="Hit" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="13" node_paths=PackedStringArray("idle_state")]
+idle_state = NodePath("../Attack5B")
+
 [connection signal="animation_finished" from="LevelCanvas/HUD/HUDAnimations" to="GameStateController" method="on_hud_animation_finished"]
 [connection signal="current_animation_changed" from="LevelCanvas/HUD/HUDAnimations" to="SFXPlayer" method="_on_hud_animation_change"]
 [connection signal="button_down" from="LevelCanvas/AddMidCard" to="." method="_on_add_mid_card_button_down"]
