@@ -1,5 +1,6 @@
 extends PlayerState
 class_name BlockStanding
+signal on_block
 
 @export var idle_state : PlayerState
 @export var go_state : PlayerState
@@ -14,6 +15,7 @@ class_name BlockStanding
 
 func enter() -> void:
 	super()
+	on_block.emit()
 	Events.cancellable.emit()
 
 func exit() -> void:

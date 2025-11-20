@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://djxysx7sbuwty" path="res://scripts/card.gd" id="1_tvcam"]
 [ext_resource type="Resource" uid="uid://cy088d5m4asxl" path="res://resources/standing_mid.tres" id="3_1ggeu"]
 [ext_resource type="Script" uid="uid://16u5tl8q8h18" path="res://scripts/card_sfx_player.gd" id="4_6ligt"]
-[ext_resource type="AudioStream" uid="uid://cd5iy63fbke4r" path="res://assets/audio/MenuButtonSound.wav" id="5_8w5pg"]
-[ext_resource type="AudioStream" uid="uid://djx2uhsx20sb6" path="res://assets/audio/BackButtonSound.wav" id="6_nvopj"]
+[ext_resource type="AudioStream" uid="uid://beql51ds4ifvb" path="res://assets/audio/card-slide-7.ogg" id="5_8w5pg"]
+[ext_resource type="AudioStream" uid="uid://dvldxprtn1jt" path="res://assets/audio/card-shove-2.ogg" id="7_1yd6c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ktuci"]
 font_size = 9
@@ -69,10 +69,13 @@ shape = SubResource("RectangleShape2D_6u4wf")
 unique_name_in_owner = true
 pitch_scale = 0.5
 script = ExtResource("4_6ligt")
+card_hover_sound = ExtResource("5_8w5pg")
 card_grab_sound = ExtResource("5_8w5pg")
-card_drop_sound = ExtResource("6_nvopj")
+card_drop_sound = ExtResource("7_1yd6c")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_entered" from="." to="CardSFX" method="_on_card_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="resized" from="." to="CardSFX" method="_on_card_resized"]

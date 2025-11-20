@@ -10,8 +10,6 @@ var is_dragging: bool = false
 func _ready() -> void:
 	if card_texture:
 		$Sprite2D.texture = card_texture
-	if card_text:
-		$Sprite2D/Text.text = card_text
 
 func _physics_process(delta: float) -> void:
 	$Area2D.monitorable = false

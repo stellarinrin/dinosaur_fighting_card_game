@@ -1,12 +1,16 @@
-[gd_scene load_steps=43 format=3 uid="uid://cfh12t0lljtfh"]
+[gd_scene load_steps=47 format=3 uid="uid://cfh12t0lljtfh"]
 
 [ext_resource type="Script" uid="uid://cb571edjwl1ev" path="res://player_character.gd" id="1_5up26"]
 [ext_resource type="Texture2D" uid="uid://bqimbco8ox5o8" path="res://assets/character-dinosaur-test-crouching.png" id="2_6qc1w"]
 [ext_resource type="Texture2D" uid="uid://lfgrhc4eeh12" path="res://assets/character-dinosaur-test-standing.png" id="2_he2na"]
+[ext_resource type="Script" uid="uid://g4p4en68o7pa" path="res://scripts/player_sfx.gd" id="2_vigrq"]
 [ext_resource type="Script" uid="uid://cnqg3iw86slqa" path="res://scripts/player_states/player_state_controller.gd" id="3_0hvvw"]
+[ext_resource type="AudioStream" uid="uid://bjuohgh4ac78k" path="res://assets/audio/impact-2.ogg" id="3_i6ts6"]
 [ext_resource type="Script" uid="uid://c0atc7cbxkj3t" path="res://scripts/hitbox_2D.gd" id="3_p3c78"]
+[ext_resource type="AudioStream" uid="uid://bgro0ayjwvy1m" path="res://assets/audio/block.wav" id="4_0ddoo"]
 [ext_resource type="Script" uid="uid://bthqvh0fnyk67" path="res://scripts/hurtbox_2D.gd" id="4_4oir7"]
 [ext_resource type="Script" uid="uid://ksdr516wr4v" path="res://scripts/player_states/ground_movement_states/idle.gd" id="4_6qc1w"]
+[ext_resource type="AudioStream" uid="uid://ys0w1kn4lhro" path="res://assets/audio/set_block.wav" id="5_0j02f"]
 [ext_resource type="Script" uid="uid://0l4qsvm813i6" path="res://resources/hitbox_data.gd" id="5_1oirj"]
 [ext_resource type="Script" uid="uid://dfo0wydgc2fgh" path="res://scripts/player_states/ground_movement_states/dash.gd" id="5_6qc1w"]
 [ext_resource type="Script" uid="uid://b1w43d81cfglm" path="res://resources/hurtbox_data.gd" id="5_vigrq"]
@@ -1393,6 +1397,13 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_5up26")
 
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = 10.0
+script = ExtResource("2_vigrq")
+hit_sound = ExtResource("3_i6ts6")
+block_sound = ExtResource("4_0ddoo")
+set_up_block_sound = ExtResource("5_0j02f")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(96, 18)
 texture = ExtResource("2_he2na")
@@ -1578,5 +1589,8 @@ animation_name = "hit"
 metadata/_custom_type_script = "uid://coeg5gt257ud1"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="blocked" from="Hurtbox2D" to="SFXPlayer" method="_on_hit_blocked"]
 [connection signal="damaged" from="Hurtbox2D" to="." method="_on_hurtbox_damaged"]
+[connection signal="damaged" from="Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_damaged"]
 [connection signal="area_entered" from="Hitbox2D" to="Hitbox2D" method="_on_area_entered"]
+[connection signal="on_block" from="PlayerStateController/BlockStanding" to="SFXPlayer" method="_on_block"]

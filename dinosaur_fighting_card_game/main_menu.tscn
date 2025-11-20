@@ -660,6 +660,7 @@ offset_bottom = 142.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Produced by Rin Estrella
+Sound Design by Kees Bassett
 Music by nagumorizu
 Developed with Godot Engine"
 label_settings = SubResource("LabelSettings_x5p1p")
@@ -787,5 +788,6 @@ horizontal_alignment = 1
 [connection signal="mouse_entered" from="MainMenu/Quit" to="SFXPlayer" method="_on_button_mouse_entered"]
 [connection signal="toggled" from="MainMenu/Quit" to="SFXPlayer" method="_on_button_toggled"]
 [connection signal="visibility_changed" from="LevelMenu" to="LevelMenu" method="_on_visibility_changed"]
+[connection signal="mouse_entered" from="LevelMenu/VBoxContainer/Level1" to="SFXPlayer" method="_on_button_mouse_entered"]
 [connection signal="visibility_changed" from="CreditsMenu" to="CreditsMenu" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="OptionsMenu" to="OptionsMenu" method="_on_visibility_changed"]
