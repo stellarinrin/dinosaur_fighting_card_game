@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=38 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_ycv2e"]
 [ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_c5gc3"]
@@ -27,7 +27,6 @@
 [ext_resource type="Script" uid="uid://dyvk47q0xunpc" path="res://enemy_health.gd" id="21_5le63"]
 [ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="22_uuy0h"]
 [ext_resource type="Script" uid="uid://b18m6mbay1006" path="res://scripts/enemy_combo_box.gd" id="25_43lh3"]
-[ext_resource type="PackedScene" uid="uid://drh0m7edewc1" path="res://scenes/card-dash.tscn" id="25_pieet"]
 [ext_resource type="PackedScene" uid="uid://cfh12t0lljtfh" path="res://player_character.tscn" id="26_7nyxr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43lh3"]
@@ -440,29 +439,32 @@ offset_right = 1286.0
 offset_bottom = 1048.0
 text = "Add Low Card"
 
-[node name="Card" parent="LevelCanvas" instance=ExtResource("25_pieet")]
-offset_left = 826.0
-offset_top = 838.0
-offset_right = 920.0
-offset_bottom = 974.0
+[node name="PlayerCharacter" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
+position = Vector2(456, 603)
+start_health = 11700.0
+is_current_turn = false
 
-[node name="Card3" parent="LevelCanvas" instance=ExtResource("25_pieet")]
-offset_left = 984.0
-offset_top = 838.0
-offset_right = 1078.0
-offset_bottom = 974.0
+[node name="PlayerCharacter2" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
+position = Vector2(1464, 599)
+rotation = -3.1415927
+scale = Vector2(1, -1)
+start_health = 11700.0
+is_facing_left = true
 
-[node name="Card4" parent="LevelCanvas" instance=ExtResource("25_pieet")]
-offset_left = 1122.0
-offset_top = 838.0
-offset_right = 1216.0
-offset_bottom = 974.0
+[node name="AnimationPlayer" parent="LevelCanvas/PlayerCharacter2" index="3"]
+speed_scale = 1.0
 
-[node name="Card2" parent="LevelCanvas" instance=ExtResource("25_pieet")]
-offset_left = 678.0
-offset_top = 838.0
-offset_right = 772.0
-offset_bottom = 974.0
+[node name="Hurtbox2D" parent="LevelCanvas/PlayerCharacter2" index="6"]
+collision_layer = 2048
+
+[node name="Hitbox2D" parent="LevelCanvas/PlayerCharacter2" index="7"]
+collision_mask = 768
+
+[node name="Attack5B" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="10" node_paths=PackedStringArray("block_standing_state")]
+block_standing_state = NodePath("../../../PlayerCharacter/PlayerStateController/BlockStanding")
+
+[node name="Hit" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="14" node_paths=PackedStringArray("idle_state")]
+idle_state = NodePath("../Attack5B")
 
 [node name="PlayCards" type="Node2D" parent="LevelCanvas"]
 position = Vector2(-15.999992, 951)
@@ -606,32 +608,6 @@ scale = Vector2(1, -1)
 color = Color(0.8392157, 0.81960785, 1, 1)
 polygon = PackedVector2Array(-16, 687, 85, 650, 146, 46, -16, 59)
 
-[node name="PlayerCharacter" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
-position = Vector2(456, 603)
-start_health = 11700.0
-is_current_turn = false
-
-[node name="PlayerCharacter2" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
-position = Vector2(1464, 599)
-scale = Vector2(-1, 1)
-start_health = 11700.0
-is_facing_left = true
-
-[node name="AnimationPlayer" parent="LevelCanvas/PlayerCharacter2" index="3"]
-speed_scale = 1.0
-
-[node name="Hurtbox2D" parent="LevelCanvas/PlayerCharacter2" index="6"]
-collision_layer = 2048
-
-[node name="Hitbox2D" parent="LevelCanvas/PlayerCharacter2" index="7"]
-collision_mask = 768
-
-[node name="Attack5B" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="10" node_paths=PackedStringArray("block_standing_state")]
-block_standing_state = NodePath("../../../PlayerCharacter/PlayerStateController/BlockStanding")
-
-[node name="Hit" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="14" node_paths=PackedStringArray("idle_state")]
-idle_state = NodePath("../Attack5B")
-
 [connection signal="animation_finished" from="LevelCanvas/HUD/HUDAnimations" to="GameStateController" method="on_hud_animation_finished"]
 [connection signal="current_animation_changed" from="LevelCanvas/HUD/HUDAnimations" to="SFXPlayer" method="_on_hud_animation_change"]
 [connection signal="button_down" from="LevelCanvas/AddMidCard" to="." method="_on_add_mid_card_button_down"]
@@ -640,6 +616,10 @@ idle_state = NodePath("../Attack5B")
 [connection signal="button_down" from="LevelCanvas/AddLowCard" to="." method="_on_add_low_card_button_down"]
 [connection signal="button_down" from="LevelCanvas/AddLowCard" to="SFXPlayer" method="_on_add_low_card_button_down"]
 [connection signal="mouse_entered" from="LevelCanvas/AddLowCard" to="SFXPlayer" method="_on_add_low_card_mouse_entered"]
+[connection signal="blocked" from="LevelCanvas/PlayerCharacter/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_blocked"]
+[connection signal="damaged" from="LevelCanvas/PlayerCharacter/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_damaged"]
+[connection signal="blocked" from="LevelCanvas/PlayerCharacter2/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_blocked"]
+[connection signal="damaged" from="LevelCanvas/PlayerCharacter2/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_damaged"]
 [connection signal="mouse_entered" from="LevelCanvas/PlayCards/PlayCardsButton" to="SFXPlayer" method="_on_button_hover"]
 [connection signal="pressed" from="LevelCanvas/PlayCards/PlayCardsButton" to="." method="_on_play_hand_button_down"]
 [connection signal="pressed" from="LevelCanvas/PlayCards/PlayCardsButton" to="SFXPlayer" method="_on_play_cards"]
@@ -650,15 +630,11 @@ idle_state = NodePath("../Attack5B")
 [connection signal="mouse_entered" from="LevelCanvas/HomeButton/Button" to="SFXPlayer" method="_on_button_hover"]
 [connection signal="pressed" from="LevelCanvas/HomeButton/Button" to="SFXPlayer" method="_on_button_pressed"]
 [connection signal="area_entered" from="LevelCanvas/EnemyComboBox/ComboBoxArea" to="LevelCanvas/EnemyComboBox/EnemyComboBoxContainer" method="_on_combo_box_area_entered"]
-[connection signal="blocked" from="LevelCanvas/PlayerCharacter/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_blocked"]
-[connection signal="damaged" from="LevelCanvas/PlayerCharacter/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_damaged"]
-[connection signal="blocked" from="LevelCanvas/PlayerCharacter2/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_blocked"]
-[connection signal="damaged" from="LevelCanvas/PlayerCharacter2/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_damaged"]
 
 [editable path="LevelCanvas/HUD/HealthBar"]
 [editable path="LevelCanvas/HUD/EnemyHealthBar"]
+[editable path="LevelCanvas/PlayerCharacter"]
+[editable path="LevelCanvas/PlayerCharacter2"]
 [editable path="LevelCanvas/PlayCards/PlayCardsButton"]
 [editable path="LevelCanvas/ResetCards/ResetCardButtonsButton"]
 [editable path="LevelCanvas/HomeButton/Button"]
-[editable path="LevelCanvas/PlayerCharacter"]
-[editable path="LevelCanvas/PlayerCharacter2"]

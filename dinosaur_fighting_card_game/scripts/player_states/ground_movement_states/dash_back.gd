@@ -1,7 +1,7 @@
 extends PlayerState
 class_name DashBack
 
-@export var stopping_state : PlayerState
+@export var idle_state : PlayerState
 @export var go_state : PlayerState
 @export var dash_back_state : PlayerState
 @export var jump_state : PlayerState
@@ -17,14 +17,18 @@ func enter() -> void:
 		super()
 	frame_count = 0
 	if parent.is_facing_left:
-		parent.velocity.x = -3000
+		parent.velocity.x = 3000
 		return
-	parent.velocity.x = 3000
+	parent.velocity.x = -3000
 
 func process_frame(delta: float) -> PlayerState:
 	frame_count += 1
 	if frame_count == cancel_frame:
-		return stopping_state
+		Events.cancellable.emit()
+		
+	if frame_count == 8:
+		parent.velocity.x = 0
+		return idle_state
 	return null
 func process_input(event: InputEvent) -> PlayerState:
 	if event.is_action_pressed('jump'):

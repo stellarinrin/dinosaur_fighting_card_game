@@ -3,6 +3,7 @@ class_name Stopping
 
 @export var idle_state : PlayerState
 @export var go_state : PlayerState
+@export var dash_back_state : PlayerState
 @export var jump_state : PlayerState
 @export var jump_forward_state : PlayerState
 @export var jump_backward_state : PlayerState
@@ -50,6 +51,8 @@ func parse_card(move_id: String) -> PlayerState:
 			return block_standing_state
 		"block_crouching":
 			return block_crouching_state
+		"dash_back":
+			return dash_back_state
 	return null
 	
 func process_physics(delta: float) -> PlayerState:

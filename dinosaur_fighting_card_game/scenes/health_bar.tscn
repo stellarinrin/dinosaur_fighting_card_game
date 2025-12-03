@@ -4,7 +4,7 @@
 bg_color = Color(0.8392157, 0.81960785, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvlm"]
-bg_color = Color(0.93333334, 0.9647059, 0.9372549, 1)
+bg_color = Color(0.93333334, 0.9647059, 0.59607846, 1)
 skew = Vector2(-0.1, 0)
 
 [node name="HealthBar" type="Node2D"]

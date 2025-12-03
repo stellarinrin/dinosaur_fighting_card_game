@@ -1038,6 +1038,107 @@ tracks/7/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_4dsce"]
+resource_name = "Dash"
+length = 0.20000167
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.083333336, 0.20000167),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.29496064358704127, -0.29496064358704127, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.20000167),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(96, 18), Vector2(96, -10), Vector2(96, 18)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.08333333, 0.20000167),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.13264503, 0.13264503, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("NeckCollision:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, 147.875)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("NeckCollision:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(163, -130)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hurtbox2D:hurtbox_data:is_blocking")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Hurtbox2D:hurtbox_data:block_level")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_eh3ko"]
 resource_name = "Dash"
 length = 0.05000167
@@ -1355,107 +1456,6 @@ tracks/5/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_4dsce"]
-resource_name = "Dash"
-length = 0.20000167
-step = 0.016666668
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.083333336, 0.20000167),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.29496064358704127, -0.29496064358704127, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.083333336, 0.20000167),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(96, 18), Vector2(96, -10), Vector2(96, 18)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:skew")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.08333333, 0.20000167),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.13264503, 0.13264503, 0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.05),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("NeckCollision:shape:size")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(48, 147.875)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("NeckCollision:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(163, -130)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Hurtbox2D:hurtbox_data:is_blocking")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Hurtbox2D:hurtbox_data:block_level")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ha3ud"]
 _data = {
 &"2C": SubResource("Animation_vigrq"),
@@ -1562,10 +1562,11 @@ debug_color = Color(0.99467343, 0, 0.22570384, 0.41960788)
 script = ExtResource("3_0hvvw")
 starting_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("go_state", "jump_state", "attack_5B_state", "attack_2C_state", "block_standing_state", "block_crouching_state", "hit_state")]
+[node name="Idle" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("go_state", "jump_state", "dash_back_state", "attack_5B_state", "attack_2C_state", "block_standing_state", "block_crouching_state", "hit_state")]
 script = ExtResource("4_6qc1w")
 go_state = NodePath("../Go")
 jump_state = NodePath("../Jump")
+dash_back_state = NodePath("../DashBack")
 attack_5B_state = NodePath("../Attack5B")
 attack_2C_state = NodePath("../Attack2C")
 block_standing_state = NodePath("../BlockStanding")
@@ -1598,13 +1599,14 @@ attack_5B_state = NodePath("../Attack5B")
 attack_2C_state = NodePath("../Attack2C")
 hit_state = NodePath("../Hit")
 animation_name = "dash"
-cancel_frame = 15
+cancel_frame = 6
 metadata/_custom_type_script = "uid://dfo0wydgc2fgh"
 
-[node name="Stopping" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("idle_state", "go_state", "jump_state", "attack_5B_state", "attack_2C_state", "block_standing_state", "block_crouching_state", "hit_state")]
+[node name="Stopping" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("idle_state", "go_state", "dash_back_state", "jump_state", "attack_5B_state", "attack_2C_state", "block_standing_state", "block_crouching_state", "hit_state")]
 script = ExtResource("6_8bl0p")
 idle_state = NodePath("../Idle")
 go_state = NodePath("../Go")
+dash_back_state = NodePath("../DashBack")
 jump_state = NodePath("../Jump")
 attack_5B_state = NodePath("../Attack5B")
 attack_2C_state = NodePath("../Attack2C")
@@ -1614,9 +1616,16 @@ hit_state = NodePath("../Hit")
 animation_name = "dash_stop"
 metadata/_custom_type_script = "uid://b8qhj7vtrxhp5"
 
-[node name="DashBack" type="Node" parent="PlayerStateController"]
+[node name="DashBack" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("idle_state", "go_state", "dash_back_state", "attack_5B_state", "attack_2C_state", "hit_state")]
 script = ExtResource("17_0ddoo")
+idle_state = NodePath("../Idle")
+go_state = NodePath("../Go")
+dash_back_state = NodePath(".")
+attack_5B_state = NodePath("../Attack5B")
+attack_2C_state = NodePath("../Attack2C")
+hit_state = NodePath("../Hit")
 animation_name = "dash_back"
+cancel_frame = 6
 metadata/_custom_type_script = "uid://c8o8hx8r0nr6w"
 
 [node name="Jump" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("airborne_state", "hit_state")]

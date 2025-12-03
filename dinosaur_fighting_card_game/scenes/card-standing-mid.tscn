@@ -1,16 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://npd8c1t4ms8o"]
+[gd_scene load_steps=3 format=3 uid="uid://npd8c1t4ms8o"]
 
 [ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_smffo"]
+[ext_resource type="Texture2D" uid="uid://h0gtmhoucvgh" path="res://assets/card_assets/card_ground_standing.png" id="2_ipiw8"]
 
 [node name="Card" instance=ExtResource("1_smffo")]
 card_text = "standing mid"
 move_index = "5B"
 
 [node name="Arrow" type="Polygon2D" parent="Sprite2D" index="3"]
+visible = false
 z_index = 1
 polygon = PackedVector2Array(-19.222221, -5.666666, 5.2222233, -7.4444447, 5.2222233, -16.777779, 20.333332, -2.5555553, 5.666666, 14.777779, 5.666666, 6.7777786, -17, 5)
 
 [node name="Button" type="Polygon2D" parent="Sprite2D" index="4"]
+visible = false
 z_index = 1
 color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 polygon = PackedVector2Array(-1.4444447, -4.7777767, -6.7777777, -0.7777767, -1.8888893, 4.5555573, 3.4444447, -0.33333206)
+
+[node name="Shadow" parent="Sprite2D" index="6"]
+texture = ExtResource("2_ipiw8")

@@ -3,6 +3,7 @@ class_name Idle
 
 @export var go_state : PlayerState
 @export var jump_state : PlayerState
+@export var dash_back_state : PlayerState
 
 @export var attack_5B_state : PlayerState
 @export var attack_2C_state : PlayerState
@@ -45,6 +46,8 @@ func parse_card(move_id: String) -> PlayerState:
 			return block_standing_state
 		"block_crouching":
 			return block_crouching_state
+		"dash_back":
+			return dash_back_state
 	return null
 	
 func process_physics(delta: float) -> PlayerState:

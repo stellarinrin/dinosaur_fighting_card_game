@@ -10,11 +10,16 @@ card_text = "crouching low"
 move_index = "2C"
 move_attributes = ExtResource("3_trbpp")
 
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_rg3ew")
+
 [node name="Arrow" type="Polygon2D" parent="Sprite2D" index="3"]
+visible = false
 z_index = 1
 polygon = PackedVector2Array(-10.777778, -10.111111, 7.4444447, 7.666668, 15, 6.333336, 19.444447, 27.666668, -3.2222214, 23.666668, -0.11111069, 16.11111, -18.333334, -0.33333206)
 
 [node name="Button" type="Polygon2D" parent="Sprite2D" index="4"]
+visible = false
 z_index = 1
 color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 polygon = PackedVector2Array(-0.55555534, 2.7777786, -5.4444447, 7.666668, -0.55555534, 13, 3.8888893, 7.666668)
