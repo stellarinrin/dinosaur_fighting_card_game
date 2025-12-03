@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=39 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_ycv2e"]
 [ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_c5gc3"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://dyvk47q0xunpc" path="res://enemy_health.gd" id="21_5le63"]
 [ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="22_uuy0h"]
 [ext_resource type="Script" uid="uid://b18m6mbay1006" path="res://scripts/enemy_combo_box.gd" id="25_43lh3"]
+[ext_resource type="PackedScene" uid="uid://drh0m7edewc1" path="res://scenes/card-dash.tscn" id="25_pieet"]
 [ext_resource type="PackedScene" uid="uid://cfh12t0lljtfh" path="res://player_character.tscn" id="26_7nyxr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43lh3"]
@@ -293,7 +294,7 @@ anchor_bottom = 1.0
 offset_top = 810.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.58431375, 0.7647059, 0.58431375, 1)
+color = Color(0.43529412, 0.7176471, 0.6039216, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="LevelCanvas/Stage"]
 position = Vector2(0, 9)
@@ -312,10 +313,12 @@ texture = ExtResource("16_c5gc3")
 [node name="HUD" type="CanvasLayer" parent="LevelCanvas"]
 
 [node name="Polygon2D4" type="Polygon2D" parent="LevelCanvas/HUD"]
+visible = false
 color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 polygon = PackedVector2Array(52, -42, -23, 163, 191, 237, 253, 29)
 
 [node name="Polygon2D5" type="Polygon2D" parent="LevelCanvas/HUD"]
+visible = false
 polygon = PackedVector2Array(60, -30, 0, 150, 186, 215, 236, 34)
 
 [node name="HealthBar" parent="LevelCanvas/HUD" instance=ExtResource("17_uuy0h")]
@@ -436,6 +439,30 @@ offset_top = 943.0
 offset_right = 1286.0
 offset_bottom = 1048.0
 text = "Add Low Card"
+
+[node name="Card" parent="LevelCanvas" instance=ExtResource("25_pieet")]
+offset_left = 826.0
+offset_top = 838.0
+offset_right = 920.0
+offset_bottom = 974.0
+
+[node name="Card3" parent="LevelCanvas" instance=ExtResource("25_pieet")]
+offset_left = 984.0
+offset_top = 838.0
+offset_right = 1078.0
+offset_bottom = 974.0
+
+[node name="Card4" parent="LevelCanvas" instance=ExtResource("25_pieet")]
+offset_left = 1122.0
+offset_top = 838.0
+offset_right = 1216.0
+offset_bottom = 974.0
+
+[node name="Card2" parent="LevelCanvas" instance=ExtResource("25_pieet")]
+offset_left = 678.0
+offset_top = 838.0
+offset_right = 772.0
+offset_bottom = 974.0
 
 [node name="PlayCards" type="Node2D" parent="LevelCanvas"]
 position = Vector2(-15.999992, 951)
@@ -599,10 +626,10 @@ collision_layer = 2048
 [node name="Hitbox2D" parent="LevelCanvas/PlayerCharacter2" index="7"]
 collision_mask = 768
 
-[node name="Attack5B" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="9" node_paths=PackedStringArray("block_standing_state")]
+[node name="Attack5B" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="10" node_paths=PackedStringArray("block_standing_state")]
 block_standing_state = NodePath("../../../PlayerCharacter/PlayerStateController/BlockStanding")
 
-[node name="Hit" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="13" node_paths=PackedStringArray("idle_state")]
+[node name="Hit" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="14" node_paths=PackedStringArray("idle_state")]
 idle_state = NodePath("../Attack5B")
 
 [connection signal="animation_finished" from="LevelCanvas/HUD/HUDAnimations" to="GameStateController" method="on_hud_animation_finished"]

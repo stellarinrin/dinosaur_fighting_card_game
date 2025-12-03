@@ -2,7 +2,7 @@ extends PlayerState
 class_name Dash
 
 @export var stopping_state : PlayerState
-@export var dash_state : PlayerState
+@export var go_state : PlayerState
 @export var dash_back_state : PlayerState
 @export var jump_state : PlayerState
 @export var jump_forward_state : PlayerState
@@ -26,7 +26,7 @@ func process_input(event: InputEvent) -> PlayerState:
 	if event.is_action_pressed('jump'):
 		return jump_state
 	if event.is_action_pressed('dash'):
-		return dash_state
+		return go_state
 	if event.is_action_pressed('5B'):
 		return attack_5B_state
 	if event.is_action_pressed('2C'):
@@ -44,6 +44,10 @@ func parse_card(move_id: String) -> PlayerState:
 			return attack_5B_state
 		"2C":
 			return attack_2C_state
+		"dash":
+			return go_state
+		"dash_back":
+			return dash_back_state
 	return null
 	
 func process_physics(delta: float) -> PlayerState:

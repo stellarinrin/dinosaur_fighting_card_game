@@ -3,6 +3,9 @@ class_name Attack2C
 
 @export var idle_state : PlayerState
 @export var attack_5B_state : PlayerState
+@export var attack_2C_state : PlayerState
+@export var go_state : PlayerState
+@export var dash_back_state : PlayerState
 
 func enter() -> void:
 	if parent.is_current_turn:
@@ -22,6 +25,12 @@ func parse_card(move_id: String) -> PlayerState:
 	match move_id:
 		"5B":
 			return attack_5B_state
+		"2C":
+			return attack_2C_state
+		"dash":
+			return go_state
+		"dash_back":
+			return dash_back_state
 	Events.cancellable.emit()
 	return null
 		

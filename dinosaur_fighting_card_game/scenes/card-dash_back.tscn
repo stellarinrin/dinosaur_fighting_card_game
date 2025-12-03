@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://buhylmj8hfl6x"]
+
+[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_mpiw5"]
+
+[node name="Card" instance=ExtResource("1_mpiw5")]
+move_index = "dash_back"
+
+[node name="Arrow" type="Polygon2D" parent="Sprite2D" index="4"]
+z_index = 1
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(-19.222221, -5.666666, -3.666666, -6.5555553, -3.2222214, -16.333332, 5.2222233, -7.4444447, 5.2222233, -16.777779, 20.333332, -2.5555553, 5.666666, 14.777779, 5.666666, 6.7777786, -2.333334, 15.222221, -3.2222214, 5.4444466, -17, 5)
