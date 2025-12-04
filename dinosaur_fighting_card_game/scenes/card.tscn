@@ -85,6 +85,7 @@ card_drop_sound = ExtResource("7_1yd6c")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_entered" from="." to="CardSFX" method="_on_card_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

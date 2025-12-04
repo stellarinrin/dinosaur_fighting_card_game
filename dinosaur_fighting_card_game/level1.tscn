@@ -423,22 +423,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_xm42n")
 }
 
-[node name="AddMidCard" type="Button" parent="LevelCanvas"]
-visible = false
-offset_left = 1177.0
-offset_top = 861.0
-offset_right = 1350.0
-offset_bottom = 966.0
-text = "Add Mid Card"
-
-[node name="AddLowCard" type="Button" parent="LevelCanvas"]
-visible = false
-offset_left = 1111.0
-offset_top = 943.0
-offset_right = 1286.0
-offset_bottom = 1048.0
-text = "Add Low Card"
-
 [node name="PlayerCharacter" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
 position = Vector2(456, 603)
 start_health = 11700.0
@@ -528,6 +512,7 @@ color = Color(0.8392157, 0.81960785, 1, 1)
 polygon = PackedVector2Array(-16, 687, 85, 650, 146, 46, -16, 59)
 
 [node name="ResetCards" type="Node2D" parent="LevelCanvas"]
+visible = false
 position = Vector2(2.9999998, 278)
 rotation = -0.052359886
 scale = Vector2(0.3, 1.2)
@@ -610,12 +595,6 @@ polygon = PackedVector2Array(-16, 687, 85, 650, 146, 46, -16, 59)
 
 [connection signal="animation_finished" from="LevelCanvas/HUD/HUDAnimations" to="GameStateController" method="on_hud_animation_finished"]
 [connection signal="current_animation_changed" from="LevelCanvas/HUD/HUDAnimations" to="SFXPlayer" method="_on_hud_animation_change"]
-[connection signal="button_down" from="LevelCanvas/AddMidCard" to="." method="_on_add_mid_card_button_down"]
-[connection signal="button_down" from="LevelCanvas/AddMidCard" to="SFXPlayer" method="_on_add_mid_card_button_down"]
-[connection signal="mouse_entered" from="LevelCanvas/AddMidCard" to="SFXPlayer" method="_on_add_mid_card_mouse_entered"]
-[connection signal="button_down" from="LevelCanvas/AddLowCard" to="." method="_on_add_low_card_button_down"]
-[connection signal="button_down" from="LevelCanvas/AddLowCard" to="SFXPlayer" method="_on_add_low_card_button_down"]
-[connection signal="mouse_entered" from="LevelCanvas/AddLowCard" to="SFXPlayer" method="_on_add_low_card_mouse_entered"]
 [connection signal="blocked" from="LevelCanvas/PlayerCharacter/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_blocked"]
 [connection signal="damaged" from="LevelCanvas/PlayerCharacter/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_damaged"]
 [connection signal="blocked" from="LevelCanvas/PlayerCharacter2/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_blocked"]

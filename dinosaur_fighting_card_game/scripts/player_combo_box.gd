@@ -1,4 +1,5 @@
 extends VBoxContainer
+class_name PlayerComboBox
 
 @onready var game = $"../../.."
 @onready var level_canvas = $"../.."
@@ -28,7 +29,7 @@ func _on_reset_cards_button_down() -> void:
 	var hand = get_children()
 	for card in hand:
 		card.reparent(level_canvas)
-		card.position = Vector2(913,905) #Reset Deck Position
+		card.position = Vector2(905,895) #Reset Deck Position
 
 func _on_parsed_player_card(_move_id: String) -> void:
 	remove_child(get_children().front())

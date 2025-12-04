@@ -4,6 +4,7 @@ extends Control
 @export var card_text : String
 @export var move_index : String
 @export var move_attributes : MoveAttributes
+@onready var level_canvas = $".."
 var mouse_in: bool = false
 var is_dragging: bool = false
 
@@ -69,3 +70,11 @@ func _on_mouse_entered() -> void:
 	mouse_in = true
 func _on_mouse_exited() -> void:
 	mouse_in = false
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if not (event is InputEventMouseButton):
+		return
+	if get_parent() is PlayerComboBox:
+		reparent(level_canvas)
+		position = Vector2(905,895) 

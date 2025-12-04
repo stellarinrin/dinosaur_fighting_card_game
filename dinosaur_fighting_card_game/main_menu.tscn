@@ -459,7 +459,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="Node2D" parent="MainMenu"]
 position = Vector2(960, 510)
-scale = Vector2(1, 1.2)
+scale = Vector2(1.2, 1.44)
 skew = 0.48694685
 
 [node name="TitleText" type="Label" parent="MainMenu/Title"]
@@ -468,10 +468,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -304.81177
-offset_top = -105.608665
-offset_right = 341.18823
-offset_bottom = 170.39133
+offset_left = -295.4767
+offset_top = -95.23638
+offset_right = 350.5233
+offset_bottom = 180.76361
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.2, 1)
@@ -492,10 +492,10 @@ menu = NodePath("../../LevelMenu")
 metadata/_edit_use_anchors_ = true
 
 [node name="CreditButton" parent="MainMenu" node_paths=PackedStringArray("menu") instance=ExtResource("8_8u0te")]
-offset_left = 56.0
-offset_top = 637.0
-offset_right = 684.0
-offset_bottom = 1022.0
+offset_left = 145.0
+offset_top = 711.0
+offset_right = 773.0
+offset_bottom = 1096.0
 text = "Credits"
 animation_start_time = 0.4
 menu = NodePath("../../CreditsMenu")
@@ -511,6 +511,7 @@ text = "Story"
 animation_start_time = 0.6
 
 [node name="OptionsButton" parent="MainMenu" node_paths=PackedStringArray("menu") instance=ExtResource("8_8u0te")]
+visible = false
 offset_left = 1410.0
 offset_top = 423.0
 offset_right = 2038.0
@@ -531,10 +532,10 @@ animation_start_time = 0.8
 
 [node name="Quit" parent="MainMenu" instance=ExtResource("8_8u0te")]
 modulate = Color(0.8, 0.8, 0.8, 1)
-offset_left = 888.0
-offset_top = 795.0
-offset_right = 1516.0
-offset_bottom = 1180.0
+offset_left = 1393.0
+offset_top = 670.00006
+offset_right = 2021.0
+offset_bottom = 1055.0
 scale = Vector2(0.6, 0.6)
 text = "Quit"
 animation_start_time = 1.0
@@ -656,7 +657,7 @@ anchor_bottom = 0.5
 offset_left = 941.0
 offset_top = -188.0
 offset_right = 2146.002
-offset_bottom = 142.0
+offset_bottom = 252.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Produced by Rin Estrella
