@@ -11,15 +11,12 @@ func enter() -> void:
 	var dash = dash_card.instantiate()
 	level_canvas.add_child(dash)
 	dash.position = Vector2(823,889)
-	
 	var dash_back = dash_back_card.instantiate()
 	level_canvas.add_child(dash_back)
 	dash_back.position = Vector2(660,889)
-	
 	var standing_mid = standing_mid_card.instantiate()
 	level_canvas.add_child(standing_mid)
 	standing_mid.position = Vector2(987,889)
-	
 	var standing_low = crouching_low_card.instantiate()
 	level_canvas.add_child(standing_low)
 	standing_low.position = Vector2(1140,889)

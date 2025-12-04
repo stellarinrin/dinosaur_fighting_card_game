@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene load_steps=39 format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_ycv2e"]
 [ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_c5gc3"]
@@ -6,8 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bwnwlbdlfsojt" path="res://assets/audio/PortalFX.wav" id="4_uuy0h"]
 [ext_resource type="Script" uid="uid://6twns635ben5" path="res://scripts/level_sfx_player.gd" id="5_nxqqj"]
 [ext_resource type="AudioStream" uid="uid://cvj72dmh30o4s" path="res://assets/audio/button hover.wav" id="6_5le63"]
-[ext_resource type="AudioStream" uid="uid://b86qaoht7y67j" path="res://assets/audio/card-fan-1.ogg" id="7_pieet"]
-[ext_resource type="AudioStream" uid="uid://dmej5ct7llp2r" path="res://assets/audio/cards-pack-take-out-1.ogg" id="8_qiqrj"]
+[ext_resource type="AudioStream" uid="uid://bpntw61k61n0u" path="res://assets/audio/WinSound.wav" id="7_43lh3"]
 [ext_resource type="Script" uid="uid://ce5tlqq5nxspm" path="res://scripts/game_states/game_state_controller.gd" id="9_5le63"]
 [ext_resource type="AudioStream" uid="uid://d0jx0we58ejqi" path="res://assets/audio/menu open.wav" id="9_xm42n"]
 [ext_resource type="AudioStream" uid="uid://cr7bgrvhb46w" path="res://assets/audio/turn_notification_sound.wav" id="10_5le63"]
@@ -31,6 +30,13 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43lh3"]
 size = Vector2(1925, 137)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5le63"]
+size = Vector2(132, 863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5le63"]
+bg_color = Color(0.64992, 0.96, 0.5952, 1)
+skew = Vector2(-0.1, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nxqqj"]
 line_spacing = -32.0
@@ -228,8 +234,7 @@ script = ExtResource("3_6e4cv")
 stream = ExtResource("4_uuy0h")
 script = ExtResource("5_nxqqj")
 button_hover_sound = ExtResource("6_5le63")
-reset_button_click_sound = ExtResource("7_pieet")
-play_button_click_sound = ExtResource("8_qiqrj")
+play_button_click_sound = ExtResource("7_43lh3")
 button_click_sound = ExtResource("9_xm42n")
 turn_notification_sound = ExtResource("10_5le63")
 
@@ -303,11 +308,47 @@ collision_mask = 3
 position = Vector2(952.5, 79.5)
 shape = SubResource("RectangleShape2D_43lh3")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelCanvas/Stage/StaticBody2D"]
+position = Vector2(56, -283.5)
+shape = SubResource("RectangleShape2D_5le63")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelCanvas/Stage/StaticBody2D"]
+position = Vector2(1856, -283.5)
+shape = SubResource("RectangleShape2D_5le63")
+
 [node name="Sprite2D" type="Sprite2D" parent="LevelCanvas"]
 visible = false
 modulate = Color(1, 1, 1, 0.36078432)
 position = Vector2(960, 540)
 texture = ExtResource("16_c5gc3")
+
+[node name="PlayerCharacter2" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
+modulate = Color(0.53, 0.97650003, 1, 1)
+position = Vector2(1464, 599)
+rotation = 3.1415925
+scale = Vector2(1, -1)
+start_health = 11700.0
+is_facing_left = true
+
+[node name="AnimationPlayer" parent="LevelCanvas/PlayerCharacter2" index="2"]
+speed_scale = 1.0
+
+[node name="Hurtbox2D" parent="LevelCanvas/PlayerCharacter2" index="5"]
+collision_layer = 2048
+
+[node name="Hitbox2D" parent="LevelCanvas/PlayerCharacter2" index="6"]
+collision_mask = 768
+
+[node name="Attack5B" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="10" node_paths=PackedStringArray("block_standing_state")]
+block_standing_state = NodePath("../../../PlayerCharacter/PlayerStateController/BlockStanding")
+
+[node name="Hit" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="14" node_paths=PackedStringArray("idle_state")]
+idle_state = NodePath("../Attack5B")
+
+[node name="PlayerCharacter" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
+position = Vector2(456, 603)
+start_health = 11700.0
+is_current_turn = false
 
 [node name="HUD" type="CanvasLayer" parent="LevelCanvas"]
 
@@ -334,6 +375,7 @@ scale = Vector2(-1, 1)
 [node name="ProgressBar" parent="LevelCanvas/HUD/EnemyHealthBar/Bar" index="0" node_paths=PackedStringArray("player")]
 offset_left = 215.0
 offset_right = 843.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_5le63")
 script = ExtResource("21_5le63")
 player = NodePath("../../../../PlayerCharacter2")
 
@@ -422,33 +464,6 @@ label_settings = SubResource("LabelSettings_43lh3")
 libraries = {
 &"": SubResource("AnimationLibrary_xm42n")
 }
-
-[node name="PlayerCharacter" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
-position = Vector2(456, 603)
-start_health = 11700.0
-is_current_turn = false
-
-[node name="PlayerCharacter2" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
-position = Vector2(1464, 599)
-rotation = -3.1415927
-scale = Vector2(1, -1)
-start_health = 11700.0
-is_facing_left = true
-
-[node name="AnimationPlayer" parent="LevelCanvas/PlayerCharacter2" index="3"]
-speed_scale = 1.0
-
-[node name="Hurtbox2D" parent="LevelCanvas/PlayerCharacter2" index="6"]
-collision_layer = 2048
-
-[node name="Hitbox2D" parent="LevelCanvas/PlayerCharacter2" index="7"]
-collision_mask = 768
-
-[node name="Attack5B" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="10" node_paths=PackedStringArray("block_standing_state")]
-block_standing_state = NodePath("../../../PlayerCharacter/PlayerStateController/BlockStanding")
-
-[node name="Hit" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="14" node_paths=PackedStringArray("idle_state")]
-idle_state = NodePath("../Attack5B")
 
 [node name="PlayCards" type="Node2D" parent="LevelCanvas"]
 position = Vector2(-15.999992, 951)
@@ -593,12 +608,12 @@ scale = Vector2(1, -1)
 color = Color(0.8392157, 0.81960785, 1, 1)
 polygon = PackedVector2Array(-16, 687, 85, 650, 146, 46, -16, 59)
 
-[connection signal="animation_finished" from="LevelCanvas/HUD/HUDAnimations" to="GameStateController" method="on_hud_animation_finished"]
-[connection signal="current_animation_changed" from="LevelCanvas/HUD/HUDAnimations" to="SFXPlayer" method="_on_hud_animation_change"]
-[connection signal="blocked" from="LevelCanvas/PlayerCharacter/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_blocked"]
-[connection signal="damaged" from="LevelCanvas/PlayerCharacter/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_damaged"]
 [connection signal="blocked" from="LevelCanvas/PlayerCharacter2/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_blocked"]
 [connection signal="damaged" from="LevelCanvas/PlayerCharacter2/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_damaged"]
+[connection signal="blocked" from="LevelCanvas/PlayerCharacter/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_blocked"]
+[connection signal="damaged" from="LevelCanvas/PlayerCharacter/Hurtbox2D" to="SFXPlayer" method="_on_hurtbox_2d_damaged"]
+[connection signal="animation_finished" from="LevelCanvas/HUD/HUDAnimations" to="GameStateController" method="on_hud_animation_finished"]
+[connection signal="current_animation_changed" from="LevelCanvas/HUD/HUDAnimations" to="SFXPlayer" method="_on_hud_animation_change"]
 [connection signal="mouse_entered" from="LevelCanvas/PlayCards/PlayCardsButton" to="SFXPlayer" method="_on_button_hover"]
 [connection signal="pressed" from="LevelCanvas/PlayCards/PlayCardsButton" to="." method="_on_play_hand_button_down"]
 [connection signal="pressed" from="LevelCanvas/PlayCards/PlayCardsButton" to="SFXPlayer" method="_on_play_cards"]
@@ -610,10 +625,10 @@ polygon = PackedVector2Array(-16, 687, 85, 650, 146, 46, -16, 59)
 [connection signal="pressed" from="LevelCanvas/HomeButton/Button" to="SFXPlayer" method="_on_button_pressed"]
 [connection signal="area_entered" from="LevelCanvas/EnemyComboBox/ComboBoxArea" to="LevelCanvas/EnemyComboBox/EnemyComboBoxContainer" method="_on_combo_box_area_entered"]
 
+[editable path="LevelCanvas/PlayerCharacter2"]
+[editable path="LevelCanvas/PlayerCharacter"]
 [editable path="LevelCanvas/HUD/HealthBar"]
 [editable path="LevelCanvas/HUD/EnemyHealthBar"]
-[editable path="LevelCanvas/PlayerCharacter"]
-[editable path="LevelCanvas/PlayerCharacter2"]
 [editable path="LevelCanvas/PlayCards/PlayCardsButton"]
 [editable path="LevelCanvas/ResetCards/ResetCardButtonsButton"]
 [editable path="LevelCanvas/HomeButton/Button"]

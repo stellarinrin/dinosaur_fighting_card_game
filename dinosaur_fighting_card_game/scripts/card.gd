@@ -4,6 +4,7 @@ extends Control
 @export var card_text : String
 @export var move_index : String
 @export var move_attributes : MoveAttributes
+@export var card_reset_sound : AudioStream
 @onready var level_canvas = $".."
 var mouse_in: bool = false
 var is_dragging: bool = false
@@ -77,4 +78,6 @@ func _on_gui_input(event: InputEvent) -> void:
 		return
 	if get_parent() is PlayerComboBox:
 		reparent(level_canvas)
+		%CardSFX.stream = card_reset_sound
+		%CardSFX.play()
 		position = Vector2(905,895) 

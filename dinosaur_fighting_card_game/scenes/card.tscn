@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkii041wwh5sn"]
+[gd_scene load_steps=12 format=3 uid="uid://bkii041wwh5sn"]
 
 [ext_resource type="Texture2D" uid="uid://h0gtmhoucvgh" path="res://assets/card_assets/card_ground_standing.png" id="1_grwcn"]
 [ext_resource type="Script" uid="uid://djxysx7sbuwty" path="res://scripts/card.gd" id="1_tvcam"]
 [ext_resource type="Resource" uid="uid://cy088d5m4asxl" path="res://resources/standing_mid.tres" id="3_1ggeu"]
+[ext_resource type="AudioStream" uid="uid://dom24xd15q8f4" path="res://assets/audio/card_reset.wav" id="4_1yd6c"]
 [ext_resource type="Script" uid="uid://16u5tl8q8h18" path="res://scripts/card_sfx_player.gd" id="4_6ligt"]
 [ext_resource type="Texture2D" uid="uid://b3jirmbixrw1w" path="res://assets/card_assets/card_forward_dash.png" id="4_8w5pg"]
-[ext_resource type="AudioStream" uid="uid://beql51ds4ifvb" path="res://assets/audio/card-slide-7.ogg" id="5_8w5pg"]
-[ext_resource type="AudioStream" uid="uid://dvldxprtn1jt" path="res://assets/audio/card-shove-2.ogg" id="7_1yd6c"]
+[ext_resource type="AudioStream" uid="uid://c7iil58x820aq" path="res://assets/audio/card_hover.wav" id="6_nvopj"]
+[ext_resource type="AudioStream" uid="uid://c4f5tl0o5dq5c" path="res://assets/audio/card_pickup.wav" id="7_1yd6c"]
+[ext_resource type="AudioStream" uid="uid://dfia78bprxl4j" path="res://assets/audio/card_drop.wav" id="8_we8pq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ktuci"]
 font_size = 9
@@ -26,6 +28,7 @@ offset_bottom = 136.0
 script = ExtResource("1_tvcam")
 card_texture = ExtResource("1_grwcn")
 move_attributes = ExtResource("3_1ggeu")
+card_reset_sound = ExtResource("4_1yd6c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -79,9 +82,9 @@ shape = SubResource("RectangleShape2D_6u4wf")
 unique_name_in_owner = true
 pitch_scale = 0.5
 script = ExtResource("4_6ligt")
-card_hover_sound = ExtResource("5_8w5pg")
-card_grab_sound = ExtResource("5_8w5pg")
-card_drop_sound = ExtResource("7_1yd6c")
+card_hover_sound = ExtResource("6_nvopj")
+card_grab_sound = ExtResource("7_1yd6c")
+card_drop_sound = ExtResource("8_we8pq")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

@@ -26,7 +26,7 @@ func process_frame(delta: float) -> PlayerState:
 	if frame_count == cancel_frame:
 		Events.cancellable.emit()
 		
-	if frame_count == 8:
+	if frame_count == 20:
 		parent.velocity.x = 0
 		return idle_state
 	return null
