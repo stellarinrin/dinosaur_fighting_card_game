@@ -619,28 +619,28 @@ level = "res://level1.tscn"
 modulate = Color(0.6, 0.6, 0.6, 1)
 layout_mode = 2
 disabled = true
-text = "Level 2: [Locked]"
+text = "Level 2: [Available in Full Version]"
 animation_start_time = 0.2
 
 [node name="Level3" parent="LevelMenu/VBoxContainer" instance=ExtResource("10_mg3m2")]
 modulate = Color(0.6, 0.6, 0.6, 1)
 layout_mode = 2
 disabled = true
-text = "Level 3: [Locked]"
+text = "Level 3: [Available in Full Version]"
 animation_start_time = 0.1
 
 [node name="Level4" parent="LevelMenu/VBoxContainer" instance=ExtResource("10_mg3m2")]
 modulate = Color(0.6, 0.6, 0.6, 1)
 layout_mode = 2
 disabled = true
-text = "Level 4: [Locked]"
+text = "Level 4: [Available in Full Version]"
 animation_start_time = 0.4
 
 [node name="Level5" parent="LevelMenu/VBoxContainer" instance=ExtResource("10_mg3m2")]
 modulate = Color(0.6, 0.6, 0.6, 1)
 layout_mode = 2
 disabled = true
-text = "Level 5: [Locked]"
+text = "Level 5: [Available in Full Version]"
 animation_start_time = 0.6
 
 [node name="CreditsMenu" type="CanvasLayer" parent="."]
@@ -657,11 +657,12 @@ anchor_bottom = 0.5
 offset_left = 941.0
 offset_top = -188.0
 offset_right = 2146.002
-offset_bottom = 252.0
+offset_bottom = 362.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Produced by Rin Estrella
-Sound Design by Kees Bassett
+Sound Design and Sprite Art
+by Kees Bassett
 Music by nagumorizu
 Developed with Godot Engine"
 label_settings = SubResource("LabelSettings_x5p1p")
