@@ -1457,6 +1457,7 @@ metadata/_custom_type_script = "uid://0l4qsvm813i6"
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_5up26")
+max_health = 6000.0
 
 [node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
 volume_db = 10.0
@@ -1474,7 +1475,6 @@ offset = Vector2(-96, -23)
 libraries = {
 &"": SubResource("AnimationLibrary_ha3ud")
 }
-speed_scale = 0.75
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(102.5, 68.5)
@@ -1553,7 +1553,7 @@ attack_5B_state = NodePath("../Attack5B")
 attack_2C_state = NodePath("../Attack2C")
 hit_state = NodePath("../Hit")
 animation_name = "dash"
-cancel_frame = 6
+cancel_frame = 4
 metadata/_custom_type_script = "uid://dfo0wydgc2fgh"
 
 [node name="Stopping" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("idle_state", "go_state", "dash_back_state", "jump_state", "attack_5B_state", "attack_2C_state", "block_standing_state", "block_crouching_state", "hit_state")]
@@ -1579,7 +1579,7 @@ attack_5B_state = NodePath("../Attack5B")
 attack_2C_state = NodePath("../Attack2C")
 hit_state = NodePath("../Hit")
 animation_name = "dash_back"
-cancel_frame = 15
+cancel_frame = 7
 metadata/_custom_type_script = "uid://c8o8hx8r0nr6w"
 
 [node name="Jump" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("airborne_state", "hit_state")]
@@ -1623,7 +1623,7 @@ attack_5B_state = NodePath(".")
 go_state = NodePath("../Go")
 dash_back_state = NodePath("../DashBack")
 animation_name = "5B"
-cancel_frame = 22
+cancel_frame = 20
 metadata/_custom_type_script = "uid://bo6elas36ycbf"
 
 [node name="Attack2C" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("idle_state", "attack_5B_state", "attack_2C_state", "go_state", "dash_back_state")]
@@ -1634,7 +1634,7 @@ attack_2C_state = NodePath(".")
 go_state = NodePath("../Go")
 dash_back_state = NodePath("../DashBack")
 animation_name = "2C"
-cancel_frame = 24
+cancel_frame = 21
 metadata/_custom_type_script = "uid://7vu1fkvkghbn"
 
 [node name="BlockStanding" type="Node" parent="PlayerStateController" node_paths=PackedStringArray("idle_state", "go_state", "jump_state", "attack_5B_state", "attack_2C_state", "block_crouching_state", "block_standing_state", "hit_state")]

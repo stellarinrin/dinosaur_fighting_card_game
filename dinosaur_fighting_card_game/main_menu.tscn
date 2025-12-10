@@ -483,6 +483,7 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="LevelButton" parent="MainMenu" node_paths=PackedStringArray("menu") instance=ExtResource("8_8u0te")]
+unique_name_in_owner = true
 offset_left = 440.0
 offset_top = 55.999996
 offset_right = 1068.0
@@ -492,6 +493,7 @@ menu = NodePath("../../LevelMenu")
 metadata/_edit_use_anchors_ = true
 
 [node name="CreditButton" parent="MainMenu" node_paths=PackedStringArray("menu") instance=ExtResource("8_8u0te")]
+unique_name_in_owner = true
 offset_left = 145.0
 offset_top = 711.0
 offset_right = 773.0
