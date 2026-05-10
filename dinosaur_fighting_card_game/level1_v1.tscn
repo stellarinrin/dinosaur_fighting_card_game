@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bd5j326o1s54n"]
+[gd_scene format=3 uid="uid://bd5j326o1s54n"]
 
 [ext_resource type="Script" uid="uid://dv14l1byshnse" path="res://scripts/game.gd" id="1_ycv2e"]
 [ext_resource type="AudioStream" uid="uid://clc2d7oeaypb" path="res://assets/audio/Le-Cirque-du-Diable.mp3" id="2_c5gc3"]
@@ -220,17 +220,17 @@ outline_size = 12
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(132, 634)
 
-[node name="Level1" type="Node2D"]
+[node name="Level1" type="Node2D" unique_id=93235575]
 y_sort_enabled = true
 script = ExtResource("1_ycv2e")
 
-[node name="BGMPLayer" type="AudioStreamPlayer2D" parent="."]
+[node name="BGMPLayer" type="AudioStreamPlayer2D" parent="." unique_id=1246824563]
 stream = ExtResource("2_c5gc3")
 autoplay = true
 parameters/looping = true
 script = ExtResource("3_6e4cv")
 
-[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1884631747]
 stream = ExtResource("4_uuy0h")
 script = ExtResource("5_nxqqj")
 button_hover_sound = ExtResource("6_5le63")
@@ -238,52 +238,52 @@ play_button_click_sound = ExtResource("7_43lh3")
 button_click_sound = ExtResource("9_xm42n")
 turn_notification_sound = ExtResource("10_5le63")
 
-[node name="GameStateController" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+[node name="GameStateController" type="Node" parent="." unique_id=1378416957 node_paths=PackedStringArray("starting_state")]
 script = ExtResource("9_5le63")
 starting_state = NodePath("EnemyInput")
 
-[node name="PlayerInput" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_player_card_state")]
+[node name="PlayerInput" type="Node" parent="GameStateController" unique_id=2028530046 node_paths=PackedStringArray("parse_player_card_state")]
 script = ExtResource("10_pieet")
 parse_player_card_state = NodePath("../ParsePlayerCard")
 
-[node name="ParsePlayerCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_player_card_state", "transition_to_enemy_state")]
+[node name="ParsePlayerCard" type="Node" parent="GameStateController" unique_id=1502324117 node_paths=PackedStringArray("parse_player_card_state", "transition_to_enemy_state")]
 script = ExtResource("11_7nyxr")
 parse_player_card_state = NodePath(".")
 transition_to_enemy_state = NodePath("../TransitionToEnemy")
 
-[node name="TransitionToEnemy" type="Node" parent="GameStateController" node_paths=PackedStringArray("enemy_input_state")]
+[node name="TransitionToEnemy" type="Node" parent="GameStateController" unique_id=620870815 node_paths=PackedStringArray("enemy_input_state")]
 script = ExtResource("17_43lh3")
 enemy_input_state = NodePath("../EnemyInput")
 metadata/_custom_type_script = "uid://odv0ajcx4mkj"
 
-[node name="EnemyInput" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_enemy_card_state")]
+[node name="EnemyInput" type="Node" parent="GameStateController" unique_id=1550993518 node_paths=PackedStringArray("parse_enemy_card_state")]
 script = ExtResource("13_52iny")
 parse_enemy_card_state = NodePath("../ParseEnemyCard")
 frames_before_enemy_play = 120
 
-[node name="ParseEnemyCard" type="Node" parent="GameStateController" node_paths=PackedStringArray("parse_enemy_card_state", "transition_to_player")]
+[node name="ParseEnemyCard" type="Node" parent="GameStateController" unique_id=1064969352 node_paths=PackedStringArray("parse_enemy_card_state", "transition_to_player")]
 script = ExtResource("13_43lh3")
 parse_enemy_card_state = NodePath(".")
 transition_to_player = NodePath("../TransitionToPlayer")
 
-[node name="TransitionToPlayer" type="Node" parent="GameStateController" node_paths=PackedStringArray("player_input_state")]
+[node name="TransitionToPlayer" type="Node" parent="GameStateController" unique_id=1377163155 node_paths=PackedStringArray("player_input_state")]
 script = ExtResource("15_5le63")
 player_input_state = NodePath("../PlayerInput")
 metadata/_custom_type_script = "uid://odv0ajcx4mkj"
 
-[node name="Pause" type="Node" parent="GameStateController"]
+[node name="Pause" type="Node" parent="GameStateController" unique_id=2131547769]
 script = ExtResource("11_qiqrj")
 
-[node name="Failure" type="Node" parent="GameStateController"]
+[node name="Failure" type="Node" parent="GameStateController" unique_id=22932276]
 script = ExtResource("14_8652m")
 
-[node name="Success" type="Node" parent="GameStateController"]
+[node name="Success" type="Node" parent="GameStateController" unique_id=1159218095]
 script = ExtResource("15_jy3fw")
 
-[node name="LevelCanvas" type="CanvasLayer" parent="."]
+[node name="LevelCanvas" type="CanvasLayer" parent="." unique_id=1653699070]
 unique_name_in_owner = true
 
-[node name="Background" type="ColorRect" parent="LevelCanvas"]
+[node name="Background" type="ColorRect" parent="LevelCanvas" unique_id=961947574]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -291,7 +291,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.7882353, 0.8745098, 0.9607843, 1)
 
-[node name="Stage" type="ColorRect" parent="LevelCanvas"]
+[node name="Stage" type="ColorRect" parent="LevelCanvas" unique_id=1345948332]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -300,38 +300,35 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.43529412, 0.7176471, 0.6039216, 1)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="LevelCanvas/Stage"]
+[node name="StaticBody2D" type="StaticBody2D" parent="LevelCanvas/Stage" unique_id=701252058]
 position = Vector2(0, 9)
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCanvas/Stage/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCanvas/Stage/StaticBody2D" unique_id=1887779888]
 position = Vector2(952.5, 79.5)
 shape = SubResource("RectangleShape2D_43lh3")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelCanvas/Stage/StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelCanvas/Stage/StaticBody2D" unique_id=1917008647]
 position = Vector2(56, -283.5)
 shape = SubResource("RectangleShape2D_5le63")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelCanvas/Stage/StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LevelCanvas/Stage/StaticBody2D" unique_id=1647137907]
 position = Vector2(1856, -283.5)
 shape = SubResource("RectangleShape2D_5le63")
 
-[node name="Sprite2D" type="Sprite2D" parent="LevelCanvas"]
+[node name="Sprite2D" type="Sprite2D" parent="LevelCanvas" unique_id=2013367986]
 visible = false
 modulate = Color(1, 1, 1, 0.36078432)
 position = Vector2(960, 540)
 texture = ExtResource("16_c5gc3")
 
-[node name="PlayerCharacter2" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
+[node name="PlayerCharacter2" parent="LevelCanvas" unique_id=80069197 instance=ExtResource("26_7nyxr")]
 modulate = Color(0.53, 0.97650003, 1, 1)
 position = Vector2(1464, 599)
 rotation = 3.1415925
 scale = Vector2(1, -1)
 start_health = 11700.0
 is_facing_left = true
-
-[node name="AnimationPlayer" parent="LevelCanvas/PlayerCharacter2" index="2"]
-speed_scale = 1.0
 
 [node name="Hurtbox2D" parent="LevelCanvas/PlayerCharacter2" index="5"]
 collision_layer = 2048
@@ -345,30 +342,30 @@ block_standing_state = NodePath("../../../PlayerCharacter/PlayerStateController/
 [node name="Hit" parent="LevelCanvas/PlayerCharacter2/PlayerStateController" index="14" node_paths=PackedStringArray("idle_state")]
 idle_state = NodePath("../Attack5B")
 
-[node name="PlayerCharacter" parent="LevelCanvas" instance=ExtResource("26_7nyxr")]
+[node name="PlayerCharacter" parent="LevelCanvas" unique_id=2055846373 instance=ExtResource("26_7nyxr")]
 position = Vector2(456, 603)
 start_health = 11700.0
 is_current_turn = false
 
-[node name="HUD" type="CanvasLayer" parent="LevelCanvas"]
+[node name="HUD" type="CanvasLayer" parent="LevelCanvas" unique_id=1552123429]
 
-[node name="Polygon2D4" type="Polygon2D" parent="LevelCanvas/HUD"]
+[node name="Polygon2D4" type="Polygon2D" parent="LevelCanvas/HUD" unique_id=294498733]
 visible = false
 color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 polygon = PackedVector2Array(52, -42, -23, 163, 191, 237, 253, 29)
 
-[node name="Polygon2D5" type="Polygon2D" parent="LevelCanvas/HUD"]
+[node name="Polygon2D5" type="Polygon2D" parent="LevelCanvas/HUD" unique_id=747357138]
 visible = false
 polygon = PackedVector2Array(60, -30, 0, 150, 186, 215, 236, 34)
 
-[node name="HealthBar" parent="LevelCanvas/HUD" instance=ExtResource("17_uuy0h")]
+[node name="HealthBar" parent="LevelCanvas/HUD" unique_id=637863284 instance=ExtResource("17_uuy0h")]
 position = Vector2(194, 88)
 
 [node name="ProgressBar" parent="LevelCanvas/HUD/HealthBar/Bar" index="0" node_paths=PackedStringArray("player")]
 script = ExtResource("18_nxqqj")
 player = NodePath("../../../../PlayerCharacter")
 
-[node name="EnemyHealthBar" parent="LevelCanvas/HUD" instance=ExtResource("17_uuy0h")]
+[node name="EnemyHealthBar" parent="LevelCanvas/HUD" unique_id=571336151 instance=ExtResource("17_uuy0h")]
 position = Vector2(1724, 88)
 scale = Vector2(-1, 1)
 
@@ -379,7 +376,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_5le63")
 script = ExtResource("21_5le63")
 player = NodePath("../../../../PlayerCharacter2")
 
-[node name="WinScreen" type="ColorRect" parent="LevelCanvas/HUD"]
+[node name="WinScreen" type="ColorRect" parent="LevelCanvas/HUD" unique_id=103387563]
 visible = false
 z_index = 2
 anchors_preset = 15
@@ -389,7 +386,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.6865522, 0.5727201, 0.8814347, 1)
 
-[node name="MenuTitle" type="Label" parent="LevelCanvas/HUD/WinScreen"]
+[node name="MenuTitle" type="Label" parent="LevelCanvas/HUD/WinScreen" unique_id=1279228341]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -406,7 +403,7 @@ text = "Level Clear!"
 label_settings = SubResource("LabelSettings_nxqqj")
 horizontal_alignment = 2
 
-[node name="LoseScreen" type="ColorRect" parent="LevelCanvas/HUD"]
+[node name="LoseScreen" type="ColorRect" parent="LevelCanvas/HUD" unique_id=730273367]
 visible = false
 z_index = 2
 anchors_preset = 15
@@ -416,7 +413,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.6865522, 0.5727201, 0.8814347, 1)
 
-[node name="MenuTitle" type="Label" parent="LevelCanvas/HUD/LoseScreen"]
+[node name="MenuTitle" type="Label" parent="LevelCanvas/HUD/LoseScreen" unique_id=487852456]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -433,12 +430,12 @@ text = "You Failed!"
 label_settings = SubResource("LabelSettings_nxqqj")
 horizontal_alignment = 2
 
-[node name="PlayerNotification" type="Polygon2D" parent="LevelCanvas/HUD"]
+[node name="PlayerNotification" type="Polygon2D" parent="LevelCanvas/HUD" unique_id=347893032]
 position = Vector2(-840, 31)
 color = Color(0.60768, 0.4392, 0.72, 0)
 polygon = PackedVector2Array(225, 243, 792, 231, 775, 345, 245, 331)
 
-[node name="Label" type="Label" parent="LevelCanvas/HUD/PlayerNotification"]
+[node name="Label" type="Label" parent="LevelCanvas/HUD/PlayerNotification" unique_id=63553601]
 offset_left = 304.0
 offset_top = 242.0
 offset_right = 726.0
@@ -446,13 +443,13 @@ offset_bottom = 330.0
 text = "PLAYER TURN"
 label_settings = SubResource("LabelSettings_43lh3")
 
-[node name="EnemyNotification" type="Polygon2D" parent="LevelCanvas/HUD"]
+[node name="EnemyNotification" type="Polygon2D" parent="LevelCanvas/HUD" unique_id=1635735150]
 position = Vector2(2731, 27)
 scale = Vector2(-1, 1)
 color = Color(0.60768, 0.4392, 0.72, 0)
 polygon = PackedVector2Array(225, 243, 792, 231, 775, 345, 245, 331)
 
-[node name="Label" type="Label" parent="LevelCanvas/HUD/EnemyNotification"]
+[node name="Label" type="Label" parent="LevelCanvas/HUD/EnemyNotification" unique_id=573021392]
 offset_left = 308.0
 offset_top = 246.0
 offset_right = 730.0
@@ -460,17 +457,15 @@ offset_bottom = 335.0
 text = "ИЯUT YMƎИƎ"
 label_settings = SubResource("LabelSettings_43lh3")
 
-[node name="HUDAnimations" type="AnimationPlayer" parent="LevelCanvas/HUD"]
-libraries = {
-&"": SubResource("AnimationLibrary_xm42n")
-}
+[node name="HUDAnimations" type="AnimationPlayer" parent="LevelCanvas/HUD" unique_id=37969379]
+libraries/ = SubResource("AnimationLibrary_xm42n")
 
-[node name="PlayCards" type="Node2D" parent="LevelCanvas"]
+[node name="PlayCards" type="Node2D" parent="LevelCanvas" unique_id=1650475320]
 position = Vector2(-15.999992, 951)
 rotation = -0.052359886
 scale = Vector2(0.6, 1.44)
 
-[node name="PlayCardsButton" parent="LevelCanvas/PlayCards" instance=ExtResource("22_uuy0h")]
+[node name="PlayCardsButton" parent="LevelCanvas/PlayCards" unique_id=5982726 instance=ExtResource("22_uuy0h")]
 text = "Play Cards"
 
 [node name="ButtonName" parent="LevelCanvas/PlayCards/PlayCardsButton" index="5"]
@@ -482,7 +477,7 @@ scale = Vector2(2, 0.833)
 label_settings = SubResource("LabelSettings_5le63")
 horizontal_alignment = 1
 
-[node name="PlayerComboBox" type="Control" parent="LevelCanvas"]
+[node name="PlayerComboBox" type="Control" parent="LevelCanvas" unique_id=729562864]
 y_sort_enabled = true
 layout_mode = 3
 anchors_preset = 0
@@ -492,7 +487,7 @@ offset_right = 35.0
 offset_bottom = 282.0
 size_flags_horizontal = 3
 
-[node name="PlayerComboBoxContainer" type="VBoxContainer" parent="LevelCanvas/PlayerComboBox"]
+[node name="PlayerComboBoxContainer" type="VBoxContainer" parent="LevelCanvas/PlayerComboBox" unique_id=1011815360]
 unique_name_in_owner = true
 y_sort_enabled = true
 layout_mode = 1
@@ -509,30 +504,30 @@ theme_override_constants/separation = -8
 alignment = 1
 script = ExtResource("18_6tyme")
 
-[node name="ComboBoxArea" type="Area2D" parent="LevelCanvas/PlayerComboBox"]
+[node name="ComboBoxArea" type="Area2D" parent="LevelCanvas/PlayerComboBox" unique_id=254881870]
 y_sort_enabled = true
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCanvas/PlayerComboBox/ComboBoxArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCanvas/PlayerComboBox/ComboBoxArea" unique_id=1900813916]
 y_sort_enabled = true
 position = Vector2(46, 360)
 shape = SubResource("RectangleShape2D_e2o6t")
 
-[node name="ComboBoxBorder" type="Polygon2D" parent="LevelCanvas/PlayerComboBox"]
+[node name="ComboBoxBorder" type="Polygon2D" parent="LevelCanvas/PlayerComboBox" unique_id=872978771]
 color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 polygon = PackedVector2Array(-35, 719, 104, 669, 181, -11, -35, 3)
 
-[node name="ComboBox" type="Polygon2D" parent="LevelCanvas/PlayerComboBox"]
+[node name="ComboBox" type="Polygon2D" parent="LevelCanvas/PlayerComboBox" unique_id=759016121]
 color = Color(0.8392157, 0.81960785, 1, 1)
 polygon = PackedVector2Array(-16, 687, 85, 650, 146, 46, -16, 59)
 
-[node name="ResetCards" type="Node2D" parent="LevelCanvas"]
+[node name="ResetCards" type="Node2D" parent="LevelCanvas" unique_id=105096396]
 visible = false
 position = Vector2(2.9999998, 278)
 rotation = -0.052359886
 scale = Vector2(0.3, 1.2)
 
-[node name="ResetCardButtonsButton" parent="LevelCanvas/ResetCards" instance=ExtResource("22_uuy0h")]
+[node name="ResetCardButtonsButton" parent="LevelCanvas/ResetCards" unique_id=2109090156 instance=ExtResource("22_uuy0h")]
 offset_left = 3.1153448
 offset_top = -3.8892512
 offset_right = 859.11536
@@ -548,11 +543,11 @@ scale = Vector2(3, 0.833)
 label_settings = SubResource("LabelSettings_5le63")
 horizontal_alignment = 1
 
-[node name="HomeButton" type="Node2D" parent="LevelCanvas"]
+[node name="HomeButton" type="Node2D" parent="LevelCanvas" unique_id=51902301]
 position = Vector2(873, 78)
 scale = Vector2(0.25, 1)
 
-[node name="Button" parent="LevelCanvas/HomeButton" instance=ExtResource("22_uuy0h")]
+[node name="Button" parent="LevelCanvas/HomeButton" unique_id=1946992741 instance=ExtResource("22_uuy0h")]
 text = "Home"
 level = "res://main_menu.tscn"
 
@@ -561,7 +556,7 @@ offset_right = -624.7501
 scale = Vector2(4, 1)
 horizontal_alignment = 1
 
-[node name="EnemyComboBox" type="Control" parent="LevelCanvas"]
+[node name="EnemyComboBox" type="Control" parent="LevelCanvas" unique_id=719646363]
 y_sort_enabled = true
 layout_mode = 3
 anchors_preset = 0
@@ -571,7 +566,7 @@ offset_right = 1885.0
 offset_bottom = 282.0
 size_flags_horizontal = 3
 
-[node name="EnemyComboBoxContainer" type="VBoxContainer" parent="LevelCanvas/EnemyComboBox"]
+[node name="EnemyComboBoxContainer" type="VBoxContainer" parent="LevelCanvas/EnemyComboBox" unique_id=1588073308]
 unique_name_in_owner = true
 y_sort_enabled = true
 layout_mode = 1
@@ -587,22 +582,22 @@ theme_override_constants/separation = -8
 alignment = 1
 script = ExtResource("25_43lh3")
 
-[node name="ComboBoxArea" type="Area2D" parent="LevelCanvas/EnemyComboBox"]
+[node name="ComboBoxArea" type="Area2D" parent="LevelCanvas/EnemyComboBox" unique_id=460629690]
 y_sort_enabled = true
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCanvas/EnemyComboBox/ComboBoxArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCanvas/EnemyComboBox/ComboBoxArea" unique_id=1180817567]
 y_sort_enabled = true
 position = Vector2(-39, 362)
 shape = SubResource("RectangleShape2D_e2o6t")
 
-[node name="ComboBoxBorder" type="Polygon2D" parent="LevelCanvas/EnemyComboBox"]
+[node name="ComboBoxBorder" type="Polygon2D" parent="LevelCanvas/EnemyComboBox" unique_id=552751449]
 rotation = -3.1415927
 scale = Vector2(1, -1)
 color = Color(0.6039216, 0.43529412, 0.7176471, 1)
 polygon = PackedVector2Array(-35, 719, 104, 669, 181, -11, -35, 3)
 
-[node name="ComboBox" type="Polygon2D" parent="LevelCanvas/EnemyComboBox"]
+[node name="ComboBox" type="Polygon2D" parent="LevelCanvas/EnemyComboBox" unique_id=1060273497]
 rotation = -3.1415927
 scale = Vector2(1, -1)
 color = Color(0.8392157, 0.81960785, 1, 1)

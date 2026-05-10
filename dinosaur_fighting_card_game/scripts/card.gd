@@ -1,11 +1,12 @@
 extends Control
+class_name Card
 
 @export var card_texture:  Texture2D
 @export var card_text : String
 @export var move_index : String
 @export var move_attributes : MoveAttributes
 @export var card_reset_sound : AudioStream
-@onready var level_canvas = $".."
+@export var card_area : CanvasLayer
 var mouse_in: bool = false
 var is_dragging: bool = false
 
@@ -72,12 +73,14 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	mouse_in = false
 
-
+# Remove card on click from combo box
 func _on_gui_input(event: InputEvent) -> void:
 	if not (event is InputEventMouseButton):
 		return
-	if get_parent() is PlayerComboBox:
-		reparent(level_canvas)
+	if get_parent().get_parent() is ComboBox:
+		reparent(card_area)
 		%CardSFX.stream = card_reset_sound
 		%CardSFX.play()
-		position = Vector2(905,895) 
+		position = Vector2(0,0) 
+		
+# Reposition card if out of bounds (maybe use an area2d either in the level or on the card itself

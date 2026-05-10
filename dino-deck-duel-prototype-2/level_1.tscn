@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://blmc8vpu7f72x"]
+
+[ext_resource type="Script" uid="uid://boxhn7tkww8c5" path="res://level_1.gd" id="1_3hls8"]
+
+[node name="Level1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3hls8")
+
+[node name="Attack" type="Button" parent="."]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 433.0
+offset_right = 328.0
+offset_bottom = 501.0
+text = "attack"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 26.0
+offset_right = 505.0
+offset_bottom = 53.0
+value = 100.0
+
+[node name="PlayHand" type="Button" parent="."]
+layout_mode = 0
+offset_left = 825.0
+offset_top = 426.0
+offset_right = 937.0
+offset_bottom = 485.0
+text = "play hand"
+
+[connection signal="button_down" from="Attack" to="." method="_on_attack_button_down"]
+[connection signal="pressed" from="PlayHand" to="." method="_on_play_hand_pressed"]
