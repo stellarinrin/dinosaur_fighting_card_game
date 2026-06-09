@@ -32,10 +32,13 @@ func _change_scale(desired_scale: Vector2):
 	current_goal_scale = desired_scale
 
 func drag_logic(delta: float) -> void:
+	var screen_size = get_viewport_rect().size
+	var mouse_pos = get_global_mouse_position()
 	if (mouse_in or is_dragging) and (MouseBrain.node_being_dragged == null or MouseBrain.node_being_dragged == self):
 		if Input.is_action_pressed("click"):
 			$Area2D.monitorable = true
-			global_position = lerp(global_position, get_global_mouse_position() - (size/2.0), 22.0 * delta)
+			global_position = lerp(global_position, Vector2(clamp(mouse_pos.x - (size.x/2.0), 0, screen_size.x - 100), 
+					clamp(mouse_pos.y - (size.x/2.0), 0, screen_size.y - 175)), 22.0 * delta)
 			_change_scale(Vector2(2.3, 2.3))
 			_set_rotation(delta)
 			$Sprite2D.z_index = 100
@@ -44,6 +47,8 @@ func drag_logic(delta: float) -> void:
 				%CardSFX.play()
 			is_dragging = true
 			MouseBrain.node_being_dragged = self
+			#global_position = Vector2(clamp(get_global_mouse_position().x, 0, get_viewport_rect().size.x-100),
+				#clamp(get_global_mouse_position().y, 0, get_viewport_rect().size.y - 175))
 			$Sprite2D/Shadow.position = Vector2(0, 3).rotated($Sprite2D.rotation)
 			
 		else:
