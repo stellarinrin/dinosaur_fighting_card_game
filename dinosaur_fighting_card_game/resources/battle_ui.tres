@@ -1,0 +1,21 @@
+[gd_resource type="Theme" format=3 uid="uid://s8gg5af6fj5u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_la8cv"]
+bg_color = Color(0.8392157, 0.81960785, 1, 1)
+skew = Vector2(0.2, 0)
+border_color = Color(0.8392157, 0.81960785, 1, 1)
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my1ds"]
+bg_color = Color(0.6039216, 0.43529412, 0.7176471, 1)
+skew = Vector2(0.2, 0)
+border_width_left = 4
+border_width_bottom = 4
+border_color = Color(0.8392157, 0.81960785, 1, 1)
+corner_radius_bottom_left = 16
+
+[resource]
+default_font_size = 32
+ProgressBar/font_sizes/font_size = 32
+ProgressBar/styles/background = SubResource("StyleBoxFlat_la8cv")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_my1ds")
