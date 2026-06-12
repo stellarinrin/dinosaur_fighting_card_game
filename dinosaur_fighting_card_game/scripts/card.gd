@@ -37,8 +37,8 @@ func drag_logic(delta: float) -> void:
 	if (mouse_in or is_dragging) and (MouseBrain.node_being_dragged == null or MouseBrain.node_being_dragged == self):
 		if Input.is_action_pressed("click"):
 			$Area2D.monitorable = true
-			global_position = lerp(global_position, Vector2(clamp(mouse_pos.x - (size.x/2.0), 0, screen_size.x - 100), 
-					clamp(mouse_pos.y - (size.x/2.0), 0, screen_size.y - 175)), 22.0 * delta)
+			global_position = lerp(global_position, Vector2(clamp(mouse_pos.x - (size.x/2.0), 0, screen_size.x - 84), 
+					clamp(mouse_pos.y - (size.x/2.0), 0, screen_size.y - 132)), 22.0 * delta)
 			_change_scale(Vector2(2.3, 2.3))
 			_set_rotation(delta)
 			$Sprite2D.z_index = 100

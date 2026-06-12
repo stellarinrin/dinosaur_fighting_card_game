@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cjgceq2cb6ec1"]
+
+[ext_resource type="PackedScene" uid="uid://ldgtx6g3s48u" path="res://scenes/combo_box.tscn" id="1_jcq1u"]
+
+[node name="ComboBox2" unique_id=877803427 instance=ExtResource("1_jcq1u")]
+
+[node name="HBoxContainer" parent="." index="0" unique_id=302845770]
+offset_left = 783.0
+offset_right = 926.0
+
+[node name="ComboBoxBorder" parent="." index="1" unique_id=1453582167]
+polygon = PackedVector2Array(960, -916, 960, -4, 783, -137, 723, -937)
+
+[node name="ComboBox" parent="." index="2" unique_id=1751488516]
+polygon = PackedVector2Array(792, -179, 939, -69, 930, -849, 755, -874)
+
+[node name="CollisionShape2D" parent="ComboBoxArea" parent_id_path=PackedInt32Array(2350290) index="0" unique_id=1981600030]
+position = Vector2(848.5, -512)

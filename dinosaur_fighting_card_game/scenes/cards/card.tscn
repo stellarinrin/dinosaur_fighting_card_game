@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://bkii041wwh5sn"]
 
-[ext_resource type="Texture2D" uid="uid://h0gtmhoucvgh" path="res://assets/card_assets/card_ground_standing.png" id="1_grwcn"]
-[ext_resource type="Script" uid="uid://djxysx7sbuwty" path="res://scripts/card.gd" id="1_tvcam"]
-[ext_resource type="Script" uid="uid://16u5tl8q8h18" path="res://scripts/card_sfx_player.gd" id="4_6ligt"]
-[ext_resource type="Texture2D" uid="uid://b3jirmbixrw1w" path="res://assets/card_assets/card_forward_dash.png" id="4_8w5pg"]
-[ext_resource type="AudioStream" uid="uid://c7iil58x820aq" path="res://assets/audio/card_hover.wav" id="6_nvopj"]
-[ext_resource type="AudioStream" uid="uid://c4f5tl0o5dq5c" path="res://assets/audio/card_pickup.wav" id="7_1yd6c"]
-[ext_resource type="AudioStream" uid="uid://dfia78bprxl4j" path="res://assets/audio/card_drop.wav" id="8_we8pq"]
+[ext_resource type="Script" uid="uid://djxysx7sbuwty" path="res://scripts/card.gd" id="1_4tkg3"]
+[ext_resource type="Texture2D" uid="uid://h0gtmhoucvgh" path="res://assets/card_assets/card_ground_standing.png" id="2_61bms"]
+[ext_resource type="Texture2D" uid="uid://b3jirmbixrw1w" path="res://assets/card_assets/card_forward_dash.png" id="3_8cu2g"]
+[ext_resource type="Script" uid="uid://16u5tl8q8h18" path="res://scripts/card_sfx_player.gd" id="4_mj4jy"]
+[ext_resource type="AudioStream" uid="uid://c7iil58x820aq" path="res://assets/audio/card_hover.wav" id="5_ecjy3"]
+[ext_resource type="AudioStream" uid="uid://c4f5tl0o5dq5c" path="res://assets/audio/card_pickup.wav" id="6_efto4"]
+[ext_resource type="AudioStream" uid="uid://dfia78bprxl4j" path="res://assets/audio/card_drop.wav" id="7_pt5j8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ktuci"]
 font_size = 9
@@ -23,13 +23,13 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 94.0
 offset_bottom = 136.0
-script = ExtResource("1_tvcam")
+script = ExtResource("1_4tkg3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1002793796]
 y_sort_enabled = true
 position = Vector2(47.25, 67.75)
 scale = Vector2(2.25, 2.25)
-texture = ExtResource("1_grwcn")
+texture = ExtResource("2_61bms")
 
 [node name="Shadow1" type="Polygon2D" parent="Sprite2D" unique_id=1908230232]
 visible = false
@@ -64,7 +64,7 @@ autowrap_mode = 3
 [node name="Shadow" type="Sprite2D" parent="Sprite2D" unique_id=1981881443]
 modulate = Color(0.011764706, 0.011764706, 0.011764706, 0.39215687)
 z_index = -1
-texture = ExtResource("4_8w5pg")
+texture = ExtResource("3_8cu2g")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=539028138]
 monitoring = false
@@ -76,10 +76,10 @@ shape = SubResource("RectangleShape2D_6u4wf")
 [node name="CardSFX" type="AudioStreamPlayer2D" parent="." unique_id=427540002]
 unique_name_in_owner = true
 pitch_scale = 0.5
-script = ExtResource("4_6ligt")
-card_hover_sound = ExtResource("6_nvopj")
-card_grab_sound = ExtResource("7_1yd6c")
-card_drop_sound = ExtResource("8_we8pq")
+script = ExtResource("4_mj4jy")
+card_hover_sound = ExtResource("5_ecjy3")
+card_grab_sound = ExtResource("6_efto4")
+card_drop_sound = ExtResource("7_pt5j8")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

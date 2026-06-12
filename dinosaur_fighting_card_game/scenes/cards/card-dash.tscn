@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://drh0m7edewc1"]
+[gd_scene format=3 uid="uid://drh0m7edewc1"]
 
-[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="1_wvdg4"]
+[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/cards/card.tscn" id="1_wvdg4"]
 [ext_resource type="Texture2D" uid="uid://b3jirmbixrw1w" path="res://assets/card_assets/card_forward_dash.png" id="2_kha3t"]
 
 [node name="Card" instance=ExtResource("1_wvdg4")]

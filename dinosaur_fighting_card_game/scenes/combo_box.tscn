@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://djjy7avaa0bm1"]
+[gd_scene format=3 uid="uid://ldgtx6g3s48u"]
 
-[ext_resource type="Script" uid="uid://b3ql8r07bog8e" path="res://scripts/combo_box.gd" id="1_3vtdx"]
+[ext_resource type="Script" uid="uid://b3ql8r07bog8e" path="res://scripts/combo_box.gd" id="1_mds2d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rv1d7"]
-size = Vector2(940, 128)
+size = Vector2(191, 716)
 
-[node name="Control" type="Control" unique_id=877803427]
+[node name="ComboBox" type="Control" unique_id=884941987]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -14,31 +14,32 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-script = ExtResource("1_3vtdx")
+script = ExtResource("1_mds2d")
+metadata/_custom_type_script = "uid://b3ql8r07bog8e"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=181657511]
+[node name="HBoxContainer" type="VBoxContainer" parent="." unique_id=302845770]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -424.0
-offset_top = -167.0
-offset_right = 287.0
-offset_bottom = -60.0
+anchor_bottom = 0.5
+offset_left = -926.0
+offset_top = -900.0
+offset_right = -783.0
+offset_bottom = -215.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
 [node name="ComboBoxBorder" type="Polygon2D" parent="." unique_id=1453582167]
 position = Vector2(-2, -42)
 color = Color(0.6039216, 0.43529412, 0.7176471, 1)
-polygon = PackedVector2Array(-521, -13, 596, 19, 342, -209, -424, -174)
+polygon = PackedVector2Array(-960, -916, -960, -4, -783, -137, -723, -937)
 
 [node name="ComboBox" type="Polygon2D" parent="." unique_id=1751488516]
 position = Vector2(-2, -42)
 color = Color(0.8392157, 0.81960785, 1, 1)
-polygon = PackedVector2Array(478, -9, 285, -189, -418, -159, -479, -21)
+polygon = PackedVector2Array(-792, -179, -939, -69, -930, -849, -755, -874)
 
 [node name="ComboBoxArea" type="Area2D" parent="." unique_id=2350290]
 y_sort_enabled = true
@@ -47,8 +48,7 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ComboBoxArea" unique_id=1981600030]
 y_sort_enabled = true
-position = Vector2(7, -79)
+position = Vector2(-848.5, -512)
 shape = SubResource("RectangleShape2D_rv1d7")
 
 [connection signal="area_entered" from="ComboBoxArea" to="." method="_on_combo_box_entered"]
-[connection signal="area_exited" from="ComboBoxArea" to="." method="_on_combo_box_area_exited"]

@@ -1,11 +1,29 @@
 [gd_scene format=3 uid="uid://du36xo06khf1m"]
 
 [ext_resource type="Script" uid="uid://cgjagds4mpri" path="res://scripts/level1.gd" id="1_jiwm1"]
-[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/card.tscn" id="2_6kl7x"]
+[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/cards/card.tscn" id="2_6kl7x"]
 [ext_resource type="Theme" uid="uid://s8gg5af6fj5u" path="res://resources/battle_ui.tres" id="2_7ixgg"]
-[ext_resource type="PackedScene" uid="uid://djjy7avaa0bm1" path="res://scenes/combobox.tscn" id="3_7ixgg"]
+[ext_resource type="Script" uid="uid://c7xqlb2xblyn0" path="res://scripts/UI/health_bar.gd" id="3_o40l3"]
+[ext_resource type="Texture2D" uid="uid://djsc13xpcamoa" path="res://assets/card_assets/card_back_dash.png" id="4_hyqgw"]
+[ext_resource type="Texture2D" uid="uid://24lb7mnto0m6" path="res://assets/card_assets/card_block.png" id="5_bx6wm"]
+[ext_resource type="PackedScene" uid="uid://5a8rsbeq0erk" path="res://scenes/combo_box_player_1.tscn" id="5_ifqpo"]
+[ext_resource type="PackedScene" uid="uid://cjgceq2cb6ec1" path="res://scenes/combo_box_player_2.tscn" id="6_2bxju"]
+[ext_resource type="Script" uid="uid://t0q365o0j6ed" path="res://scripts/character.gd" id="7_fljaa"]
+[ext_resource type="Script" uid="uid://diwaw8t6q57iv" path="res://scripts/character_attributes.gd" id="8_o40l3"]
+[ext_resource type="Texture2D" uid="uid://lfgrhc4eeh12" path="res://assets/character-dinosaur-test-standing.png" id="10_ihbyj"]
+[ext_resource type="Texture2D" uid="uid://cex1ihcq8i3pv" path="res://38346657b1271fcfe6ce1c60423ff665b794_1920xt1080_S1000-3662738456.jpg" id="10_o40l3"]
 
-[node name="Control" type="Control" unique_id=1384230533]
+[sub_resource type="Resource" id="Resource_cu7rf"]
+script = ExtResource("8_o40l3")
+grid_position = Vector2(-2, 0)
+metadata/_custom_type_script = "uid://diwaw8t6q57iv"
+
+[sub_resource type="Resource" id="Resource_o40l3"]
+script = ExtResource("8_o40l3")
+grid_position = Vector2(2, 0)
+metadata/_custom_type_script = "uid://diwaw8t6q57iv"
+
+[node name="Control" type="Control" unique_id=1384230533 node_paths=PackedStringArray("player_1", "player_2", "combo_box_1", "combo_box_2")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,41 +31,116 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jiwm1")
-
-[node name="UI" type="CanvasLayer" parent="." unique_id=124734236]
-
-[node name="Player2HP" type="ProgressBar" parent="UI" unique_id=1925974997]
-offset_left = 1253.0
-offset_top = 90.0
-offset_right = 1629.0
-offset_bottom = 165.0
-theme = ExtResource("2_7ixgg")
-value = 67.0
+player_1 = NodePath("Characters/Control/Player1")
+player_2 = NodePath("Characters/Control/Player2")
+combo_box_1 = NodePath("Input/ComboBox1")
+combo_box_2 = NodePath("Input/ComboBox2")
 
 [node name="Input" type="CanvasLayer" parent="." unique_id=1096975614]
 
-[node name="PlayHand" type="Button" parent="Input" unique_id=75967911]
-offset_left = 244.0
-offset_top = 109.0
-offset_right = 396.0
-offset_bottom = 171.0
-
 [node name="Card" parent="Input" unique_id=751085422 node_paths=PackedStringArray("card_area") instance=ExtResource("2_6kl7x")]
+offset_left = 198.0
+offset_top = 917.0
+offset_right = 292.0
+offset_bottom = 1053.0
 move_index = "attack"
 card_area = NodePath("..")
 
 [node name="Card2" parent="Input" unique_id=497977097 node_paths=PackedStringArray("card_area") instance=ExtResource("2_6kl7x")]
-move_index = "attack"
+offset_left = 198.0
+offset_top = 917.0
+offset_right = 292.0
+offset_bottom = 1053.0
+card_texture = ExtResource("4_hyqgw")
+move_index = "move_back"
 card_area = NodePath("..")
 
 [node name="Card3" parent="Input" unique_id=2120371148 node_paths=PackedStringArray("card_area") instance=ExtResource("2_6kl7x")]
-move_index = "attack"
+offset_left = 198.0
+offset_top = 917.0
+offset_right = 292.0
+offset_bottom = 1053.0
+card_texture = ExtResource("5_bx6wm")
+move_index = "block_high"
 card_area = NodePath("..")
 
 [node name="Attack" type="Button" parent="Input" unique_id=1404987905]
+visible = false
 offset_right = 8.0
 offset_bottom = 8.0
 
-[node name="ComboBox" parent="Input" unique_id=877803427 instance=ExtResource("3_7ixgg")]
+[node name="ComboBox1" parent="Input" unique_id=877803427 instance=ExtResource("5_ifqpo")]
+
+[node name="ComboBox2" parent="Input" unique_id=1298624624 instance=ExtResource("6_2bxju")]
+
+[node name="PlayHand" type="Button" parent="Input" unique_id=75967911]
+offset_left = 31.0
+offset_top = 948.0
+offset_right = 183.0
+offset_bottom = 1010.0
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=124734236]
+
+[node name="Player1HP" type="ProgressBar" parent="UI" unique_id=633290036 node_paths=PackedStringArray("character")]
+offset_left = 92.0
+offset_top = 44.0
+offset_right = 468.0
+offset_bottom = 119.0
+theme = ExtResource("2_7ixgg")
+value = 67.0
+script = ExtResource("3_o40l3")
+character = NodePath("../../Characters/Control/Player1")
+
+[node name="Player2HP" type="ProgressBar" parent="UI" unique_id=1925974997 node_paths=PackedStringArray("character")]
+offset_left = 1440.0
+offset_top = 41.0
+offset_right = 1816.0
+offset_bottom = 116.0
+theme = ExtResource("2_7ixgg")
+value = 67.0
+script = ExtResource("3_o40l3")
+character = NodePath("../../Characters/Control/Player2")
+
+[node name="Characters" type="CanvasLayer" parent="." unique_id=734310616]
+
+[node name="Control" type="Control" parent="Characters" unique_id=1966709054]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -360.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+
+[node name="Player1" type="Node2D" parent="Characters/Control" unique_id=1499398276]
+script = ExtResource("7_fljaa")
+attributes = SubResource("Resource_cu7rf")
+metadata/_custom_type_script = "uid://t0q365o0j6ed"
+
+[node name="Sprite2D" type="Sprite2D" parent="Characters/Control/Player1" unique_id=814209760]
+position = Vector2(0, -64.983765)
+scale = Vector2(0.73053217, 0.73053217)
+texture = ExtResource("10_ihbyj")
+
+[node name="Player2" type="Node2D" parent="Characters/Control" unique_id=48290962]
+position = Vector2(-2, 0)
+script = ExtResource("7_fljaa")
+attributes = SubResource("Resource_o40l3")
+metadata/_custom_type_script = "uid://t0q365o0j6ed"
+
+[node name="Sprite2D" type="Sprite2D" parent="Characters/Control/Player2" unique_id=1240780372]
+position = Vector2(0, -64.983765)
+scale = Vector2(-0.73053217, 0.73053217)
+texture = ExtResource("10_ihbyj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1452964566]
+visible = false
+modulate = Color(1, 1, 1, 0.36078432)
+position = Vector2(960, 540)
+texture = ExtResource("10_o40l3")
 
 [connection signal="pressed" from="Input/PlayHand" to="." method="_on_play_hand_pressed"]

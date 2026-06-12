@@ -1,5 +1,5 @@
-extends Control
 class_name ComboBox
+extends Control
 
 var card 
 @onready var container = $HBoxContainer
@@ -13,6 +13,7 @@ func _process(_delta: float) -> void:
 	container.queue_sort()
 
 func _on_combo_box_entered(area: Area2D) -> void:
+	# Adds cards to box
 	if area.get_parent() is not Card:
 		return
 	card = area.get_parent()

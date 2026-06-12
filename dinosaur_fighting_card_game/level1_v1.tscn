@@ -20,11 +20,11 @@
 [ext_resource type="Script" uid="uid://btlamgnmd4thu" path="res://scripts/game_states/win.gd" id="15_jy3fw"]
 [ext_resource type="Texture2D" uid="uid://cex1ihcq8i3pv" path="res://38346657b1271fcfe6ce1c60423ff665b794_1920xt1080_S1000-3662738456.jpg" id="16_c5gc3"]
 [ext_resource type="Script" uid="uid://phjs0piqg21l" path="res://scripts/game_states/transition_to_enemy.gd" id="17_43lh3"]
-[ext_resource type="PackedScene" uid="uid://s8t15p31bou5" path="res://scenes/health_bar.tscn" id="17_uuy0h"]
+[ext_resource type="PackedScene" uid="uid://s8t15p31bou5" path="res://scenes/ui/health_bar.tscn" id="17_uuy0h"]
 [ext_resource type="Script" uid="uid://bwoaq8fw2j28y" path="res://scripts/player_combo_box.gd" id="18_6tyme"]
 [ext_resource type="Script" uid="uid://der4apy2supsw" path="res://player_health.gd" id="18_nxqqj"]
 [ext_resource type="Script" uid="uid://dyvk47q0xunpc" path="res://enemy_health.gd" id="21_5le63"]
-[ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/level_button.tscn" id="22_uuy0h"]
+[ext_resource type="PackedScene" uid="uid://3t513pnsafhk" path="res://scenes/ui/level_button.tscn" id="22_uuy0h"]
 [ext_resource type="Script" uid="uid://b18m6mbay1006" path="res://scripts/enemy_combo_box.gd" id="25_43lh3"]
 [ext_resource type="PackedScene" uid="uid://cfh12t0lljtfh" path="res://player_character.tscn" id="26_7nyxr"]
 
