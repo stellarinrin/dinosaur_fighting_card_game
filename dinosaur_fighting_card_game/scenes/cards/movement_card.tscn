@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ba3q2m3eb34jj"]
+
+[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/cards/card.tscn" id="1_efwu8"]
+[ext_resource type="Script" uid="uid://sok6ef878vdt" path="res://scripts/cards/movement_card.gd" id="1_swtaa"]
+
+[node name="MovementCard" unique_id=751085422 instance=ExtResource("1_efwu8")]
+script = ExtResource("1_swtaa")
+direction = 0
+distance = 1

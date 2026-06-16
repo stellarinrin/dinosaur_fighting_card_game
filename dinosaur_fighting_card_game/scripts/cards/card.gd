@@ -2,9 +2,10 @@ extends Control
 class_name Card
 
 @export var card_texture:  Texture2D
-@export var card_text : String
+# make a popup description like balatro
+#@export var card_text : String
+@export var move_type : Global.MoveType
 @export var move_index : String
-@export var move_attributes : MoveAttributes
 @export var card_reset_sound : AudioStream
 @export var card_area : CanvasLayer
 var mouse_in: bool = false
