@@ -2,6 +2,7 @@ extends Card
 
 @export var combo_piece : Global.ComboPiece = Global.ComboPiece.LINKER
 @export var startup_frames : int = 4
+## Area covering an attack's range. Negative y values extend downward
 @export var hitbox : Vector2 = Vector2(1,1)
 @export var attack_level : Global.AttackLevel = Global.AttackLevel.MID
 @export var damage : float = 67

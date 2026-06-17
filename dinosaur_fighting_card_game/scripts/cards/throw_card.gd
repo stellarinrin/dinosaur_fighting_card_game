@@ -1,4 +1,7 @@
 extends Card
 
-@export var direction : Global.Direction
-@export var distance : int = 1
+## The horizontal vector of this card's launch distance. Positive direction is to the right
+@export var horizontal_distance : int = 1
+
+## The vertical vector of this card's launch distance. Positive direction is upwards
+@export var vertical_distance : int = 0

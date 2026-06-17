@@ -25,6 +25,7 @@ metadata/_custom_type_script = "uid://diwaw8t6q57iv"
 [sub_resource type="Resource" id="Resource_2bxju"]
 script = ExtResource("8_o40l3")
 grid_position = Vector2(2, 0)
+is_crouching = true
 metadata/_custom_type_script = "uid://diwaw8t6q57iv"
 
 [node name="test" type="Control" unique_id=1384230533 node_paths=PackedStringArray("player_1", "player_2", "combo_box_1", "combo_box_2")]
@@ -52,8 +53,10 @@ offset_top = 948.0
 offset_right = 183.0
 offset_bottom = 1010.0
 
-[node name="AttackCard" parent="Input" unique_id=751085422 instance=ExtResource("4_ihbyj")]
+[node name="AttackCard" parent="Input" unique_id=751085422 node_paths=PackedStringArray("card_area") instance=ExtResource("4_ihbyj")]
+hitbox = Vector2(2, 1)
 card_texture = ExtResource("5_d1tnr")
+card_area = NodePath("..")
 
 [node name="JumpUp" parent="Input" unique_id=2008182948 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
 horizontal_distance = 0
@@ -122,9 +125,9 @@ attributes = SubResource("Resource_ifqpo")
 metadata/_custom_type_script = "uid://t0q365o0j6ed"
 
 [node name="Sprite2D" type="Sprite2D" parent="Characters/Control/Player1" unique_id=814209760]
-position = Vector2(0, -64.983765)
 scale = Vector2(0.73053217, 0.73053217)
 texture = ExtResource("10_ihbyj")
+offset = Vector2(-60, -90)
 
 [node name="Player2" type="Node2D" parent="Characters/Control" unique_id=48290962]
 position = Vector2(-2, 0)
@@ -133,9 +136,9 @@ attributes = SubResource("Resource_2bxju")
 metadata/_custom_type_script = "uid://t0q365o0j6ed"
 
 [node name="Sprite2D" type="Sprite2D" parent="Characters/Control/Player2" unique_id=1240780372]
-position = Vector2(0, -64.983765)
 scale = Vector2(-0.73053217, 0.73053217)
 texture = ExtResource("10_ihbyj")
+offset = Vector2(-60, -90)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1452964566]
 visible = false
@@ -143,5 +146,4 @@ modulate = Color(1, 1, 1, 0.36078432)
 position = Vector2(960, 540)
 texture = ExtResource("10_o40l3")
 
-[connection signal="character_position_changed" from="." to="." method="_on_character_position_changed"]
 [connection signal="pressed" from="Input/PlayHand" to="." method="_on_play_hand_pressed"]

@@ -59,7 +59,44 @@ func character_move(move: Card, player: Character, opponent: Character) -> void:
 		player.attributes.grid_position.y += move.vertical_distance
 	
 func character_attack(move: Card, player: Character, opponent: Character) -> void:
-	opponent.attributes.h_p -= 10.0
+	var hitbox : Vector2 = player.attributes.grid_position + move.hitbox
+	# Characters will auto-turn to hit their move
+	if (opponent.attributes.grid_position.x > player.attributes.grid_position.x \
+			and opponent.attributes.grid_position.x <= \
+			player.attributes.grid_position.x + move.hitbox.x) or \
+			(opponent.attributes.grid_position.x < player.attributes.grid_position.x \
+			and opponent.attributes.grid_position.x >= \
+			player.attributes.grid_position.x - move.hitbox.x):
+		# If the opponent is at the same height as the player or if they are *standing* at eye 
+		#	level with the player's bottom half, allow the hit
+		if opponent.attributes.grid_position.y == player.attributes.grid_position.y \
+				or (opponent.attributes.grid_position.y + 1 == player.attributes.grid_position.y \
+				and not opponent.attributes.is_crouching):
+			opponent.attributes.h_p -= 10.0
+		# If the opponent is higher than the player, check if the move points up
+		elif (opponent.attributes.grid_position.y >= player.attributes.grid_position.y) \
+				and (move.hitbox.y > 0) and (opponent.attributes.grid_position.y <= \
+				player.attributes.grid_position.y + move.hitbox.y):
+			opponent.attributes.h_p -= 10.0
+		# If the opponent is lower than the player, check if the move points down
+		elif (opponent.attributes.grid_position.y <= player.attributes.grid_position.y) \
+				and (move.hitbox.y < 0) and (opponent.attributes.grid_position.y >= \
+				player.attributes.grid_position.y + move.hitbox.y):
+			opponent.attributes.h_p -= 10.0
+			
+				
+	# are they in the same y? yes: hit
+	# are they in the same y if they are standing? yes: hit
+	# are they above? yes: does this move attack up or down? -> are they in range? yes: hit
+	# are they below? yes: does this move attack up or down? -> are 
+	
+	#if p2 > p1 && p2 <= p1+hb
+	#if p2 < p1 && p2 >= p1-hb (minus, assuming hitbox reversal takes place here or after here)
+	
+	#if p2 > p1 && p2 <= p1+hb  
+	#if p2 < p1 && p2 >= p1-hb ) || (if not crouching) p2+1 >= p1-hb
+	#opponent.attributes.grid_position.x 
+	
 
 func character_block(move: Card, player: Character, opponent: Character) -> void:
 	pass
