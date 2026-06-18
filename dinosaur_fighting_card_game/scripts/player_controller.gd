@@ -3,6 +3,8 @@ extends Control
 
 var card 
 var combo
+@export var is_active : bool = false
+
 @onready var container = $HBoxContainer
 @export var combo_length_limit : int = 5
 @export var player : Character
@@ -16,6 +18,8 @@ func _process(_delta: float) -> void:
 	container.queue_sort()
 
 func _on_combo_box_entered(area: Area2D) -> void:
+	if not is_active:
+		return
 	# Adds cards to box
 	if area.get_parent() is not Card:
 		return
@@ -28,6 +32,7 @@ func _on_combo_box_entered(area: Area2D) -> void:
 # check startup speed to see which action goes first
 func _on_play_hand_pressed() -> void:
 	combo = container.get_children()
+	#delay if speed tie is lost; attacks need to be calculated with the opponent's final distance if the movement is faster
 	for move in combo:
 		print(combo)
 		match move.move_type:

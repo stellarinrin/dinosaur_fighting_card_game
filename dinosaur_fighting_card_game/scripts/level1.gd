@@ -2,10 +2,20 @@ extends Control
 class_name Level
 
 
-@export var player_1 : Character
-@export var player_2 : Character
+
+enum GameState {
+	NEUTRAL,
+	NEUTRAL_P1,
+	NEUTRAL_TRANSITION,
+	NEUTRAL_P2,
+	ADVANTAGE,
+	WAKEUP,
+}
+@export var game_state : Level.GameState = Level.GameState.NEUTRAL
 
 var combo : Array = []
+@export var player_1 : Character
+@export var player_2 : Character
 @export var controller_1 : Control
 @export var controller_2 : Control
 var grid_space : Vector2
@@ -32,10 +42,54 @@ func _process(delta: float) -> void:
 	player_2.position.y = lerp(player_2.position.y, 
 			-1 * grid_space.y * player_2.attributes.grid_position.y, 22 * delta)
 
-# Hide both inputs 
-# Allow player 1 inputs
-# On submit, hide player 1 inputs, allow player 2 inputs
-# On submit, hide player 2 inputs
+# Neutral:
+# -Lock player inputs
+# -Show player inputs
+# -Execute player inputs
+#  -Check which move is faster and delay the slower one (or maybe use startup frames as a multiplier?)
+# -Wait until all cards have been played
+# -Hide player inputs
+# -Draw up to six cards
+# -Check if anyone was hit the last turn
+#  -Ender is blocked: Blocking player -> Advantage
+#  -Any other attack hits or is blocked: Attacking player -> Advantage
+#  -(the player entering advantage must be stored in a variable)
+# -Check if anyone was thrown
+#  -Thrown player lands against the wall: Thrower -> Advantage
+#  -Thrown player does not land against the wall: -> Neutral
+# -> Neutral Transition
+# Neutral Transition:
+# -Check if previous state was NEUTRAL or NEUTRAL_P1
+# -"Player 2* turn away from the screen" (numbers depend on previous condition)
+# -"Player 1* are you ready" 
+# -> Neutral 1: // -> Neutral 2:
+# Neutral 1:
+# -Show hand
+# -Set combo length to 1 (what about fast fall?)
+# -Unlock player 1 input
+# -*Persistent movement cards?
+# -Submit 
+# -Lock player 1 input
+# -Hide hand 
+# -> Neutral Transition
+# Neutral 2:
+# -Show hand
+# -Set combo length to 1 (what about fast fall?)
+# -Unlock player 2 input
+# -*Persistent movement cards?
+# -Submit 
+# -Lock player 2 input
+# -Hide hand 
+# -> Neutral
+# Advantage:
+# -Show hand
+# -Set combo length to 5?
+# -Unlock player X input
+# -*Persistent movement cards?
+# -Submit 
+# -Lock player X input
+# -Hide hand 
+# -> Neutral Transition
 #func _on_play_hand_pressed() -> void:
 	# #maybe put this part in its own function when programming turn cycle
 	#var player : Character = player_1
