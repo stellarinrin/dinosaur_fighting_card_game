@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bmeihbs4gt57" path="res://scenes/cards/attack_card.tscn" id="4_ihbyj"]
 [ext_resource type="PackedScene" uid="uid://ba3q2m3eb34jj" path="res://scenes/cards/movement_card.tscn" id="5_2bxju"]
 [ext_resource type="Texture2D" uid="uid://h0gtmhoucvgh" path="res://assets/card_assets/card_ground_standing.png" id="5_d1tnr"]
-[ext_resource type="PackedScene" uid="uid://5a8rsbeq0erk" path="res://scenes/combo_box_player_1.tscn" id="5_ifqpo"]
-[ext_resource type="PackedScene" uid="uid://cjgceq2cb6ec1" path="res://scenes/combo_box_player_2.tscn" id="6_2bxju"]
+[ext_resource type="PackedScene" uid="uid://5a8rsbeq0erk" path="res://scenes/player_1_controller.tscn" id="5_ifqpo"]
+[ext_resource type="PackedScene" uid="uid://cjgceq2cb6ec1" path="res://scenes/player_2_controller.tscn" id="6_2bxju"]
 [ext_resource type="Script" uid="uid://t0q365o0j6ed" path="res://scripts/character.gd" id="7_fljaa"]
 [ext_resource type="Texture2D" uid="uid://bt4dcky5us14v" path="res://assets/card_assets/card_air.png" id="7_ylnb8"]
 [ext_resource type="Texture2D" uid="uid://b3jirmbixrw1w" path="res://assets/card_assets/card_forward_dash.png" id="8_4k8th"]
@@ -28,7 +28,7 @@ grid_position = Vector2(2, 0)
 is_crouching = true
 metadata/_custom_type_script = "uid://diwaw8t6q57iv"
 
-[node name="test" type="Control" unique_id=1384230533 node_paths=PackedStringArray("player_1", "player_2", "combo_box_1", "combo_box_2")]
+[node name="test" type="Control" unique_id=1384230533 node_paths=PackedStringArray("player_1", "player_2", "controller_1", "controller_2")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,14 +38,14 @@ grow_vertical = 2
 script = ExtResource("1_jiwm1")
 player_1 = NodePath("Characters/Control/Player1")
 player_2 = NodePath("Characters/Control/Player2")
-combo_box_1 = NodePath("Input/ComboBox1")
-combo_box_2 = NodePath("Input/ComboBox2")
+controller_1 = NodePath("Input/Player1Controller")
+controller_2 = NodePath("Input/Player2Controller")
 
 [node name="Input" type="CanvasLayer" parent="." unique_id=1096975614]
 
-[node name="ComboBox1" parent="Input" unique_id=877803427 instance=ExtResource("5_ifqpo")]
+[node name="Player1Controller" parent="Input" unique_id=877803427 instance=ExtResource("5_ifqpo")]
 
-[node name="ComboBox2" parent="Input" unique_id=1298624624 instance=ExtResource("6_2bxju")]
+[node name="Player2Controller" parent="Input" unique_id=1310993410 instance=ExtResource("6_2bxju")]
 
 [node name="PlayHand" type="Button" parent="Input" unique_id=75967911]
 offset_left = 31.0

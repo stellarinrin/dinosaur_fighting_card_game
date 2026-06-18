@@ -6,8 +6,8 @@ class_name Level
 @export var player_2 : Character
 
 var combo : Array = []
-@export var combo_box_1 : Control
-@export var combo_box_2 : Control
+@export var controller_1 : Control
+@export var controller_2 : Control
 var grid_space : Vector2
 
 func _ready() -> void:
@@ -32,12 +32,16 @@ func _process(delta: float) -> void:
 	player_2.position.y = lerp(player_2.position.y, 
 			-1 * grid_space.y * player_2.attributes.grid_position.y, 22 * delta)
 
+# Hide both inputs 
+# Allow player 1 inputs
+# On submit, hide player 1 inputs, allow player 2 inputs
+# On submit, hide player 2 inputs
 func _on_play_hand_pressed() -> void:
 	#maybe put this part in its own function when programming turn cycle
 	var player : Character = player_1
 	var opponent : Character = player_2
 	
-	combo = combo_box_1.container.get_children()
+	combo = controller_1.container.get_children()
 	for move in combo:
 		print(combo)
 		match move.move_type:
@@ -83,19 +87,6 @@ func character_attack(move: Card, player: Character, opponent: Character) -> voi
 				and (move.hitbox.y < 0) and (opponent.attributes.grid_position.y >= \
 				player.attributes.grid_position.y + move.hitbox.y):
 			opponent.attributes.h_p -= 10.0
-			
-				
-	# are they in the same y? yes: hit
-	# are they in the same y if they are standing? yes: hit
-	# are they above? yes: does this move attack up or down? -> are they in range? yes: hit
-	# are they below? yes: does this move attack up or down? -> are 
-	
-	#if p2 > p1 && p2 <= p1+hb
-	#if p2 < p1 && p2 >= p1-hb (minus, assuming hitbox reversal takes place here or after here)
-	
-	#if p2 > p1 && p2 <= p1+hb  
-	#if p2 < p1 && p2 >= p1-hb ) || (if not crouching) p2+1 >= p1-hb
-	#opponent.attributes.grid_position.x 
 	
 
 func character_block(move: Card, player: Character, opponent: Character) -> void:

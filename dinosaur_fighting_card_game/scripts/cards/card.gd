@@ -83,7 +83,7 @@ func _on_mouse_exited() -> void:
 func _on_gui_input(event: InputEvent) -> void:
 	if not (event is InputEventMouseButton):
 		return
-	if get_parent().get_parent() is ComboBox:
+	if get_parent().get_parent() is PlayerController:
 		reparent(card_area)
 		%CardSFX.stream = card_reset_sound
 		%CardSFX.play()

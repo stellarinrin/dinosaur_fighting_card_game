@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ldgtx6g3s48u"]
 
-[ext_resource type="Script" uid="uid://b3ql8r07bog8e" path="res://scripts/combo_box.gd" id="1_mds2d"]
+[ext_resource type="Script" uid="uid://b3ql8r07bog8e" path="res://scripts/player_controller.gd" id="1_mds2d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rv1d7"]
 size = Vector2(191, 716)

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cjgceq2cb6ec1"]
 
-[ext_resource type="PackedScene" uid="uid://ldgtx6g3s48u" path="res://scenes/combo_box.tscn" id="1_jcq1u"]
+[ext_resource type="PackedScene" uid="uid://ldgtx6g3s48u" path="res://scenes/player_controller.tscn" id="1_jcq1u"]
 
-[node name="ComboBox2" unique_id=877803427 instance=ExtResource("1_jcq1u")]
+[node name="Player2Controller" unique_id=877803427 instance=ExtResource("1_jcq1u")]
 
 [node name="HBoxContainer" parent="." index="0" unique_id=302845770]
 offset_left = 783.0

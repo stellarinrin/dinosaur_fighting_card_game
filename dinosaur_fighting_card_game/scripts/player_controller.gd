@@ -1,4 +1,4 @@
-class_name ComboBox
+class_name PlayerController
 extends Control
 
 var card 
