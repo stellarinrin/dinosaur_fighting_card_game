@@ -43,9 +43,13 @@ controller_2 = NodePath("Input/Player2Controller")
 
 [node name="Input" type="CanvasLayer" parent="." unique_id=1096975614]
 
-[node name="Player1Controller" parent="Input" unique_id=877803427 instance=ExtResource("5_ifqpo")]
+[node name="Player1Controller" parent="Input" unique_id=877803427 node_paths=PackedStringArray("player", "opponent") instance=ExtResource("5_ifqpo")]
+player = NodePath("../../Characters/Control/Player1")
+opponent = NodePath("../../Characters/Control/Player2")
 
-[node name="Player2Controller" parent="Input" unique_id=1310993410 instance=ExtResource("6_2bxju")]
+[node name="Player2Controller" parent="Input" unique_id=1310993410 node_paths=PackedStringArray("player", "opponent") instance=ExtResource("6_2bxju")]
+player = NodePath("../../Characters/Control/Player2")
+opponent = NodePath("../../Characters/Control/Player1")
 
 [node name="PlayHand" type="Button" parent="Input" unique_id=75967911]
 offset_left = 31.0
@@ -77,6 +81,35 @@ card_texture = ExtResource("9_86ygi")
 card_area = NodePath("..")
 
 [node name="MoveLeft" parent="Input" unique_id=1019575541 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
+horizontal_distance = -1
+vertical_distance = 0
+card_texture = ExtResource("4_hyqgw")
+card_area = NodePath("..")
+
+[node name="AttackCard2" parent="Input" unique_id=820439794 node_paths=PackedStringArray("card_area") instance=ExtResource("4_ihbyj")]
+hitbox = Vector2(2, 1)
+card_texture = ExtResource("5_d1tnr")
+card_area = NodePath("..")
+
+[node name="JumpUp2" parent="Input" unique_id=246322441 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
+horizontal_distance = 0
+vertical_distance = 1
+card_texture = ExtResource("7_ylnb8")
+card_area = NodePath("..")
+
+[node name="MoveRight2" parent="Input" unique_id=97711687 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
+horizontal_distance = 1
+vertical_distance = 0
+card_texture = ExtResource("8_4k8th")
+card_area = NodePath("..")
+
+[node name="FallDown2" parent="Input" unique_id=805566123 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
+horizontal_distance = 0
+vertical_distance = -1
+card_texture = ExtResource("9_86ygi")
+card_area = NodePath("..")
+
+[node name="MoveLeft2" parent="Input" unique_id=1178517314 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
 horizontal_distance = -1
 vertical_distance = 0
 card_texture = ExtResource("4_hyqgw")
@@ -147,3 +180,5 @@ position = Vector2(960, 540)
 texture = ExtResource("10_o40l3")
 
 [connection signal="pressed" from="Input/PlayHand" to="." method="_on_play_hand_pressed"]
+[connection signal="pressed" from="Input/PlayHand" to="Input/Player1Controller" method="_on_play_hand_pressed"]
+[connection signal="pressed" from="Input/PlayHand" to="Input/Player2Controller" method="_on_play_hand_pressed"]
