@@ -45,6 +45,7 @@ func execute_moves() -> void:
 			Global.MoveType.THROW:
 				character_throw(move, player, opponent)
 		await get_tree().create_timer(1).timeout
+		#move.queue_free()
 	combo.clear()
 
 func hide_cards() -> void:

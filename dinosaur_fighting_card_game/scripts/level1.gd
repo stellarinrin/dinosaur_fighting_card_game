@@ -100,14 +100,25 @@ func set_state(new_state: Level.GameState):
 			# (card submission in another function)
 
 		# Neutral 2:
-		# -Show hand
-		# -Set combo length to 1 (what about fast fall?)
-		# -Unlock player 2 input
-		# -*Persistent movement cards?
-		# -Submit 
-		# -Lock player 2 input
-		# -Hide hand 
-		# -> Neutral
+		Level.GameState.NEUTRAL_P2:
+			# Show Player 2's hand
+			controller_2.show_cards()
+			# Set combo length to 1 (what about fast fall?)
+			controller_2.combo_length_limit = 1
+			# Unlock player 1 input
+			controller_2.unlock_inputs()
+			# -*Persistent movement cards
+			# Add cards to box (animate?)
+			await get_tree().create_timer(move_duration).timeout
+			# Submit
+			# Lock player 1 input
+			controller_1.lock_inputs()
+			# Hide hand
+			controller_1.hide_cards()
+			# Transition to Neutral
+			game_state = Level.GameState.NEUTRAL
+			set_state(game_state)
+
 		# Advantage:
 		# -Show hand
 		# -Set combo length to 5?
@@ -178,10 +189,12 @@ func set_state(new_state: Level.GameState):
 
 # When Player 1 submits their hand:
 func _on_play_hand_pressed() -> void:
+	if not game_state == Level.GameState.NEUTRAL_P1:
+		return
 	# Lock player 1 input
 	controller_1.lock_inputs()
 	# Hide hand
-	controller_1.hide_inputs()
+	controller_1.hide_cards()
 	# Transition to Neutral 2
 	game_state = Level.GameState.NEUTRAL_P2
 	set_state(game_state)
