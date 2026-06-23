@@ -1,12 +1,11 @@
 extends Control
 class_name Level
 
-
+signal cards_played
 
 enum GameState {
 	NEUTRAL,
 	NEUTRAL_P1,
-	NEUTRAL_TRANSITION,
 	NEUTRAL_P2,
 	ADVANTAGE,
 	WAKEUP,
@@ -19,8 +18,17 @@ var combo : Array = []
 @export var controller_1 : Control
 @export var controller_2 : Control
 var grid_space : Vector2
+## Base duration in seconds of each character action
+@export var move_duration : float = 1
 
 func _ready() -> void:
+	# Hide player inputs
+	controller_1.hide_cards()
+	controller_2.hide_cards()
+	
+	# Set initial state
+	set_state(game_state)
+	
 	# Cut screen into a grid
 	grid_space.x = get_viewport_rect().size.x / 12
 	grid_space.y = get_viewport_rect().size.y / 6.75
@@ -47,51 +55,70 @@ func _process(delta: float) -> void:
 # -Show player inputs
 # -Execute player inputs
 #  -Check which move is faster and delay the slower one (or maybe use startup frames as a multiplier?)
-# -Wait until all cards have been played
-# -Hide player inputs
-# -Draw up to six cards
-# -Check if anyone was hit the last turn
-#  -Ender is blocked: Blocking player -> Advantage
-#  -Any other attack hits or is blocked: Attacking player -> Advantage
-#  -(the player entering advantage must be stored in a variable)
-# -Check if anyone was thrown
-#  -Thrown player lands against the wall: Thrower -> Advantage
-#  -Thrown player does not land against the wall: -> Neutral
-# -> Neutral Transition
-# Neutral Transition:
-# -Check if previous state was NEUTRAL or NEUTRAL_P1
-# -"Player 2* turn away from the screen" (numbers depend on previous condition)
-# -"Player 1* are you ready" 
-# -> Neutral 1: // -> Neutral 2:
-# Neutral 1:
-# -Show hand
-# -Set combo length to 1 (what about fast fall?)
-# -Unlock player 1 input
-# -*Persistent movement cards?
-# -Submit 
-# -Lock player 1 input
-# -Hide hand 
-# -> Neutral Transition
-# Neutral 2:
-# -Show hand
-# -Set combo length to 1 (what about fast fall?)
-# -Unlock player 2 input
-# -*Persistent movement cards?
-# -Submit 
-# -Lock player 2 input
-# -Hide hand 
-# -> Neutral
-# Advantage:
-# -Show hand
-# -Set combo length to 5?
-# -Unlock player X input
-# -*Persistent movement cards?
-# -Submit 
-# -Lock player X input
-# -Hide hand 
-# -> Neutral Transition
+
+
+func set_state(new_state: Level.GameState):
+	match new_state:
+		# Neutral Phase
+		Level.GameState.NEUTRAL:
+			# Lock player inputs
+			controller_1.lock_inputs()
+			controller_2.lock_inputs()
+			# Show player inputs
+			controller_1.show_cards()
+			controller_2.show_cards()
+			#
+			# Execute player inputs
+			#Check which move is faster and delay the slower one (or maybe use startup frames as a multiplier?)
+			cards_played.emit()
+			# Wait until both player's moves have been played
+			await get_tree().create_timer(move_duration).timeout
+			# Hide player inputs
+			controller_1.hide_cards()
+			controller_2.hide_cards()
+			await get_tree().create_timer(move_duration).timeout #hiding animation?
+			# Draw up to six cards
+			# Check if anyone was hit the last turn
+			#  -Ender is blocked: Blocking player -> Advantage
+			#  -Any other attack hits or is blocked: Attacking player -> Advantage
+			#  -(the player entering advantage must be stored in a variable)
+			# Check if anyone was thrown
+			#  -Thrown player lands against the wall: Thrower -> Advantage
+			#  -Thrown player does not land against the wall: -> Neutral
+			# Transition to Neutral 1
+			game_state = Level.GameState.NEUTRAL_P1
+			set_state(game_state)
+		# Neutral Phase Player 1:
+		Level.GameState.NEUTRAL_P1:
+			# Show Player 1's hand
+			controller_1.show_cards()
+			# Set combo length to 1 (what about fast fall?)
+			controller_1.combo_length_limit = 1
+			# Unlock player 1 input
+			controller_1.unlock_inputs()
+			# -*Persistent movement cards?
+			# (card submission in another function)
+
+		# Neutral 2:
+		# -Show hand
+		# -Set combo length to 1 (what about fast fall?)
+		# -Unlock player 2 input
+		# -*Persistent movement cards?
+		# -Submit 
+		# -Lock player 2 input
+		# -Hide hand 
+		# -> Neutral
+		# Advantage:
+		# -Show hand
+		# -Set combo length to 5?
+		# -Unlock player X input
+		# -*Persistent movement cards?
+		# -Submit 
+		# -Lock player X input
+		# -Hide hand 
+		# -> Neutral Transition
 #func _on_play_hand_pressed() -> void:
-	# #maybe put this part in its own function when programming turn cycle
+	##maybe put this part in its own function when programming turn cycle
 	#var player : Character = player_1
 	#var opponent : Character = player_2
 	#
@@ -148,3 +175,13 @@ func _process(delta: float) -> void:
 #
 #func character_throw(move: Card, player: Character, opponent: Character) -> void:
 	#pass
+
+# When Player 1 submits their hand:
+func _on_play_hand_pressed() -> void:
+	# Lock player 1 input
+	controller_1.lock_inputs()
+	# Hide hand
+	controller_1.hide_inputs()
+	# Transition to Neutral 2
+	game_state = Level.GameState.NEUTRAL_P2
+	set_state(game_state)

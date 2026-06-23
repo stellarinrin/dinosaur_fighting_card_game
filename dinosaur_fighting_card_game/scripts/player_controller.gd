@@ -24,13 +24,13 @@ func _on_combo_box_entered(area: Area2D) -> void:
 	if area.get_parent() is not Card:
 		return
 	card = area.get_parent()
-	combo_length = get_child_count()
+	combo_length = $HBoxContainer.get_child_count()
 	if combo_length >= combo_length_limit:
 		return
 	card.reparent(container)
 	
 # check startup speed to see which action goes first
-func _on_play_hand_pressed() -> void:
+func execute_moves() -> void:
 	combo = container.get_children()
 	#delay if speed tie is lost; attacks need to be calculated with the opponent's final distance if the movement is faster
 	for move in combo:
@@ -47,6 +47,24 @@ func _on_play_hand_pressed() -> void:
 		await get_tree().create_timer(1).timeout
 	combo.clear()
 
+func hide_cards() -> void:
+	$ComboBox.visible = false
+	$HBoxContainer.visible = false
+	
+func show_cards() -> void:
+	$ComboBox.visible = true
+	$HBoxContainer.visible = true
+	
+func lock_inputs() -> void:
+	# Disable inputs
+	is_active = false
+	#animation?
+	
+func unlock_inputs() -> void:
+	#animation?
+	# Disable inputs
+	is_active = true
+	
 func character_move(move: Card, player: Character, opponent: Character) -> void:
 	if player.attributes.grid_position.y == 0 or true: # only if the character is grounded
 		player.attributes.grid_position.x += move.horizontal_distance

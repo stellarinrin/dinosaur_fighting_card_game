@@ -179,6 +179,6 @@ modulate = Color(1, 1, 1, 0.36078432)
 position = Vector2(960, 540)
 texture = ExtResource("10_o40l3")
 
+[connection signal="cards_played" from="." to="Input/Player1Controller" method="execute_moves"]
+[connection signal="cards_played" from="." to="Input/Player2Controller" method="execute_moves"]
 [connection signal="pressed" from="Input/PlayHand" to="." method="_on_play_hand_pressed"]
-[connection signal="pressed" from="Input/PlayHand" to="Input/Player1Controller" method="_on_play_hand_pressed"]
-[connection signal="pressed" from="Input/PlayHand" to="Input/Player2Controller" method="_on_play_hand_pressed"]
