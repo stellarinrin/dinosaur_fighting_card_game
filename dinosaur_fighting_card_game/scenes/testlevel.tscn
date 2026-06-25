@@ -59,6 +59,7 @@ offset_bottom = 1010.0
 
 [node name="AttackCard" parent="Input" unique_id=751085422 node_paths=PackedStringArray("card_area") instance=ExtResource("4_ihbyj")]
 hitbox = Vector2(2, 1)
+damage = 10.0
 card_texture = ExtResource("5_d1tnr")
 card_area = NodePath("..")
 
@@ -88,6 +89,7 @@ card_area = NodePath("..")
 
 [node name="AttackCard2" parent="Input" unique_id=820439794 node_paths=PackedStringArray("card_area") instance=ExtResource("4_ihbyj")]
 hitbox = Vector2(2, 1)
+damage = 10.0
 card_texture = ExtResource("5_d1tnr")
 card_area = NodePath("..")
 
@@ -182,3 +184,7 @@ texture = ExtResource("10_o40l3")
 [connection signal="cards_played" from="." to="Input/Player1Controller" method="execute_moves"]
 [connection signal="cards_played" from="." to="Input/Player2Controller" method="execute_moves"]
 [connection signal="pressed" from="Input/PlayHand" to="." method="_on_play_hand_pressed"]
+[connection signal="attack_blocked" from="Characters/Control/Player1" to="." method="_on_player_1_block"]
+[connection signal="damaged" from="Characters/Control/Player1" to="." method="_on_player_1_damaged"]
+[connection signal="attack_blocked" from="Characters/Control/Player2" to="." method="_on_player_2_block"]
+[connection signal="damaged" from="Characters/Control/Player2" to="." method="_on_player_2_damaged"]

@@ -1,6 +1,7 @@
 class_name PlayerController
 extends Control
 
+
 var card 
 var combo
 @export var is_active : bool = false
@@ -81,21 +82,23 @@ func character_attack(move: Card, player: Character, opponent: Character) -> voi
 			and opponent.attributes.grid_position.x >= \
 			player.attributes.grid_position.x - move.hitbox.x):
 		# If the opponent is at the same height as the player or if they are *standing* at eye 
-		#	level with the player's bottom half, allow the hit
+		#  level with the player's bottom half, allow the hit
 		if opponent.attributes.grid_position.y == player.attributes.grid_position.y \
 				or (opponent.attributes.grid_position.y + 1 == player.attributes.grid_position.y \
 				and not opponent.attributes.is_crouching):
-			opponent.attributes.h_p -= 10.0
+			opponent.player_hit(move)
+
 		# If the opponent is higher than the player, check if the move points up
 		elif (opponent.attributes.grid_position.y >= player.attributes.grid_position.y) \
 				and (move.hitbox.y > 0) and (opponent.attributes.grid_position.y <= \
 				player.attributes.grid_position.y + move.hitbox.y):
-			opponent.attributes.h_p -= 10.0
+			opponent.player_hit(move)
+
 		# If the opponent is lower than the player, check if the move points down
 		elif (opponent.attributes.grid_position.y <= player.attributes.grid_position.y) \
 				and (move.hitbox.y < 0) and (opponent.attributes.grid_position.y >= \
 				player.attributes.grid_position.y + move.hitbox.y):
-			opponent.attributes.h_p -= 10.0
+			opponent.player_hit(move)
 	
 
 func character_block(move: Card, player: Character, opponent: Character) -> void:

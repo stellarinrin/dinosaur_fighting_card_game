@@ -1,8 +1,11 @@
-extends Control
+## Main controller for battle levels
 class_name Level
+extends Control
 
+## Signals *down* to player controllers to trigger combo execution
 signal cards_played
 
+## Primary game states/phases
 enum GameState {
 	NEUTRAL,
 	NEUTRAL_P1,
@@ -10,16 +13,18 @@ enum GameState {
 	ADVANTAGE,
 	WAKEUP,
 }
-@export var game_state : Level.GameState = Level.GameState.NEUTRAL
 
-var combo : Array = []
+@export var game_state : Level.GameState = Level.GameState.NEUTRAL
 @export var player_1 : Character
 @export var player_2 : Character
-@export var controller_1 : Control
-@export var controller_2 : Control
+@export var controller_1 : PlayerController
+@export var controller_2 : PlayerController
+
 var grid_space : Vector2
 ## Base duration in seconds of each character action
 @export var move_duration : float = 1
+var advantage_player : PlayerController
+var is_combo_broken : bool = false
 
 func _ready() -> void:
 	# Hide player inputs
@@ -50,13 +55,6 @@ func _process(delta: float) -> void:
 	player_2.position.y = lerp(player_2.position.y, 
 			-1 * grid_space.y * player_2.attributes.grid_position.y, 22 * delta)
 
-# Neutral:
-# -Lock player inputs
-# -Show player inputs
-# -Execute player inputs
-#  -Check which move is faster and delay the slower one (or maybe use startup frames as a multiplier?)
-
-
 func set_state(new_state: Level.GameState):
 	match new_state:
 		# Neutral Phase
@@ -67,7 +65,6 @@ func set_state(new_state: Level.GameState):
 			# Show player inputs
 			controller_1.show_cards()
 			controller_2.show_cards()
-			#
 			# Execute player inputs
 			#Check which move is faster and delay the slower one (or maybe use startup frames as a multiplier?)
 			cards_played.emit()
@@ -78,15 +75,12 @@ func set_state(new_state: Level.GameState):
 			controller_2.hide_cards()
 			await get_tree().create_timer(move_duration).timeout #hiding animation?
 			# Draw up to six cards
-			# Check if anyone was hit the last turn
-			#  -Ender is blocked: Blocking player -> Advantage
-			#  -Any other attack hits or is blocked: Attacking player -> Advantage
-			#  -(the player entering advantage must be stored in a variable)
-			# Check if anyone was thrown
-			#  -Thrown player lands against the wall: Thrower -> Advantage
-			#  -Thrown player does not land against the wall: -> Neutral
-			# Transition to Neutral 1
-			game_state = Level.GameState.NEUTRAL_P1
+			# Transition to Advantage if there is a player in advantage
+			if advantage_player:
+				game_state = Level.GameState.ADVANTAGE
+			# Transition to back to Neutral otherwise
+			else:
+				game_state = Level.GameState.NEUTRAL_P1
 			set_state(game_state)
 		# Neutral Phase Player 1:
 		Level.GameState.NEUTRAL_P1:
@@ -98,103 +92,106 @@ func set_state(new_state: Level.GameState):
 			controller_1.unlock_inputs()
 			# -*Persistent movement cards?
 			# (card submission in another function)
-
 		# Neutral 2:
 		Level.GameState.NEUTRAL_P2:
 			# Show Player 2's hand
 			controller_2.show_cards()
 			# Set combo length to 1 (what about fast fall?)
 			controller_2.combo_length_limit = 1
-			# Unlock player 1 input
+			# Unlock player 2 input
 			controller_2.unlock_inputs()
 			# -*Persistent movement cards
 			# Add cards to box (animate?)
+			#**Rememeber to lock player 1's mouse**
 			await get_tree().create_timer(move_duration).timeout
 			# Submit
-			# Lock player 1 input
+			# Lock player 2 input
 			controller_1.lock_inputs()
 			# Hide hand
 			controller_1.hide_cards()
 			# Transition to Neutral
 			game_state = Level.GameState.NEUTRAL
 			set_state(game_state)
-
 		# Advantage:
-		# -Show hand
-		# -Set combo length to 5?
-		# -Unlock player X input
-		# -*Persistent movement cards?
-		# -Submit 
-		# -Lock player X input
-		# -Hide hand 
-		# -> Neutral Transition
-#func _on_play_hand_pressed() -> void:
-	##maybe put this part in its own function when programming turn cycle
-	#var player : Character = player_1
-	#var opponent : Character = player_2
-	#
-	#combo = controller_1.container.get_children()
-	#for move in combo:
-		#print(combo)
-		#match move.move_type:
-			#Global.MoveType.MOVEMENT:
-				#character_move(move, player, opponent)
-			#Global.MoveType.ATTACK:
-				#character_attack(move, player, opponent)
-			#Global.MoveType.BLOCK:
-				#character_block(move, player, opponent)
-			#Global.MoveType.THROW:
-				#character_throw(move, player, opponent)
-		#await get_tree().create_timer(1).timeout
-	#combo.clear()
-	#
-	#
-#func character_move(move: Card, player: Character, opponent: Character) -> void:
-	#if player.attributes.grid_position.y == 0 or true: # only if the character is grounded
-		#player.attributes.grid_position.x += move.horizontal_distance
-		#player.attributes.grid_position.y += move.vertical_distance
-	#
-#func character_attack(move: Card, player: Character, opponent: Character) -> void:
-	#var hitbox : Vector2 = player.attributes.grid_position + move.hitbox
-	## Characters will auto-turn to hit their move
-	#if (opponent.attributes.grid_position.x > player.attributes.grid_position.x \
-			#and opponent.attributes.grid_position.x <= \
-			#player.attributes.grid_position.x + move.hitbox.x) or \
-			#(opponent.attributes.grid_position.x < player.attributes.grid_position.x \
-			#and opponent.attributes.grid_position.x >= \
-			#player.attributes.grid_position.x - move.hitbox.x):
-		## If the opponent is at the same height as the player or if they are *standing* at eye 
-		##	level with the player's bottom half, allow the hit
-		#if opponent.attributes.grid_position.y == player.attributes.grid_position.y \
-				#or (opponent.attributes.grid_position.y + 1 == player.attributes.grid_position.y \
-				#and not opponent.attributes.is_crouching):
-			#opponent.attributes.h_p -= 10.0
-		## If the opponent is higher than the player, check if the move points up
-		#elif (opponent.attributes.grid_position.y >= player.attributes.grid_position.y) \
-				#and (move.hitbox.y > 0) and (opponent.attributes.grid_position.y <= \
-				#player.attributes.grid_position.y + move.hitbox.y):
-			#opponent.attributes.h_p -= 10.0
-		## If the opponent is lower than the player, check if the move points down
-		#elif (opponent.attributes.grid_position.y <= player.attributes.grid_position.y) \
-				#and (move.hitbox.y < 0) and (opponent.attributes.grid_position.y >= \
-				#player.attributes.grid_position.y + move.hitbox.y):
-			#opponent.attributes.h_p -= 10.0
-	#
-#
-#func character_block(move: Card, player: Character, opponent: Character) -> void:
-	#pass
-#
-#func character_throw(move: Card, player: Character, opponent: Character) -> void:
-	#pass
+		Level.GameState.ADVANTAGE:
+			# Show advantage player's hand
+			advantage_player.show_cards()
+			# Set combo length to 6 (what about fast fall?)
+			advantage_player.combo_length_limit = 6
+			# Unlock player X input
+			advantage_player.unlock_inputs()
+			# -*Persistent movement cards
+			
+			if advantage_player == controller_1:
+				# (card submission in another function)
+				return
+
+			# (the following is now for Player 2 AI
+			# Add cards to box (animate?)
+			#**Rememeber to lock player 1's mouse**
+			await get_tree().create_timer(move_duration).timeout
+			# Submit
+			# Lock player 2 input
+			advantage_player.lock_inputs()
+			# Execute card inputs
+			cards_played.emit()
+			# Is combo ended/broken?
+			if is_combo_broken:
+				# Hide hand
+				advantage_player.hide_cards()
+				#for now transition to neutral, but remember to account for WAKEUP phase
+				advantage_player = null
+				game_state = Level.GameState.NEUTRAL
+			else:
+				game_state = Level.GameState.ADVANTAGE
+			set_state(game_state)
 
 # When Player 1 submits their hand:
 func _on_play_hand_pressed() -> void:
-	if not game_state == Level.GameState.NEUTRAL_P1:
-		return
+	# Only allow during Player 1's turns
+	match game_state:
+		Level.GameState.NEUTRAL_P1:
+			game_state = Level.GameState.NEUTRAL_P2
+		Level.GameState.ADVANTAGE:
+			if advantage_player == controller_2:
+				return
+			if is_combo_broken:
+				advantage_player = null
+				game_state = Level.GameState.NEUTRAL
+			else:
+				# Execute card inputs
+				cards_played.emit()
+		_:
+			return
 	# Lock player 1 input
 	controller_1.lock_inputs()
 	# Hide hand
 	controller_1.hide_cards()
-	# Transition to Neutral 2
-	game_state = Level.GameState.NEUTRAL_P2
+	
 	set_state(game_state)
+
+# These four* functions update which player would have advantage in the
+#  following turn. The last attack of a given phase will determine this.
+
+# If the last attack is blocked, the blocking opponent gains advantage
+func _on_player_1_block() -> void:
+	advantage_player = controller_1
+func _on_player_2_block() -> void:
+	advantage_player = controller_2
+	
+# If the last attack damages the opponent, the attacker gains advantage
+func _on_player_1_damaged() -> void:
+	advantage_player = controller_2
+func _on_player_2_damaged() -> void:
+	advantage_player = controller_1
+
+# If a player is thrown, the game resets to neutral UNLESS:
+#   a thrown player lands against the wall, in which case the thrower gains advantage
+func _on_player_1_thrown() -> void:
+	advantage_player = controller_2
+func _on_player_2_thrown() -> void:
+	advantage_player = controller_1
+func _on_player_1_wallbounced() -> void:
+	advantage_player = controller_2
+func _on_player_2_wallbounced() -> void:
+	advantage_player = controller_1
