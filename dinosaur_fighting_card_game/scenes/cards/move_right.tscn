@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bwsb2150oo2vc"]
+
+[ext_resource type="PackedScene" uid="uid://ba3q2m3eb34jj" path="res://scenes/base_card_types/movement_card.tscn" id="1_snp8q"]
+
+[node name="MoveRight" unique_id=751085422 instance=ExtResource("1_snp8q")]
+horizontal_distance = 1
+vertical_distance = 0

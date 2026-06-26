@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://w7iu1oileusj"]
+
+[ext_resource type="PackedScene" uid="uid://ba3q2m3eb34jj" path="res://scenes/base_card_types/movement_card.tscn" id="1_6laxs"]
+
+[node name="JumpUp" unique_id=751085422 instance=ExtResource("1_6laxs")]
+horizontal_distance = 0
+vertical_distance = 1

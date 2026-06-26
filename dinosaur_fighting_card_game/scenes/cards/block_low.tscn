@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://clr7xhg7vcj2"]
+
+[ext_resource type="PackedScene" uid="uid://hxrmyftr65pj" path="res://scenes/base_card_types/block_card.tscn" id="1_hou5n"]
+
+[node name="BlockLow" unique_id=751085422 instance=ExtResource("1_hou5n")]
+block_level = 1

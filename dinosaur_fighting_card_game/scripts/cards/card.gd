@@ -1,17 +1,34 @@
-extends Control
+## Card class containing logic for draggable cards
 class_name Card
+extends Control
+
+# to do list:
+# - SFX
 
 @export var card_texture:  Texture2D
-# make a popup description like balatro
+
+## This card's pop-up flavour text
 #@export var card_text : String
+
 @export var move_type : Global.MoveType
-@export var move_index : String
 @export var card_reset_sound : AudioStream
-@export var card_area : CanvasLayer
+
+## This card's default CanvasLayer when it's removed from a player controller
+@export var default_card_area : CanvasLayer
+
+## This card's default position when it's removed from a player controller
+@export var default_card_position : Vector2
+
+# Card dragging variables
 var mouse_in: bool = false
 var is_dragging: bool = false
+var current_goal_scale: Vector2 = Vector2(0.2, 0.2)
+var scale_tween: Tween
+var last_pos: Vector2
+var max_card_rotation: float = 12.5
 
 func _ready() -> void:
+	# Changes this card's appearance on initialisaiton
 	if card_texture:
 		$Sprite2D.texture = card_texture
 
@@ -19,8 +36,6 @@ func _physics_process(delta: float) -> void:
 	$Area2D.monitorable = false
 	drag_logic(delta)
 
-var current_goal_scale: Vector2 = Vector2(0.2, 0.2)
-var scale_tween: Tween
 func _change_scale(desired_scale: Vector2):
 	if desired_scale == current_goal_scale:
 		return
@@ -35,10 +50,13 @@ func _change_scale(desired_scale: Vector2):
 func drag_logic(delta: float) -> void:
 	var screen_size = get_viewport_rect().size
 	var mouse_pos = get_global_mouse_position()
-	if (mouse_in or is_dragging) and (MouseBrain.node_being_dragged == null or MouseBrain.node_being_dragged == self):
+	if (mouse_in or is_dragging) and \
+			(MouseBrain.node_being_dragged == null or MouseBrain.node_being_dragged == self):
 		if Input.is_action_pressed("click"):
 			$Area2D.monitorable = true
-			global_position = lerp(global_position, Vector2(clamp(mouse_pos.x - (size.x/2.0), 0, screen_size.x - 84), 
+			# Lerp card position based on mouse position, limited to the bounds of the screen
+			global_position = lerp(global_position, 
+					Vector2(clamp(mouse_pos.x - (size.x/2.0), 0, screen_size.x - 84), 
 					clamp(mouse_pos.y - (size.x/2.0), 0, screen_size.y - 132)), 22.0 * delta)
 			_change_scale(Vector2(2.3, 2.3))
 			_set_rotation(delta)
@@ -48,8 +66,6 @@ func drag_logic(delta: float) -> void:
 				%CardSFX.play()
 			is_dragging = true
 			MouseBrain.node_being_dragged = self
-			#global_position = Vector2(clamp(get_global_mouse_position().x, 0, get_viewport_rect().size.x-100),
-				#clamp(get_global_mouse_position().y, 0, get_viewport_rect().size.y - 175))
 			$Sprite2D/Shadow.position = Vector2(0, 3).rotated($Sprite2D.rotation)
 			
 		else:
@@ -66,8 +82,6 @@ func drag_logic(delta: float) -> void:
 	$Sprite2D.z_index = 0
 	_change_scale(Vector2(2.25, 2.25))
 
-var last_pos: Vector2
-var max_card_rotation: float = 12.5
 func _set_rotation(delta: float) -> void:
 	var desired_rotation: float = clamp((global_position-last_pos).x*0.85, -max_card_rotation, max_card_rotation)
 	$Sprite2D.rotation_degrees = lerp($Sprite2D.rotation_degrees, desired_rotation, 12.0*delta)
@@ -84,9 +98,7 @@ func _on_gui_input(event: InputEvent) -> void:
 	if not (event is InputEventMouseButton):
 		return
 	if get_parent().get_parent() is PlayerController:
-		reparent(card_area)
+		reparent(default_card_area)
 		%CardSFX.stream = card_reset_sound
 		%CardSFX.play()
 		position = Vector2(0,0) 
-		
-# Reposition card if out of bounds (maybe use an area2d either in the level or on the card itself

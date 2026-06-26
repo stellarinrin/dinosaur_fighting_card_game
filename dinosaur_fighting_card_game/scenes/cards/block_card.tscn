@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://hxrmyftr65pj"]
-
-[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/cards/card.tscn" id="1_nf0et"]
-[ext_resource type="Script" uid="uid://cvu4lcchcm8q0" path="res://scripts/cards/block_card.gd" id="2_lh0ph"]
-
-[node name="BlockCard" unique_id=751085422 instance=ExtResource("1_nf0et")]
-script = ExtResource("2_lh0ph")
-block_level = 0

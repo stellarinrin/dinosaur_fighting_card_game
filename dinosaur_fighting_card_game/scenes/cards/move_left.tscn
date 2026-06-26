@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://64h6a5bmp3ot"]
+
+[ext_resource type="PackedScene" uid="uid://ba3q2m3eb34jj" path="res://scenes/base_card_types/movement_card.tscn" id="1_mxxrg"]
+
+[node name="MoveLeft" unique_id=751085422 instance=ExtResource("1_mxxrg")]
+horizontal_distance = -1
+vertical_distance = 0

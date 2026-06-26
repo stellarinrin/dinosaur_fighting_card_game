@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://clf5y73qqgmnu"]
+
+[ext_resource type="PackedScene" uid="uid://hxrmyftr65pj" path="res://scenes/base_card_types/block_card.tscn" id="1_moggm"]
+
+[node name="BlockHigh" unique_id=751085422 instance=ExtResource("1_moggm")]
+block_level = 2

@@ -1,16 +1,33 @@
 class_name PlayerController
 extends Control
 
+# to do list:
+# - how to handle animations and speed ties
+# - how to handle falling
+# - making formal direction cards and other stuff
+# - opponent AI
+# - throwing
 
-var card 
-var combo
-@export var is_active : bool = false
-
-@onready var container = $HBoxContainer
-@export var combo_length_limit : int = 5
 @export var player : Character
 @export var opponent : Character
+
+## Used for locking card entry into the box
+@export var is_active : bool = false
+
+## Dictates combo length
+@export var combo_length_limit : int = 5
+
+
+## Stores combo list obtained from cards
+var combo : Array
+
+## Stores current combo length to check against the length limit
 var combo_length : int = 0
+
+## Stores card data when reparenting inputted cards
+var card 
+
+@onready var container = $HBoxContainer
 
 func _process(_delta: float) -> void:
 	# Locks card in place
@@ -18,6 +35,7 @@ func _process(_delta: float) -> void:
 		container.get_child(0)._set_rotation(0)
 	container.queue_sort()
 
+# Reparents cards dragged over the box if the controller is accepting inputs
 func _on_combo_box_entered(area: Area2D) -> void:
 	if not is_active:
 		return
@@ -30,10 +48,10 @@ func _on_combo_box_entered(area: Area2D) -> void:
 		return
 	card.reparent(container)
 	
-# check startup speed to see which action goes first
+#*check startup speed to see which action goes first
 func execute_moves() -> void:
 	combo = container.get_children()
-	#delay if speed tie is lost; attacks need to be calculated with the opponent's final distance if the movement is faster
+	#*delay if speed tie is lost; attacks need to be calculated with the opponent's final distance if the movement is faster
 	for move in combo:
 		print(combo)
 		match move.move_type:
@@ -74,7 +92,8 @@ func character_move(move: Card, player: Character, opponent: Character) -> void:
 	
 func character_attack(move: Card, player: Character, opponent: Character) -> void:
 	var hitbox : Vector2 = player.attributes.grid_position + move.hitbox
-	# Characters will auto-turn to hit their move
+	
+	# Characters will auto-turn to hit their move if the opponent is behind them
 	if (opponent.attributes.grid_position.x > player.attributes.grid_position.x \
 			and opponent.attributes.grid_position.x <= \
 			player.attributes.grid_position.x + move.hitbox.x) or \
@@ -87,19 +106,19 @@ func character_attack(move: Card, player: Character, opponent: Character) -> voi
 				or (opponent.attributes.grid_position.y + 1 == player.attributes.grid_position.y \
 				and not opponent.attributes.is_crouching):
 			opponent.player_hit(move)
-
+			
 		# If the opponent is higher than the player, check if the move points up
 		elif (opponent.attributes.grid_position.y >= player.attributes.grid_position.y) \
 				and (move.hitbox.y > 0) and (opponent.attributes.grid_position.y <= \
 				player.attributes.grid_position.y + move.hitbox.y):
 			opponent.player_hit(move)
-
+			
 		# If the opponent is lower than the player, check if the move points down
 		elif (opponent.attributes.grid_position.y <= player.attributes.grid_position.y) \
 				and (move.hitbox.y < 0) and (opponent.attributes.grid_position.y >= \
 				player.attributes.grid_position.y + move.hitbox.y):
 			opponent.player_hit(move)
-	
+			
 
 func character_block(move: Card, player: Character, opponent: Character) -> void:
 	pass

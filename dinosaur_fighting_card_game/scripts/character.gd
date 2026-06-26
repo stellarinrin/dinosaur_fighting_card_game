@@ -1,9 +1,14 @@
 class_name Character
 extends Node2D
+
+# to do list:
+# - animations
+
 signal damaged
 signal attack_blocked
 
 @export var attributes : CharacterAttributes
+@export var sprite : AnimatedSprite2D
 
 func _process(delta: float) -> void:
 	if attributes.is_crouching:

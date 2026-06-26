@@ -3,17 +3,12 @@
 [ext_resource type="Script" uid="uid://cgjagds4mpri" path="res://scripts/level1.gd" id="1_jiwm1"]
 [ext_resource type="Theme" uid="uid://s8gg5af6fj5u" path="res://resources/battle_ui.tres" id="2_7ixgg"]
 [ext_resource type="Script" uid="uid://c7xqlb2xblyn0" path="res://scripts/UI/health_bar.gd" id="3_o40l3"]
-[ext_resource type="Texture2D" uid="uid://djsc13xpcamoa" path="res://assets/card_assets/card_back_dash.png" id="4_hyqgw"]
-[ext_resource type="PackedScene" uid="uid://bmeihbs4gt57" path="res://scenes/cards/attack_card.tscn" id="4_ihbyj"]
-[ext_resource type="PackedScene" uid="uid://ba3q2m3eb34jj" path="res://scenes/cards/movement_card.tscn" id="5_2bxju"]
+[ext_resource type="PackedScene" uid="uid://bmeihbs4gt57" path="res://scenes/base_card_types/attack_card.tscn" id="4_ihbyj"]
 [ext_resource type="Texture2D" uid="uid://h0gtmhoucvgh" path="res://assets/card_assets/card_ground_standing.png" id="5_d1tnr"]
 [ext_resource type="PackedScene" uid="uid://5a8rsbeq0erk" path="res://scenes/player_1_controller.tscn" id="5_ifqpo"]
 [ext_resource type="PackedScene" uid="uid://cjgceq2cb6ec1" path="res://scenes/player_2_controller.tscn" id="6_2bxju"]
 [ext_resource type="Script" uid="uid://t0q365o0j6ed" path="res://scripts/character.gd" id="7_fljaa"]
-[ext_resource type="Texture2D" uid="uid://bt4dcky5us14v" path="res://assets/card_assets/card_air.png" id="7_ylnb8"]
-[ext_resource type="Texture2D" uid="uid://b3jirmbixrw1w" path="res://assets/card_assets/card_forward_dash.png" id="8_4k8th"]
 [ext_resource type="Script" uid="uid://diwaw8t6q57iv" path="res://scripts/character_attributes.gd" id="8_o40l3"]
-[ext_resource type="Texture2D" uid="uid://ittiffhwx4dc" path="res://assets/card_assets/card_ground_special.png" id="9_86ygi"]
 [ext_resource type="Texture2D" uid="uid://lfgrhc4eeh12" path="res://assets/character-dinosaur-test-standing.png" id="10_ihbyj"]
 [ext_resource type="Texture2D" uid="uid://cex1ihcq8i3pv" path="res://38346657b1271fcfe6ce1c60423ff665b794_1920xt1080_S1000-3662738456.jpg" id="10_o40l3"]
 
@@ -57,65 +52,15 @@ offset_top = 948.0
 offset_right = 183.0
 offset_bottom = 1010.0
 
-[node name="AttackCard" parent="Input" unique_id=751085422 node_paths=PackedStringArray("card_area") instance=ExtResource("4_ihbyj")]
+[node name="AttackCard" parent="Input" unique_id=751085422 instance=ExtResource("4_ihbyj")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 94.0
+offset_bottom = 136.0
 hitbox = Vector2(2, 1)
 damage = 10.0
 card_texture = ExtResource("5_d1tnr")
-card_area = NodePath("..")
-
-[node name="JumpUp" parent="Input" unique_id=2008182948 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
-horizontal_distance = 0
-vertical_distance = 1
-card_texture = ExtResource("7_ylnb8")
-card_area = NodePath("..")
-
-[node name="MoveRight" parent="Input" unique_id=1970522834 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
-horizontal_distance = 1
-vertical_distance = 0
-card_texture = ExtResource("8_4k8th")
-card_area = NodePath("..")
-
-[node name="FallDown" parent="Input" unique_id=1939929438 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
-horizontal_distance = 0
-vertical_distance = -1
-card_texture = ExtResource("9_86ygi")
-card_area = NodePath("..")
-
-[node name="MoveLeft" parent="Input" unique_id=1019575541 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
-horizontal_distance = -1
-vertical_distance = 0
-card_texture = ExtResource("4_hyqgw")
-card_area = NodePath("..")
-
-[node name="AttackCard2" parent="Input" unique_id=820439794 node_paths=PackedStringArray("card_area") instance=ExtResource("4_ihbyj")]
-hitbox = Vector2(2, 1)
-damage = 10.0
-card_texture = ExtResource("5_d1tnr")
-card_area = NodePath("..")
-
-[node name="JumpUp2" parent="Input" unique_id=246322441 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
-horizontal_distance = 0
-vertical_distance = 1
-card_texture = ExtResource("7_ylnb8")
-card_area = NodePath("..")
-
-[node name="MoveRight2" parent="Input" unique_id=97711687 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
-horizontal_distance = 1
-vertical_distance = 0
-card_texture = ExtResource("8_4k8th")
-card_area = NodePath("..")
-
-[node name="FallDown2" parent="Input" unique_id=805566123 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
-horizontal_distance = 0
-vertical_distance = -1
-card_texture = ExtResource("9_86ygi")
-card_area = NodePath("..")
-
-[node name="MoveLeft2" parent="Input" unique_id=1178517314 node_paths=PackedStringArray("card_area") instance=ExtResource("5_2bxju")]
-horizontal_distance = -1
-vertical_distance = 0
-card_texture = ExtResource("4_hyqgw")
-card_area = NodePath("..")
+default_card_position = Vector2(0, 0)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=124734236]
 

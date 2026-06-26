@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://ny1bh2t3ld6c"]
-
-[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/cards/card.tscn" id="1_ml1nx"]
-[ext_resource type="Script" uid="uid://biq050otuoodi" path="res://scripts/cards/throw_card.gd" id="2_mtbra"]
-
-[node name="ThrowCard" unique_id=751085422 instance=ExtResource("1_ml1nx")]
-script = ExtResource("2_mtbra")

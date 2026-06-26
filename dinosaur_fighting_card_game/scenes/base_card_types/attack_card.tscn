@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bmeihbs4gt57"]
+
+[ext_resource type="Script" uid="uid://bcpjjwn25hv8c" path="res://scripts/cards/attack_card.gd" id="1_3ikgh"]
+[ext_resource type="PackedScene" uid="uid://bkii041wwh5sn" path="res://scenes/base_card_types/card.tscn" id="1_hhite"]
+
+[node name="AttackCard" unique_id=751085422 instance=ExtResource("1_hhite")]
+script = ExtResource("1_3ikgh")
+combo_piece = 1
+startup_frames = 4
+hitbox = Vector2(1, 1)
+attack_level = 1
+damage = 67.0
+proration = 0.0
+recovery_frames = 6
+move_type = 1

@@ -2,6 +2,13 @@
 class_name Level
 extends Control
 
+# to do list:
+# - how to handle animations and speed ties
+# - how to handle falling
+# - wakeup phase
+# - opponent AI
+# - Card spawning/ hands / decks
+
 ## Signals *down* to player controllers to trigger combo execution
 signal cards_played
 
@@ -20,10 +27,17 @@ enum GameState {
 @export var controller_1 : PlayerController
 @export var controller_2 : PlayerController
 
-var grid_space : Vector2
 ## Base duration in seconds of each character action
 @export var move_duration : float = 1
+
+## Stores dimensions of the game's simulated grid
+var grid_space : Vector2
+
+## The current player set to take Advantage
 var advantage_player : PlayerController
+
+## Stores the check for the end of an Advantage combo executed 
+##  within a player controller
 var is_combo_broken : bool = false
 
 func _ready() -> void:
@@ -31,7 +45,7 @@ func _ready() -> void:
 	controller_1.hide_cards()
 	controller_2.hide_cards()
 	
-	# Set initial state
+	# Set initial game state
 	set_state(game_state)
 	
 	# Cut screen into a grid
@@ -57,24 +71,30 @@ func _process(delta: float) -> void:
 
 func set_state(new_state: Level.GameState):
 	match new_state:
-		# Neutral Phase
+		# Neutral Phase:
 		Level.GameState.NEUTRAL:
 			# Lock player inputs
 			controller_1.lock_inputs()
 			controller_2.lock_inputs()
+			
 			# Show player inputs
 			controller_1.show_cards()
 			controller_2.show_cards()
+			
 			# Execute player inputs
 			#Check which move is faster and delay the slower one (or maybe use startup frames as a multiplier?)
 			cards_played.emit()
+			
 			# Wait until both player's moves have been played
 			await get_tree().create_timer(move_duration).timeout
+			
 			# Hide player inputs
 			controller_1.hide_cards()
 			controller_2.hide_cards()
 			await get_tree().create_timer(move_duration).timeout #hiding animation?
+			
 			# Draw up to six cards
+			
 			# Transition to Advantage if there is a player in advantage
 			if advantage_player:
 				game_state = Level.GameState.ADVANTAGE
@@ -82,59 +102,82 @@ func set_state(new_state: Level.GameState):
 			else:
 				game_state = Level.GameState.NEUTRAL_P1
 			set_state(game_state)
+
 		# Neutral Phase Player 1:
 		Level.GameState.NEUTRAL_P1:
 			# Show Player 1's hand
 			controller_1.show_cards()
+			
 			# Set combo length to 1 (what about fast fall?)
 			controller_1.combo_length_limit = 1
+			
 			# Unlock player 1 input
 			controller_1.unlock_inputs()
 			# -*Persistent movement cards?
-			# (card submission in another function)
-		# Neutral 2:
+			
+			# Game remains in this state until player submission is
+			#  signalled up by the submission button
+
+		# Neutral Phase PLayer 2:
 		Level.GameState.NEUTRAL_P2:
 			# Show Player 2's hand
 			controller_2.show_cards()
+			
 			# Set combo length to 1 (what about fast fall?)
 			controller_2.combo_length_limit = 1
+			
 			# Unlock player 2 input
 			controller_2.unlock_inputs()
 			# -*Persistent movement cards
 			# Add cards to box (animate?)
 			#**Rememeber to lock player 1's mouse**
 			await get_tree().create_timer(move_duration).timeout
+			
 			# Submit
+			
 			# Lock player 2 input
 			controller_1.lock_inputs()
+			
 			# Hide hand
 			controller_1.hide_cards()
+			
 			# Transition to Neutral
 			game_state = Level.GameState.NEUTRAL
 			set_state(game_state)
+			
 		# Advantage:
 		Level.GameState.ADVANTAGE:
 			# Show advantage player's hand
 			advantage_player.show_cards()
+			
 			# Set combo length to 6 (what about fast fall?)
 			advantage_player.combo_length_limit = 6
+			
 			# Unlock player X input
 			advantage_player.unlock_inputs()
 			# -*Persistent movement cards
 			
+			# If the player in advantage is Player 1, the game remains 
+			#  in this state until the player submission is signalled up 
+			#  by the submission button
 			if advantage_player == controller_1:
-				# (card submission in another function)
 				return
-
-			# (the following is now for Player 2 AI
+			
+			
+			# ---The following is now for Player 2 AI---
+			
 			# Add cards to box (animate?)
 			#**Rememeber to lock player 1's mouse**
 			await get_tree().create_timer(move_duration).timeout
+			
 			# Submit
+			
 			# Lock player 2 input
 			advantage_player.lock_inputs()
+			
 			# Execute card inputs
 			cards_played.emit()
+			
 			# Is combo ended/broken?
 			if is_combo_broken:
 				# Hide hand
@@ -148,27 +191,36 @@ func set_state(new_state: Level.GameState):
 
 # When Player 1 submits their hand:
 func _on_play_hand_pressed() -> void:
-	# Only allow during Player 1's turns
 	match game_state:
+		# Transition to Player 2's neutral state after hand submission
 		Level.GameState.NEUTRAL_P1:
 			game_state = Level.GameState.NEUTRAL_P2
+		# Transition to 
 		Level.GameState.ADVANTAGE:
+			# This button does nothing if the player is not Player 1
 			if advantage_player == controller_2:
 				return
+			# Reset to Neutral if combo has been broken
+			#  in the previous advantage state
 			if is_combo_broken:
 				advantage_player = null
 				game_state = Level.GameState.NEUTRAL
+			# Execute card inputs otherwise and continue Advantage
 			else:
-				# Execute card inputs
 				cards_played.emit()
+		# This button does nothing if the game is none of the above states
 		_:
 			return
+			
 	# Lock player 1 input
 	controller_1.lock_inputs()
+	
 	# Hide hand
 	controller_1.hide_cards()
 	
+	# Repeat Advantage if combo was not broken in the previous Advantage cycle
 	set_state(game_state)
+
 
 # These four* functions update which player would have advantage in the
 #  following turn. The last attack of a given phase will determine this.
